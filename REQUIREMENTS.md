@@ -61,7 +61,7 @@ Begin building the layout for each page based on the Figma template. Follow thes
 |                       | - Clicking a menu item navigates to the corresponding page.                                                                                   |
 | **Footer Navigation** | - Footer is displayed on every page as per the design.                                                                                        |
 |                       | - Clicking `About Us` or `Contact Us` navigates to their respective pages.                                                                    |
-| **Account Icon**      | - Clicking the icon opens the `Log In` modal window.                                                                                            |
+| **Account Icon**      | - Clicking the icon opens the `Log In` modal window, that closes upon successful completion.                                                                                            |
 |                       | - In the `Log In` window:                                                                                                                       |
 |                       |   - Email field must follow a RegEx format.                                                                                                   |
 |                       |   - Password field is required.                                                                                                               |
@@ -111,6 +111,7 @@ Begin building the layout for each page based on the Figma template. Follow thes
 - The product page should follow the Figma layout. For different products, only the name, rating, price, and main image should change, reflecting the product the user clicked on and was redirected to.
 - Quantity selector (`+/-`): minimum value is 1.
 - `Add to Cart`: updates header counter and LocalStorage.
+- `Review` tab: On form's Submit show success or error message upon submission without reloading the page.
 - `You May Also Like` displays 4 randomly selected JSON products.
 
 
