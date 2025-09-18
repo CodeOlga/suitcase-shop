@@ -72,7 +72,7 @@ Begin building the layout for each page based on the Figma template. Follow thes
 
 **Pages:**   
 **1. Homepage**:
-- `Travel Suitcases` block: images display hover effects such as zoom and shadow.
+- The `Travel Suitcases` block includes an image slider, where images display hover effects such as zoom and shadow. A random text should be displayed over a background image. 
 - `Selected Products` and `New Products Arrival` are loaded from local JSON.
 - Clicking `Add to Cart` button:
     - Instantly updates the cart counter in the Header Cart icon.
@@ -103,6 +103,8 @@ Begin building the layout for each page based on the Figma template. Follow thes
 |                 | - Add previous/next buttons.                                                                                                                                |
 |                 | - Load pages asynchronously (no reload).                                                                                                                    |
 |                 | - Dynamically show "Showing X–Y of Z results".                                                                                                              |
+
+- The `Top Best Sets` block shows random suitcase sets. 
 
 **3. Product Details Page**:
 - Load dynamically from local JSON data. 
@@ -141,8 +143,9 @@ Begin building the layout for each page based on the Figma template. Follow thes
 |                     | - Shows "Thank you for your purchase."                                                                             |
 |                     | - The cart counter in the Header Cart icon is not visible.                                                        |
 | **Prices & Discounts** | - Prices are fetched from JSON.                                                                                  |
-|                     | - Apply discount rules if set in data.                                                                             |
+|                     | - Apply discount rules if set in data. A 10% discount is applied when the total sum exceeds $3,000.                                                                             |
 | **Persistence**     | - Store all cart data in LocalStorage.                                                                             |
+
 
 
 **Final notes**:
