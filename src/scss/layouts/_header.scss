@@ -1,0 +1,100 @@
+@use "../abstracts/mixins";
+@use "../abstracts/variables";
+
+.container {
+  @include mixins.container;
+}
+
+.header {
+  // padding-top: 48px;
+  // padding-bottom: 24px;
+  background-color: variables.$bg-white;
+  border-bottom: 1px solid variables.$bg-light-gray;
+
+  .top-bar {
+    @include mixins.container;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 24px 0 16px;
+  }
+
+  .socials {
+    display: flex;
+    gap: 16px;
+
+    a {
+      font-size: 18px;
+      color: variables.$text-black;
+
+      &:hover {
+        color: variables.$color-primary-pink;
+      }
+    }
+  }
+
+  .logo {
+    display: flex;
+    align-items: center;
+
+    &__icon {
+      width: 227px;
+      height: 37px;
+      fill: currentColor;
+    }
+
+    &:hover .logo__icon {
+      fill: variables.$color-primary-pink;
+    }
+  }
+
+  .actions {
+    display: flex;
+    gap: 16px;
+
+    .icon-btn {
+      background: none;
+      border: none;
+      font-size: 20px;
+      cursor: pointer;
+      color: variables.$text-black;
+
+      &:hover {
+        color: variables.$color-primary-pink;
+      }
+    }
+  }
+
+  .nav-bar {
+    @include mixins.container;
+    padding-bottom: 24px;
+  }
+
+  .nav {
+    .nav-list {
+      display: flex;
+      gap: 32px;
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .nav-link {
+      font-weight: variables.$font-weight-medium;
+      font-size: 16px;
+      text-decoration: none;
+      color: variables.$text-black;
+      transition: color 0.3s;
+
+      &:hover,
+      &.active {
+        color: variables.$color-primary-pink;
+      }
+
+      .arrow-down {
+        margin-left: 4px;
+        font-size: 10px;
+      }
+    }
+  }
+}

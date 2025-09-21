@@ -1,0 +1,39 @@
+@use "../abstracts/variables";
+
+body {
+  font-family: variables.$font-primary;
+  font-size: clamp(14px, 2vw, 17px);
+  font-weight: variables.$font-weight-normal;
+  line-height: variables.$line-height-base;
+  color: variables.$text-black;
+  background-color: variables.$bg-white;
+  scroll-behavior: smooth;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: variables.$font-primary;
+  font-weight: variables.$font-weight-black;
+  line-height: variables.$line-height-heading;
+}
+
+/* Fluid typography */
+h1 {
+  font-size: clamp(28px, 5vw, 50px);
+}
+
+h2 {
+  font-size: clamp(24px, 4vw, 40px);
+}
+
+h3 {
+  font-size: clamp(20px, 3vw, 30px);
+}
+
+h4 {
+  font-size: clamp(18px, 2.5vw, 25px);
+}

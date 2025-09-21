@@ -14,14 +14,21 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "sass": "sass --watch src/scss:src/css",
     "lint:js": "eslint src/**/*.js",
-    "lint:css": "stylelint src/**/*.scss"
+    "lint:css": "stylelint src/**/*.scss",
+    "build": "posthtml src/index.html -o dist/index.html && posthtml src/pages/**/*.html -o dist/pages && cpx \"src/css/**/*\" dist/css",
+    "sprite": "svg-sprite --config sprite.config.json src/assets/icons/**/*.svg"
   },
   "devDependencies": {
     "@eslint/js": "^9.35.0",
+    "cpx": "^1.5.0",
     "eslint": "^9.35.0",
     "globals": "^16.4.0",
+    "posthtml": "^0.16.6",
+    "posthtml-cli": "^0.10.0",
+    "posthtml-include": "^2.0.1",
     "sass": "^1.92.1",
     "stylelint": "^16.24.0",
-    "stylelint-config-standard": "^39.0.0"
+    "stylelint-config-standard": "^39.0.0",
+    "svg-sprite": "^2.0.4"
   }
 }
