@@ -36,19 +36,18 @@ cd project-template-ua
 npm install
 ```
 
-**Start the development server:**
-
-(optional, if template includes dev server)
-
-```bash
-npm run dev
-```
-
 **Compile SCSS into CSS (watch mode):**
 
 ```bash
 npm run sass
 ```
+
+The compiled CSS will be placed in dist/css/main.css and is automatically linked in the HTML files located in src/.
+
+**Open the project in browser:**
+
+Open src/index.html in your browser
+(recommended: use Live Server in VS Code for local development)
 
 ## 🧹 Code Quality
 
@@ -71,15 +70,17 @@ npm run lint:css
 ```text
 src/
 ├── assets/ # Images, icons, JSON data
-├── css/ # Compiled CSS (from SCSS)
-├── scss/ # SCSS source files
 ├── js/ # JavaScript files
+├── scss/ # SCSS source files
 ├── index.html # Homepage
 ├── catalog.html # Product catalog
 ├── product.html # Single product details
 ├── about.html # About Us page
 ├── contact.html # Contact page
 └── cart.html # Shopping cart
+
+dist/
+├── css/         # Compiled CSS files
 ```
 
 ## 📝 Notes
@@ -98,7 +99,7 @@ Clone the template repository.
 
 Install dependencies (npm install).
 
-Set up Sass compilation.
+Set up Sass compilation (npm run sass).
 
 Configure ESLint and Stylelint.
 

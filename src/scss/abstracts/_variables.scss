@@ -9,7 +9,7 @@ $bg-white: #ffffff;
 $bg-section-dark: #504e4a;
 $bg-hero: #e7e8e9;
 $bg-light-gray: #e9e9ed;
-$overlay-black-35: #00000059;
+$bg-overlay: rgba(0, 0, 0, 0.4);
 
 // Breakpoints
 $breakpoint-sm: 768px;
@@ -30,7 +30,11 @@ $line-height-base: 1.5;
 $line-height-heading: 1.2;
 
 // Базові параметри типографіки
-$heading-margin-bottom: 10px; //???????
+// $heading-margin-bottom: 10px;
+
+// Transitions
+$transition-duration: 300ms;
+$timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 
 /* Spacing */
 // $spacer: 1rem;
@@ -43,4 +47,4 @@ $heading-margin-bottom: 10px; //???????
 // $border-radius-sm: 0.125rem;
 
 /* Shadows */
-// $box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+$box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);

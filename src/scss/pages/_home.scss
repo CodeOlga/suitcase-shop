@@ -1,0 +1,160 @@
+@use "../abstracts/mixins";
+@use "../abstracts/variables";
+
+.hero-section {
+  background-color: variables.$bg-hero;
+  padding: 60px 0;
+
+  .container {
+    // @include mixins.container;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 40px;
+
+    @media (min-width: variables.$breakpoint-sm) {
+      flex-direction: row;
+      justify-content: space-between;
+      gap: 60px;
+    }
+  }
+
+  .hero-content {
+    text-align: center;
+
+    @media (min-width: variables.$breakpoint-sm) {
+      text-align: left;
+      max-width: 50%;
+    }
+
+    h1 {
+      margin-bottom: 30px;
+
+      span {
+        display: inline-block;
+        max-width: clamp(280px, 50vw, 486px);
+      }
+    }
+
+    p {
+      line-height: variables.$line-height-base;
+      margin-bottom: 30px;
+      color: variables.$text-dark-gray;
+    }
+  }
+
+  .hero-img {
+    max-width: 100%;
+
+    img {
+      width: 100%;
+      height: auto;
+    }
+
+    @media (min-width: variables.$breakpoint-sm) {
+      max-width: 50%;
+    }
+  }
+}
+
+.promo-section {
+  padding: 60px 0;
+  margin-top: -100px;
+  position: relative;
+  z-index: 2; // ??? щоб тінь не зникла під hero
+
+  .promo-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: stretch;
+    padding-left: 0;
+    padding-right: 0;
+    box-shadow: variables.$box-shadow;
+
+    @media (max-width: 768px) {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .promo-left {
+    padding: 70px;
+    background-color: variables.$bg-white;
+
+    @media (max-width: 768px) {
+      padding: 30px;
+    }
+
+    .author {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 20px;
+
+      .author-img {
+        aspect-ratio: 85 / 93;
+      }
+
+      .author-name {
+        font-size: 20px;
+        font-weight: variables.$font-weight-bold;
+      }
+    }
+
+    .promo-title {
+      font-size: 20px;
+      font-weight: 700;
+      margin-bottom: 16px;
+    }
+
+    .promo-text {
+      color: variables.$text-dark-gray;
+      margin-bottom: 12px;
+    }
+  }
+
+  .promo-right {
+    min-height: 566px;
+    flex-shrink: 0;
+
+    background: url("../../src/assets/img/suitcases/promo-suitcase@1x.webp")
+      center/cover no-repeat;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    color: variables.$bg-white;
+
+    &::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: variables.$bg-overlay;
+    }
+
+    @media (min-resolution: 192dpi), (min-resolution: 2dppx) {
+      background-image: url("../../src/assets/img/suitcases/promo-suitcase@2x.webp");
+    }
+
+    @media (max-width: 768px) {
+      min-height: 300px;
+      padding: 20px;
+    }
+
+    .discount-card {
+      position: relative;
+      z-index: 1;
+      max-width: 400px;
+
+      .discount-percent {
+        margin-bottom: 30px;
+        font-size: 40px;
+        font-weight: variables.$font-weight-black;
+      }
+
+      .discount-text {
+        font-size: 17px;
+        margin-bottom: 30px;
+      }
+    }
+  }
+}

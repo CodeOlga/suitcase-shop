@@ -3,6 +3,7 @@
 @use "abstracts/variables";
 
 // Base
+@use "base/global";
 @use "base/fonts";
 @use "base/reset";
 
@@ -16,6 +17,7 @@
 @use "layouts/header";
 
 // Pages
+@use "pages/home";
 @use "pages/about";
 @use "pages/cart";
 @use "pages/catalog";

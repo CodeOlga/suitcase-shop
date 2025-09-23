@@ -1,0 +1,250 @@
+@use "../abstracts/mixins";
+@use "../abstracts/variables";
+
+.footer {
+  font-size: 15px;
+  padding-bottom: 46px;
+  font-family: variables.$font-secondary;
+
+  .footer-top {
+    background-color: variables.$text-dark-gray;
+    color: variables.$bg-white;
+    padding: 40px 0;
+    position: relative;
+
+    &::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-image: url("../../src/assets/icons/wave-32.svg");
+      background-repeat: repeat-y;
+      background-size: 100% 32px;
+      opacity: 0.2;
+      z-index: 0;
+    }
+
+    .footer-benefits {
+      position: relative;
+      z-index: 1;
+
+      .footer-benefits-heading {
+        font-size: 19px;
+        font-family: variables.$font-secondary;
+        font-weight: variables.$font-weight-bold;
+        margin-bottom: 32px;
+      }
+
+      .footer-benefits-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 20px;
+      }
+
+      .benefit-item {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+        text-align: left;
+
+        svg {
+          flex-shrink: 0;
+          width: 60px;
+          height: 60px;
+        }
+
+        p {
+          font-size: 15px;
+          font-weight: variables.$font-weight-medium;
+        }
+      }
+    }
+  }
+
+  .footer-bottom {
+    padding: 120px 0 60px;
+
+    .container {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 140px;
+    }
+
+    h3 {
+      font-family: variables.$font-secondary;
+      font-weight: variables.$font-weight-bold;
+      margin-bottom: 24px;
+      font-size: 15px;
+    }
+
+    .footer-bottom-left {
+      flex: 0 1 860px;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      column-gap: 40px;
+
+      .footer-col {
+        ul {
+          li {
+            margin-bottom: 12px;
+          }
+
+          a {
+            transition: color variables.$transition-duration
+              variables.$timing-function;
+
+            &:hover {
+              color: variables.$color-primary-pink;
+            }
+          }
+        }
+      }
+
+      .footer-shipping {
+        grid-column: 1 / -1;
+        margin-top: 40px;
+        max-width: 100%;
+      }
+    }
+
+    .footer-contact {
+      flex: 0 0 370px;
+      display: flex;
+      flex-direction: column;
+
+      .footer-contact-info {
+        margin-top: 74px;
+      }
+
+      .contact-list {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        row-gap: 20px;
+
+        .contact-item {
+          display: flex;
+          align-items: flex-start;
+          gap: 10px;
+
+          svg {
+            flex-shrink: 0;
+            width: 24px;
+            height: 24px;
+          }
+
+          .contact-hours {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+          }
+        }
+
+        a {
+          transition: color variables.$transition-duration
+            variables.$timing-function;
+
+          &:hover {
+            color: variables.$color-primary-pink;
+          }
+        }
+      }
+    }
+  }
+
+  .footer-copy {
+    text-align: center;
+    font-size: 14px;
+    color: variables.$bg-overlay;
+  }
+}
+
+@media (max-width: variables.$breakpoint-md) {
+  .footer {
+    .footer-top {
+      .footer-benefits-grid {
+        grid-template-columns: repeat(2, 1fr);
+        row-gap: 32px;
+      }
+
+      .benefit-item {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        gap: 12px;
+      }
+    }
+
+    .footer-bottom {
+      .container {
+        flex-direction: column;
+        gap: 40px;
+      }
+
+      .footer-bottom-left {
+        flex: 0 1 100%;
+      }
+
+      .footer-contact {
+        max-width: 100%;
+
+        .contact-list {
+          grid-template-columns: 1fr 1fr;
+          gap: 20px 40px;
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: variables.$breakpoint-sm) {
+  .footer {
+    .footer-top {
+      .footer-benefits-grid {
+        grid-template-columns: 1fr;
+        row-gap: 24px;
+      }
+
+      .benefit-item {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+      }
+    }
+
+    .footer-bottom {
+      .container {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+      }
+
+      .footer-bottom-left {
+        grid-template-columns: 1fr;
+        justify-items: center;
+      }
+
+      .footer-col,
+      .footer-shipping {
+        text-align: center;
+      }
+
+      .footer-contact {
+        max-width: 100%;
+        text-align: center;
+
+        .footer-contact-info {
+          margin-top: 40px;
+        }
+
+        .contact-list {
+          grid-template-columns: 1fr;
+          gap: 20px;
+
+          .contact-item {
+            justify-content: center;
+          }
+        }
+      }
+    }
+  }
+}
