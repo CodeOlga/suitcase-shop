@@ -57,3 +57,23 @@
     font-size: 16px;
   }
 }
+
+.btn-outline {
+  background-color: transparent;
+  color: variables.$color-primary-pink;
+  border: 2px solid variables.$color-primary-pink;
+  font-family: variables.$font-primary;
+  text-transform: uppercase;
+  border-radius: 4px;
+
+  &:hover,
+  &:focus {
+    background-color: variables.$color-primary-pink;
+    color: variables.$bg-white;
+  }
+
+  &:active {
+    background-color: darken(variables.$color-primary-pink, 10%);
+    border-color: darken(variables.$color-primary-pink, 10%);
+  }
+}

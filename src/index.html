@@ -37,7 +37,7 @@
           </a>
         </div>
 
-        <a href="/" class="logo" aria-label="Smart Store homepage">
+        <a href="/index.html" class="logo" aria-label="Smart Store homepage">
           <svg class="logo-icon" width="228" height="38" aria-hidden="true">
             <use href="./assets/sprite/sprite.svg#icon-logo"></use>
           </svg>
@@ -49,11 +49,12 @@
               <use href="./assets/sprite/sprite.svg#icon-user"></use>
             </svg>
           </button>
-          <button class="icon-btn" aria-label="Cart">
+          <a href="./pages/cart.html" class="icon-btn cart-btn" aria-label="Cart">
             <svg width="34" height="34">
               <use href="./assets/sprite/sprite.svg#icon-shopping-cart"></use>
             </svg>
-          </button>
+            <span class="cart-counter">0</span>
+          </a>
         </div>
       </div>
 
@@ -81,7 +82,7 @@
 
   <main>
     <!-- Hero section -->
-    <section class="hero-section">
+    <section class="section hero-section">
       <div class="container">
         <div class="hero-content">
           <h1><span>Smart Styles for Every Destination</span></h1>
@@ -89,7 +90,6 @@
             Discover the perfect suitcase for every journey. <br>
             Elegant design, durable materials, and smart features.
           </p>
-
           <a href="#" class="btn btn-lg">View All Items</a>
         </div>
         <div class="hero-img">
@@ -101,7 +101,7 @@
     </section>
 
     <!-- Promo section -->
-    <section class="promo-section">
+    <section class="section promo-section">
       <div class="container promo-container">
         <div class="promo-left">
           <div class="author">
@@ -134,6 +134,207 @@
         </div>
       </div>
     </section>
+
+    <!-- Travel suitcases section -->
+    <section class="section travel-suitcases-section">
+      <div class="container">
+        <h2>Travel suitcases</h2>
+        <p class="section-subtitle">
+          Duis vestibulum elit vel neque pharetra
+        </p>
+
+        <div class="slider">
+          <div class="slider-wrapper">
+            <div class="slide">
+              <img src="./assets/img/suitcases/travel-suitcase-1-@1x.webp"
+                srcset="./assets/img/suitcases/travel-suitcase-1-@2x.webp 2x" width="296" height="600"
+                alt="Travel Suitcase 1" loading="lazy">
+              <div class="overlay"></div>
+              <div class="card-content">
+                <h3>Duis vestibulum elit vel neque.</h3>
+                <p>Duis vestibulum vel neque pharetra vulputate. Quisque scelerisque nisi.</p>
+              </div>
+            </div>
+
+            <div class="slide">
+              <img src="./assets/img/suitcases/travel-suitcase-2-@1x.webp"
+                srcset="./assets/img/suitcases/travel-suitcase-2-@2x.webp 2x" width="296" height="600"
+                alt="Travel Suitcase 2" loading="lazy">
+              <div class="overlay"></div>
+              <div class="card-content">
+                <h3>Neque vestibulum elit nequevel.</h3>
+                <p>Duis vestibulum vel neque pharetra vulputate. Quisque scelerisque nisi.</p>
+              </div>
+            </div>
+
+            <div class="slide">
+              <img src="./assets/img/suitcases/travel-suitcase-3-@1x.webp"
+                srcset="./assets/img/suitcases/travel-suitcase-3-@2x.webp 2x" width="296" height="600"
+                alt="Travel Suitcase 3" loading="lazy">
+              <div class="overlay"></div>
+              <div class="card-content">
+                <h3>Elituis stibulum elit velneque.</h3>
+                <p>Duis vestibulum vel neque pharetra vulputate. Quisque scelerisque nisi.</p>
+              </div>
+            </div>
+
+            <div class="slide">
+              <img src="./assets/img/suitcases/travel-suitcase-4-@1x.webp"
+                srcset="./assets/img/suitcases/travel-suitcase-4-@2x.webp 2x" width="296" height="600"
+                alt="Travel Suitcase 4" loading="lazy">
+              <div class="overlay"></div>
+              <div class="card-content">
+                <h3>Vel vestibulum elit tuvel euqen.</h3>
+                <p>Duis vestibulum vel neque pharetra vulputate. Quisque scelerisque nisi.</p>
+              </div>
+            </div>
+            <div class="slide">
+              <img src="./assets/img/suitcases/travel-suitcase-1-@1x.webp"
+                srcset="./assets/img/suitcases/travel-suitcase-1-@2x.webp 2x" width="296" height="600"
+                alt="Travel Suitcase 5" loading="lazy">
+              <div class="overlay"></div>
+              <div class="card-content">
+                <h3>Duis vestibulum elit vel neque.</h3>
+                <p>Duis vestibulum vel neque pharetra vulputate. Quisque scelerisque nisi.</p>
+              </div>
+            </div>
+
+            <div class="slide">
+              <img src="./assets/img/suitcases/travel-suitcase-2-@1x.webp"
+                srcset="./assets/img/suitcases/travel-suitcase-2-@2x.webp 2x" width="296" height="600"
+                alt="Travel Suitcase 6" loading="lazy">
+              <div class="overlay"></div>
+              <div class="card-content">
+                <h3>Neque vestibulum elit nequevel.</h3>
+                <p>Duis vestibulum vel neque pharetra vulputate. Quisque scelerisque nisi.</p>
+              </div>
+            </div>
+
+            <div class="slide">
+              <img src="./assets/img/suitcases/travel-suitcase-3-@1x.webp"
+                srcset="./assets/img/suitcases/travel-suitcase-3-@2x.webp 2x" width="296" height="600"
+                alt="Travel Suitcase 7" loading="lazy">
+              <div class="overlay"></div>
+              <div class="card-content">
+                <h3>Elituis stibulum elit velneque.</h3>
+                <p>Duis vestibulum vel neque pharetra vulputate. Quisque scelerisque nisi.</p>
+              </div>
+            </div>
+
+            <div class="slide">
+              <img src="./assets/img/suitcases/travel-suitcase-4-@1x.webp"
+                srcset="./assets/img/suitcases/travel-suitcase-4-@2x.webp 2x" width="296" height="600"
+                alt="Travel Suitcase 8" loading="lazy">
+              <div class="overlay"></div>
+              <div class="card-content">
+                <h3>Vel vestibulum elit tuvel euqen.</h3>
+                <p>Duis vestibulum vel neque pharetra vulputate. Quisque scelerisque nisi.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Кнопки навігації -->
+          <!-- <button class="slider-btn prev">&#10094;</button>
+          <button class="slider-btn next">&#10095;</button> -->
+          <button class="slider-btn prev btn btn-sm btn-outline">
+            <svg class="logo-icon" width="20" height="20" aria-hidden="true">
+              <use href="./assets/sprite/sprite.svg#icon-arrow-next"></use>
+            </svg>
+          </button>
+          <button class="slider-btn next btn btn-sm btn-outline"><svg class="logo-icon" width="20" height="20"
+              aria-hidden="true">
+              <use href="./assets/sprite/sprite.svg#icon-arrow-next"></use>
+            </svg>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Selected products section -->
+    <section class="section selected-products-section">
+      <div class="container">
+        <h2>Selected Products</h2>
+        <p class="section-subtitle">Duis vestibulum elit vel neque pharetra</p>
+        <div class="selected-products-grid">
+        </div>
+      </div>
+    </section>
+
+    <!-- Special offer section -->
+    <section class="section special-offer">
+      <div class="container">
+        <div class="special-box">
+          <div class="special-discount"><span class="special-percent">50%</span>
+            <p class="special-subtext">
+              Curabitur vulputate arcu odio, ac facilisis diam.
+            </p>
+          </div>
+          <div class="special-content">
+            <h2 class="special-title">Offer Of The Month</h2>
+            <p class="special-text">
+              Curabitur vulputate luctus odio ac facilisis diam arcu,
+              at imperdiet ex malesuada quis.
+            </p>
+            <a href="#" class="btn btn-md">Get Offer Today</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- New products arrival section -->
+    <section class="section new-products-section">
+      <div class="container">
+        <h2>New Products Arrival</h2>
+        <p class="section-subtitle">Duis vestibulum elit vel neque pharetra</p>
+        <div class="new-products-grid"></div>
+      </div>
+    </section>
+
+    <section class="section testimonials">
+      <div class="container">
+        <h2>Our Grateful Customers</h2>
+        <p class="section-subtitle">
+          Duis vestibulum elit vel neque pharetra
+        </p>
+        <div class="testimonials-grid">
+          <div class="testimonial-card">
+            <img src="./assets/img/people/ethan@1x.webp"
+              srcset="./assets/img/people/ethan@1x.webp 1x, ./assets/img/people/ethan@2x.webp 2x" alt="Ethan Wade"
+              class="testimonial-avatar" width="80" height="80" loading="lazy" />
+            <p class="testimonial-text">
+              Curabitur vulputate arcu odio, ac facilisis diam accumsan ut. Ut
+              imperdiet ex in vulputate.
+            </p>
+            <p class="testimonial-author">Ethan Wade, New York</p>
+          </div>
+
+          <div class="testimonial-card">
+            <img src="./assets/img/people/jane@1x.webp"
+              srcset="./assets/img/people/jane@1x.webp 1x, ./assets/img/people/jane@2x.webp 2x" alt="Jane Reyes"
+              class="testimonial-avatar" width="80" height="80" loading="lazy" />
+
+            <p class="testimonial-text">
+              Curabitur vulputate arcu odio, ac facilisis diam accumsan ut. Ut
+              imperdiet ex in vulputate.
+            </p>
+            <p class="testimonial-author">Jane Reyes, California</p>
+          </div>
+
+          <!-- Testimonials section -->
+          <div class="testimonial-card">
+            <img src="./assets/img/people/erica@1x.webp"
+              srcset="./assets/img/people/erica@1x.webp 1x, ./assets/img/people/erica@2x.webp 2x" alt="Erica Banks"
+              class="testimonial-avatar" width="80" height="80" loading="lazy" />
+
+            <p class="testimonial-text">
+              Curabitur vulputate arcu odio, ac facilisis diam accumsan ut. Ut
+              imperdiet ex in vulputate.
+            </p>
+            <p class="testimonial-author">Erica Banks, Miami</p>
+          </div>
+        </div>
+      </div>
+    </section>
   </main>
 
   <footer class="footer">
@@ -143,25 +344,25 @@
           <h2 class="footer-benefits-heading">Our Benefits</h2>
           <div class="footer-benefits-grid">
             <div class="benefit-item">
-              <svg width="60" height="60">
+              <svg>
                 <use href="./assets/sprite/sprite.svg#icon-plane"></use>
               </svg>
               <p>Velit nisl sodales eget donec quis, volutpat orci.</p>
             </div>
             <div class="benefit-item">
-              <svg width="60" height="60">
+              <svg>
                 <use href="./assets/sprite/sprite.svg#icon-track"></use>
               </svg>
               <p>Dolor eu varius. Morbi fermentum velit nisl.</p>
             </div>
             <div class="benefit-item">
-              <svg width="60" height="60">
+              <svg>
                 <use href="./assets/sprite/sprite.svg#icon-coins"></use>
               </svg>
               <p>Malesuada fames ac ante ipsum primis in faucibus.</p>
             </div>
             <div class="benefit-item">
-              <svg width="60" height="60">
+              <svg>
                 <use href="./assets/sprite/sprite.svg#icon-hat"></use>
               </svg>
               <p>Nisl sodales eget donec quis, volutpat orci.</p>
@@ -175,7 +376,7 @@
       <div class="container">
         <div class="footer-bottom-left">
           <div class="footer-col">
-            <h3>About Us</h3>
+            <h3><a href="./pages/about.html">About Us</a></h3>
             <ul>
               <li><a href="#">Organisation</a></li>
               <li><a href="#">Partners</a></li>
@@ -212,7 +413,7 @@
         </div>
 
         <div class="footer-bottom-right footer-contact">
-          <h3>Contact Us</h3>
+          <h3><a href="./pages/contact.html">Contact Us</a></h3>
           <p>
             Bendum dolor eu varius. Morbi fermentum velit sodales eget, volutpat orci.
             Sed ipsum felis, tristique egestas et, convallis ac velit consequat nec luctus.
@@ -224,14 +425,14 @@
                 <svg width="24" height="24">
                   <use href="./assets/sprite/sprite.svg#icon-phone"></use>
                 </svg>
-                <span>(+26) 236 6322</span>
+                <a href="tel:+262366322">(+26) 236 6322</a>
               </li>
 
               <li class="contact-item">
                 <svg width="24" height="24">
                   <use href="./assets/sprite/sprite.svg#icon-letter"></use>
                 </svg>
-                <span>public@news.com</span>
+                <a href="mailto:public@news.com">public@news.com</a>
               </li>
 
               <li class="contact-item">
@@ -251,8 +452,9 @@
                 </svg>
 
                 <div class="contact-hours">
-                  <p>639 Jade Valley,</p>
-                  <p>Washington Dc</p>
+                  <a href="https://maps.app.goo.gl/nywmWvFGBs7CnrCt6" target="_blank" rel="noopener">
+                    639 Jade Valley, Washington Dc
+                  </a>
                 </div>
               </li>
             </ul>
@@ -264,6 +466,8 @@
       <p>© Copyright 2025</p>
     </div>
   </footer>
+
+  <script type="module" src="./js/main.js"></script>
 </body>
 
 </html>

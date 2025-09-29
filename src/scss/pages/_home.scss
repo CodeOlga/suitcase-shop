@@ -3,10 +3,8 @@
 
 .hero-section {
   background-color: variables.$bg-hero;
-  padding: 60px 0;
 
   .container {
-    // @include mixins.container;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -48,7 +46,7 @@
 
     img {
       width: 100%;
-      height: auto;
+      // height: auto;
     }
 
     @media (min-width: variables.$breakpoint-sm) {
@@ -58,10 +56,9 @@
 }
 
 .promo-section {
-  padding: 60px 0;
   margin-top: -100px;
   position: relative;
-  z-index: 2; // ??? щоб тінь не зникла під hero
+  z-index: 2;
 
   .promo-container {
     display: grid;
@@ -70,6 +67,7 @@
     padding-left: 0;
     padding-right: 0;
     box-shadow: variables.$box-shadow;
+    filter: variables.$filter-shadow;
 
     @media (max-width: 768px) {
       grid-template-columns: 1fr;
@@ -101,19 +99,21 @@
     }
 
     .promo-title {
-      font-size: 20px;
-      font-weight: 700;
-      margin-bottom: 16px;
+      margin-bottom: 30px;
     }
 
     .promo-text {
       color: variables.$text-dark-gray;
-      margin-bottom: 12px;
+
+      &:first-of-type {
+        margin-bottom: 30px;
+      }
     }
   }
 
   .promo-right {
     min-height: 566px;
+    padding: 40px;
     flex-shrink: 0;
 
     background: url("../../src/assets/img/suitcases/promo-suitcase@1x.webp")
@@ -155,6 +155,360 @@
         font-size: 17px;
         margin-bottom: 30px;
       }
+    }
+  }
+}
+
+.travel-suitcases-section {
+  text-align: center;
+
+  .slider {
+    position: relative;
+    overflow: hidden;
+    max-width: 1330px;
+    margin: 0 auto;
+
+    .slider-wrapper {
+      display: flex;
+      transition: transform variables.$transition-duration
+        variables.$timing-function;
+      gap: 38px;
+
+      @media (max-width: 1024px) {
+        gap: 24px;
+      }
+
+      @media (max-width: 768px) {
+        gap: 16px;
+      }
+    }
+
+    .slide {
+      position: relative;
+      flex: 0 0 calc((100% - 38px * 3) / 4);
+      aspect-ratio: 296 / 600;
+      max-height: 600px;
+      overflow: hidden;
+      color: variables.$bg-white;
+      transition: box-shadow variables.$transition-duration
+        variables.$timing-function;
+
+      &:hover {
+        box-shadow: variables.$box-shadow;
+      }
+
+      img {
+        width: 100%;
+        height: 100%;
+        // object-fit: cover;
+        transition: transform variables.$transition-duration
+          variables.$timing-function;
+      }
+
+      &:hover img {
+        transform: scale(1.05);
+      }
+
+      .overlay {
+        position: absolute;
+        inset: 0;
+        background: variables.$bg-overlay;
+        z-index: 1;
+      }
+
+      .card-content {
+        position: absolute;
+        bottom: 44px;
+        left: 40px;
+        z-index: 2;
+        text-align: left;
+
+        h3 {
+          font-size: 19px;
+          font-weight: variables.$font-weight-bold;
+          margin-bottom: 20px;
+        }
+
+        p {
+          font-size: 19px;
+          max-width: 240px;
+        }
+
+        @media (max-width: 1024px) {
+          bottom: 32px;
+          left: 24px;
+
+          h3 {
+            font-size: 17px;
+          }
+
+          p {
+            font-size: 16px;
+            max-width: 220px;
+          }
+        }
+
+        @media (max-width: 768px) {
+          bottom: 24px;
+          left: 20px;
+
+          h3 {
+            font-size: 16px;
+          }
+
+          p {
+            font-size: 15px;
+            max-width: 200px;
+          }
+        }
+      }
+
+      @media (max-width: 1024px) {
+        flex: 0 0 calc((100% - 24px) / 3);
+      }
+
+      @media (max-width: 768px) {
+        flex: 0 0 calc((100% - 24px) / 2);
+      }
+
+      @media (max-width: 480px) {
+        flex: 0 0 100%;
+      }
+    }
+
+    .slider-btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 10;
+
+      .logo-icon {
+        color: variables.$bg-white;
+        width: 20px;
+        height: 20px;
+      }
+
+      &.prev {
+        left: 15px;
+        transform: translateY(-50%) rotate(180deg);
+      }
+      &.next {
+        right: 15px;
+      }
+
+      &:hover {
+        background: variables.$color-primary-pink;
+      }
+
+      @media (max-width: 768px) {
+        &.prev {
+          left: 5px;
+        }
+        &.next {
+          right: 5px;
+        }
+      }
+    }
+  }
+}
+
+.selected-products-section {
+  text-align: center;
+
+  .selected-products-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 38px;
+    filter: variables.$filter-shadow;
+
+    @media (max-width: 1024px) {
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    @media (max-width: 768px) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    @media (max-width: 480px) {
+      grid-template-columns: 1fr;
+    }
+  }
+}
+
+.special-offer {
+  padding: 50px 0;
+  color: variables.$bg-white;
+
+  .special-box {
+    position: relative;
+    overflow: hidden;
+    background: url("../../src/assets/img/promo/special-offer@1x.webp")
+      center/cover no-repeat;
+    min-height: 407px;
+    padding: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: clamp(20px, 5vw, 60px);
+    box-shadow: variables.$box-shadow;
+
+    &::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: variables.$bg-overlay;
+      z-index: 0;
+    }
+
+    > * {
+      position: relative;
+      z-index: 1;
+    }
+
+    @media (min-resolution: 192dpi), (min-resolution: 2dppx) {
+      background-image: url("../../src/assets/img/promo/special-offer@2x.webp");
+    }
+
+    @media (max-width: 1024px) {
+      flex-direction: column;
+      justify-content: center;
+      text-align: center;
+      padding: 60px 40px;
+    }
+
+    @media (max-width: 768px) {
+      padding: 40px 20px;
+      min-height: auto;
+    }
+  }
+
+  .special-discount {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    flex-shrink: 0;
+
+    .special-percent {
+      font-size: clamp(40px, 15vw, 223px);
+      font-weight: variables.$font-weight-black;
+    }
+
+    .special-subtext {
+      font-size: 20px;
+    }
+
+    @media (max-width: 1024px) {
+      align-items: center;
+    }
+
+    @media (max-width: 768px) {
+      .special-subtext {
+        font-size: 16px;
+      }
+    }
+  }
+
+  .special-content {
+    max-width: 424px;
+
+    .btn {
+      padding: 20px 26px;
+    }
+
+    @media (max-width: 1024px) {
+      max-width: 100%;
+    }
+
+    @media (max-width: 768px) {
+      .btn {
+        padding: 16px 22px;
+        font-size: 14px;
+      }
+    }
+  }
+
+  .special-title {
+    margin-bottom: 30px;
+
+    @media (max-width: 768px) {
+      margin-bottom: 20px;
+    }
+  }
+
+  .special-text {
+    margin-bottom: 30px;
+
+    @media (max-width: 768px) {
+      font-size: 14px;
+      margin-bottom: 20px;
+    }
+  }
+}
+
+.new-products-section {
+  text-align: center;
+
+  .new-products-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 38px;
+    filter: variables.$filter-shadow;
+
+    @media (max-width: 1024px) {
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    @media (max-width: 768px) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    @media (max-width: 480px) {
+      grid-template-columns: 1fr;
+    }
+  }
+}
+
+.testimonials {
+  text-align: center;
+
+  .testimonials-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    filter: variables.$filter-shadow;
+
+    @media (max-width: 1024px) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    @media (max-width: 768px) {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .testimonial-card {
+    background: variables.$bg-white;
+    padding: 40px;
+    box-shadow: variables.$box-shadow;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+
+    .testimonial-avatar {
+      width: 98px;
+      height: 98px;
+      margin-bottom: 24px;
+      object-fit: cover;
+    }
+
+    .testimonial-text {
+      margin-bottom: 24px;
+    }
+
+    .testimonial-author {
+      font-weight: variables.$font-weight-bold;
+      color: variables.$color-primary-pink;
     }
   }
 }

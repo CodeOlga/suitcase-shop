@@ -16,6 +16,14 @@
   box-sizing: border-box;
 }
 
+@mixin section($padding-desktop: 60px, $padding-mobile: 40px) {
+  padding: $padding-desktop 0;
+
+  @media (max-width: variables.$breakpoint-sm) {
+    padding: $padding-mobile 0;
+  }
+}
+
 @mixin transition(
   $properties,
   $duration: variables.$transition-duration,

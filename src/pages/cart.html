@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact Us | Suitcase e-shop</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&family=Inter:wght@400;500;700&display=swap"
+    rel="stylesheet" />
+
+  <link rel="stylesheet" href="../../dist/css/main.css" />
+</head>
+
+<body>
+  <header class="header">
+    <div class="container">
+      <div class="top-bar">
+        <div class="socials">
+          <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+            <svg width="20" height="20">
+              <use href="../assets/sprite/sprite.svg#icon-facebook"></use>
+            </svg>
+          </a>
+          <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" aria-label="Twitter">
+            <svg width="24" height="20">
+              <use href="../assets/sprite/sprite.svg#icon-twitter"></use>
+            </svg>
+          </a>
+          <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+            <svg width="20" height="20">
+              <use href="../assets/sprite/sprite.svg#icon-instagram"></use>
+            </svg>
+          </a>
+        </div>
+
+        <a href="../index.html" class="logo" aria-label="Smart Store homepage">
+          <svg class="logo-icon" width="228" height="38" aria-hidden="true">
+            <use href="../assets/sprite/sprite.svg#icon-logo"></use>
+          </svg>
+        </a>
+
+        <div class="actions">
+          <button class="icon-btn" aria-label="Account">
+            <svg width="30" height="30">
+              <use href="../assets/sprite/sprite.svg#icon-user"></use>
+            </svg>
+          </button>
+        <a href="../pages/cart.html" class="icon-btn cart-btn" aria-label="Cart">
+          <svg width="34" height="34">
+            <use href="../assets/sprite/sprite.svg#icon-shopping-cart"></use>
+          </svg>
+          <span class="cart-counter">0</span>
+        </a>
+        </div>
+      </div>
+
+      <div class="nav-bar">
+        <nav class="nav">
+          <ul class="nav-list">
+            <li><a href="../index.html" class="nav-link">Home</a></li>
+            <li><a href="catalog.html" class="nav-link">Catalog
+                <span class="arrow-down">
+                  <svg width="8" height="12" aria-hidden="true">
+                    <use href="../assets/sprite/sprite.svg#icon-arrow-down"></use>
+                  </svg>
+                </span>
+              </a>
+            </li>
+            <li><a href="about.html" class="nav-link">About Us</a>
+            </li>
+            <li><a href="contact.html" class="nav-link">Contact
+                Us</a></li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="section cart-section">
+      <div class="container">
+        <h1>Your Cart</h1>
+        <div id="cart-empty" style="display:none">
+          Your cart is empty. Use the catalog to add new items.
+        </div>
+        <div id="cart-items" class="cart-items"></div>
+        <div id="discount-msg" style="display:none">
+          🎉 You received a 10% discount for orders over $3000!
+        </div>
+        <div class="cart-footer">
+          <p>Total: <span id="cart-total">$0</span></p>
+          <button id="clear-cart" class="btn btn-outline">Clear Cart</button>
+          <button id="checkout" class="btn btn-md">Checkout</button>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="footer">
+    <div class="footer-top">
+      <div class=" container">
+        <div class="footer-benefits">
+          <h2 class="footer-benefits-heading">Our Benefits</h2>
+          <div class="footer-benefits-grid">
+            <div class="benefit-item">
+              <svg width="60" height="60">
+                <use href="../assets/sprite/sprite.svg#icon-plane"></use>
+              </svg>
+              <p>Velit nisl sodales eget donec quis, volutpat orci.</p>
+            </div>
+            <div class="benefit-item">
+              <svg width="60" height="60">
+                <use href="../assets/sprite/sprite.svg#icon-track"></use>
+              </svg>
+              <p>Dolor eu varius. Morbi fermentum velit nisl.</p>
+            </div>
+            <div class="benefit-item">
+              <svg width="60" height="60">
+                <use href="../assets/sprite/sprite.svg#icon-coins"></use>
+              </svg>
+              <p>Malesuada fames ac ante ipsum primis in faucibus.</p>
+            </div>
+            <div class="benefit-item">
+              <svg width="60" height="60">
+                <use href="../assets/sprite/sprite.svg#icon-hat"></use>
+              </svg>
+              <p>Nisl sodales eget donec quis, volutpat orci.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <div class="container">
+        <div class="footer-bottom-left">
+          <div class="footer-col">
+            <h3><a href="about.html">About Us</a></h3>
+            <ul>
+              <li><a href="#">Organisation</a></li>
+              <li><a href="#">Partners</a></li>
+              <li><a href="#">Clients</a></li>
+            </ul>
+          </div>
+
+          <div class="footer-col">
+            <h3>Interesting Links</h3>
+            <ul>
+              <li><a href="#">Photo Gallery</a></li>
+              <li><a href="#">Our Team</a></li>
+              <li><a href="#">Socials</a></li>
+            </ul>
+          </div>
+
+          <div class="footer-col">
+            <h3>Achievements</h3>
+            <ul>
+              <li><a href="#">Winning Awards</a></li>
+              <li><a href="#">Press</a></li>
+              <li><a href="#">Our Amazing Clients</a></li>
+            </ul>
+          </div>
+
+          <div class="footer-shipping">
+            <h3>Shipping Information</h3>
+            <p>
+              Nulla eleifend pulvinar purus, molestie euismod odio imperdiet ac. Ut sit amet erat nec nibh
+              rhoncus varius in non lorem. Donec interdum, lectus in convallis pulvinar, enim elit porta sapien,
+              vel finibus erat felis sed neque. Etiam aliquet neque sagittis erat tincidunt aliquam.
+            </p>
+          </div>
+        </div>
+
+        <div class="footer-bottom-right footer-contact">
+          <h3><a href="contact.html">Contact Us</a></h3>
+          <p>
+            Bendum dolor eu varius. Morbi fermentum velit sodales eget, volutpat orci.
+            Sed ipsum felis, tristique egestas et, convallis ac velit consequat nec luctus.
+          </p>
+
+          <div class="footer-contact-info">
+            <ul class="contact-list">
+              <li class="contact-item">
+                <svg width="24" height="24">
+                  <use href="../assets/sprite/sprite.svg#icon-phone"></use>
+                </svg>
+                <a href="tel:+262366322">(+26) 236 6322</a>
+              </li>
+
+              <li class="contact-item">
+                <svg width="24" height="24">
+                  <use href="../assets/sprite/sprite.svg#icon-letter"></use>
+                </svg>
+                <a href="mailto:public@news.com">public@news.com</a>
+              </li>
+
+              <li class="contact-item">
+                <svg width="24" height="24">
+                  <use href="../assets/sprite/sprite.svg#icon-clock"></use>
+                </svg>
+
+                <div class="contact-hours">
+                  <p>Mon–Fri: 10am–6pm</p>
+                  <p>Sat–Sun: 10am–6pm</p>
+                </div>
+              </li>
+
+              <li class="contact-item">
+                <svg width="24" height="24">
+                  <use href="../assets/sprite/sprite.svg#icon-location"></use>
+                </svg>
+
+                <div class="contact-hours">
+                  <a href="https://maps.app.goo.gl/nywmWvFGBs7CnrCt6" target="_blank" rel="noopener">
+                    639 Jade Valley, Washington Dc
+                  </a>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="footer-copy">
+      <p>© Copyright 2025</p>
+    </div>
+  </footer>
+
+  <script type="module" src="../js/main.js"></script>
+</body>
+
+</html>
