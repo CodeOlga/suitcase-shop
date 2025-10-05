@@ -16,7 +16,9 @@
     "lint": "npm run lint:js && npm run lint:css",
     "lint:js": "eslint src/**/*.js",
     "lint:css": "stylelint src/**/*.scss",
-    "sprite": "svg-sprite --config sprite.config.json src/assets/icons/**/*.svg"
+    "sprite": "svg-sprite --config sprite.config.json src/assets/icons/**/*.svg",
+    "build": "npm run sprite && npm run sass:build",  
+    "build:ci": "npm run build && npm run lint"
   },
   "devDependencies": {
     "@eslint/js": "^9.35.0",
