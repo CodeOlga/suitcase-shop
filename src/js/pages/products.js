@@ -6,7 +6,6 @@ Promise.all([
   fetch(`${BASE}/components/product-card.html`).then((r) => r.text()),
 ])
   .then(([data, cardTpl]) => {
-    // Selected Products
     const selectedContainer = document.querySelector(".selected-products-grid");
     if (selectedContainer) {
       const selected = data.data.filter((p) =>
@@ -15,7 +14,6 @@ Promise.all([
       renderProducts(selected, selectedContainer, cardTpl, addToCart);
     }
 
-    // New Products Arrival
     const newContainer = document.querySelector(".new-products-grid");
     if (newContainer) {
       const arrivals = data.data.filter((p) =>

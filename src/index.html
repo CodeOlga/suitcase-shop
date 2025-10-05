@@ -37,7 +37,7 @@
           </a>
         </div>
 
-        <a href="/index.html" class="logo" aria-label="Smart Store homepage">
+        <a href="./index.html" class="logo" aria-label="Smart Store homepage">
           <svg class="logo-icon" width="228" height="38" aria-hidden="true">
             <use href="./assets/sprite/sprite.svg#icon-logo"></use>
           </svg>
@@ -53,9 +53,13 @@
             <svg width="34" height="34">
               <use href="./assets/sprite/sprite.svg#icon-shopping-cart"></use>
             </svg>
-            <span class="cart-counter">0</span>
+            <span class="cart-counter" hidden></span>
           </a>
         </div>
+
+        <button class="burger" aria-label="Open menu">
+          <span></span><span></span><span></span>
+        </button>
       </div>
 
       <div class="nav-bar">
@@ -70,16 +74,52 @@
                 </span>
               </a>
             </li>
-            <li><a href="./pages/about.html" class="nav-link">About Us</a>
+            <li>
+              <a href="./pages/about.html" class="nav-link">About Us</a>
             </li>
-            <li><a href="./pages/contact.html" class="nav-link">Contact
-                Us</a></li>
+            <li>
+              <a href="./pages/contact.html" class="nav-link">Contact Us</a>
+            </li>
           </ul>
+
+          <div class="mobile-actions">
+            <button class="icon-btn" aria-label="Account">
+              <svg width="30" height="30">
+                <use href="./assets/sprite/sprite.svg#icon-user"></use>
+              </svg>
+            </button>
+
+            <a href="./pages/cart.html" class="icon-btn cart-btn" aria-label="Cart">
+              <svg width="34" height="34">
+                <use href="./assets/sprite/sprite.svg#icon-shopping-cart"></use>
+              </svg>
+              <span class="cart-counter" hidden></span>
+            </a>
+          </div>
+
+          <div class="mobile-socials">
+            <a href="https://facebook.com" target="_blank" aria-label="Facebook">
+              <svg width="20" height="20">
+                <use href="./assets/sprite/sprite.svg#icon-facebook"></use>
+              </svg>
+            </a>
+            <a href="https://twitter.com" target="_blank" aria-label="Twitter">
+              <svg width="24" height="20">
+                <use href="./assets/sprite/sprite.svg#icon-twitter"></use>
+              </svg>
+            </a>
+            <a href="https://instagram.com" target="_blank" aria-label="Instagram">
+              <svg width="20" height="20">
+                <use href="./assets/sprite/sprite.svg#icon-instagram"></use>
+              </svg>
+            </a>
+          </div>
         </nav>
       </div>
     </div>
-  </header>
 
+    <div class="menu-overlay"></div>
+  </header>
   <main>
     <!-- Hero section -->
     <section class="section hero-section">
@@ -90,7 +130,7 @@
             Discover the perfect suitcase for every journey. <br>
             Elegant design, durable materials, and smart features.
           </p>
-          <a href="#" class="btn btn-lg">View All Items</a>
+          <a href="./pages/catalog.html" class="btn btn-lg">View All Items</a>
         </div>
         <div class="hero-img">
           <img src="./assets/img/hero/hero-suitcase@1x.webp"
@@ -129,7 +169,7 @@
             <p class="discount-text">
               Curabitur vulputate arcu odio, ac facilisis diam accumsan ut. Ut imperdiet et leo in vulputate.
             </p>
-            <a href="#" class="btn btn-lg">Get Discount</a>
+            <a href="./pages/catalog.html" class="btn btn-lg">Get Discount</a>
           </div>
         </div>
       </div>
@@ -233,9 +273,6 @@
             </div>
           </div>
 
-          <!-- Кнопки навігації -->
-          <!-- <button class="slider-btn prev">&#10094;</button>
-          <button class="slider-btn next">&#10095;</button> -->
           <button class="slider-btn prev btn btn-sm btn-outline">
             <svg class="logo-icon" width="20" height="20" aria-hidden="true">
               <use href="./assets/sprite/sprite.svg#icon-arrow-next"></use>
@@ -275,7 +312,7 @@
               Curabitur vulputate luctus odio ac facilisis diam arcu,
               at imperdiet ex malesuada quis.
             </p>
-            <a href="#" class="btn btn-md">Get Offer Today</a>
+            <a href="./pages/catalog.html" class="btn btn-md">Get Offer Today</a>
           </div>
         </div>
       </div>
@@ -466,6 +503,49 @@
       <p>© Copyright 2025</p>
     </div>
   </footer>
+
+  <!-- Login Modal -->
+  <div class="modal login-modal" id="login-modal" role="dialog" aria-modal="true" aria-labelledby="login-title" hidden>
+    <div class="modal-overlay"></div>
+    <div class="modal-content">
+      <button class="modal-close" aria-label="Close login form">&times;</button>
+
+      <form id="login-form" class="login-form" novalidate>
+        <h2 id="login-title" class="visually-hidden">Log In</h2>
+
+        <label>
+          <span>Email address <span class="required">*</span></span>
+          <input type="email" name="email" id="login-email" required placeholder="Enter your email"
+            autocomplete="email" />
+        </label>
+
+        <label class="password-field">
+          <span>Password <span class="required">*</span></span>
+          <div class="field-control">
+            <input type="password" name="password" id="login-password" required placeholder="Enter your password"
+              autocomplete="current-password" />
+            <button type="button" class="toggle-password" aria-label="Show password">
+              <svg width="19" height="14">
+                <use href="./assets/sprite/sprite.svg#icon-eye"></use>
+              </svg>
+            </button>
+          </div>
+        </label>
+
+        <div class="login-options">
+          <label class="custom-checkbox" for="remember-me">
+            <input type="checkbox" name="remember" id="remember-me" autocomplete="on" />
+            <span class="checkbox-text">Remember me</span>
+          </label>
+
+          <a href="#">Forgot Your Password?</a>
+        </div>
+
+        <button type="submit" class="btn btn-md">Log In</button>
+        <p class="form-msg" aria-live="polite"></p>
+      </form>
+    </div>
+  </div>
 
   <script type="module" src="./js/main.js"></script>
 </body>

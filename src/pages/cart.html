@@ -49,20 +49,24 @@
               <use href="../assets/sprite/sprite.svg#icon-user"></use>
             </svg>
           </button>
-        <a href="../pages/cart.html" class="icon-btn cart-btn" aria-label="Cart">
-          <svg width="34" height="34">
-            <use href="../assets/sprite/sprite.svg#icon-shopping-cart"></use>
-          </svg>
-          <span class="cart-counter">0</span>
-        </a>
+          <a href="./cart.html" class="icon-btn cart-btn" aria-label="Cart">
+            <svg width="34" height="34">
+              <use href="../assets/sprite/sprite.svg#icon-shopping-cart"></use>
+            </svg>
+            <span class="cart-counter" hidden></span>
+          </a>
         </div>
+
+        <button class="burger" aria-label="Open menu">
+          <span></span><span></span><span></span>
+        </button>
       </div>
 
       <div class="nav-bar">
         <nav class="nav">
           <ul class="nav-list">
             <li><a href="../index.html" class="nav-link">Home</a></li>
-            <li><a href="catalog.html" class="nav-link">Catalog
+            <li><a href="./catalog.html" class="nav-link">Catalog
                 <span class="arrow-down">
                   <svg width="8" height="12" aria-hidden="true">
                     <use href="../assets/sprite/sprite.svg#icon-arrow-down"></use>
@@ -70,35 +74,92 @@
                 </span>
               </a>
             </li>
-            <li><a href="about.html" class="nav-link">About Us</a>
-            </li>
-            <li><a href="contact.html" class="nav-link">Contact
-                Us</a></li>
+            <li><a href="./about.html" class="nav-link">About Us</a></li>
+            <li><a href="./contact.html" class="nav-link">Contact Us</a></li>
           </ul>
+
+          <div class="mobile-actions">
+            <button class="icon-btn" aria-label="Account">
+              <svg width="30" height="30">
+                <use href="../assets/sprite/sprite.svg#icon-user"></use>
+              </svg>
+            </button>
+            <a href="./cart.html" class="icon-btn cart-btn" aria-label="Cart">
+              <svg width="34" height="34">
+                <use href="../assets/sprite/sprite.svg#icon-shopping-cart"></use>
+              </svg>
+              <span class="cart-counter" hidden></span>
+            </a>
+          </div>
+
+          <div class="mobile-socials">
+            <a href="https://facebook.com" target="_blank" aria-label="Facebook">
+              <svg width="20" height="20">
+                <use href="../assets/sprite/sprite.svg#icon-facebook"></use>
+              </svg>
+            </a>
+            <a href="https://twitter.com" target="_blank" aria-label="Twitter">
+              <svg width="24" height="20">
+                <use href="../assets/sprite/sprite.svg#icon-twitter"></use>
+              </svg>
+            </a>
+            <a href="https://instagram.com" target="_blank" aria-label="Instagram">
+              <svg width="20" height="20">
+                <use href="../assets/sprite/sprite.svg#icon-instagram"></use>
+              </svg>
+            </a>
+          </div>
         </nav>
       </div>
     </div>
+
+    <div class="menu-overlay"></div>
   </header>
 
   <main>
-    <section class="section cart-section">
+    <!-- Hero Section -->
+    <section class="hero-cart">
       <div class="container">
-        <h1>Your Cart</h1>
-        <div id="cart-empty" style="display:none">
-          Your cart is empty. Use the catalog to add new items.
-        </div>
-        <div id="cart-items" class="cart-items"></div>
-        <div id="discount-msg" style="display:none">
-          🎉 You received a 10% discount for orders over $3000!
-        </div>
-        <div class="cart-footer">
-          <p>Total: <span id="cart-total">$0</span></p>
-          <button id="clear-cart" class="btn btn-outline">Clear Cart</button>
-          <button id="checkout" class="btn btn-md">Checkout</button>
-        </div>
+        <h1>My Cart</h1>
       </div>
     </section>
 
+    <!-- Cart Section -->
+    <section class="section cart-section">
+      <div class="container">
+        <h2 class="visually-hidden">My Cart</h2>
+
+        <div class="cart-header">
+          <span>Image</span>
+          <span>Product Name</span>
+          <span>Price</span>
+          <span>Quantity</span>
+          <span>Total</span>
+          <span>Delete</span>
+        </div>
+
+        <div class="cart-table" id="cart-items"></div>
+
+        <div id="cart-alert" class="cart-alert" role="status" aria-live="polite" hidden></div>
+
+        <div class="cart-footer">
+          <div class="cart-left">
+            <div class="cart-actions">
+              <a href="catalog.html" class="btn btn-md">Continue Shopping</a>
+              <button id="clear-cart" class="btn btn-md">Clear Shopping Cart</button>
+            </div>
+          </div>
+
+          <div class="cart-summary">
+            <p>Sub Total: <span id="cart-subtotal">$0</span></p>
+            <p>Shipping: <span id="cart-shipping">$30</span></p>
+            <p>Total: <span id="cart-total">$0</span></p>
+            <button id="checkout" class="btn btn-md checkout">Checkout</button>
+          </div>
+        </div>
+
+      </div>
+    </section>
   </main>
 
   <footer class="footer">
@@ -231,6 +292,48 @@
     </div>
   </footer>
 
+  <!-- Login Modal -->
+  <div class="modal login-modal" id="login-modal" role="dialog" aria-modal="true" aria-labelledby="login-title" hidden>
+    <div class="modal-overlay"></div>
+    <div class="modal-content">
+      <button class="modal-close" aria-label="Close login form">&times;</button>
+
+      <form id="login-form" class="login-form" novalidate>
+        <h2 id="login-title" class="visually-hidden">Log In</h2>
+
+        <label>
+          <span>Email address <span class="required">*</span></span>
+          <input type="email" name="email" id="login-email" required placeholder="Enter your email"
+            autocomplete="email" />
+        </label>
+
+        <label class="password-field">
+          <span>Password <span class="required">*</span></span>
+          <div class="field-control">
+            <input type="password" name="password" id="login-password" required placeholder="Enter your password"
+              autocomplete="current-password" />
+            <button type="button" class="toggle-password" aria-label="Show password">
+              <svg width="19" height="14">
+                <use href="../assets/sprite/sprite.svg#icon-eye"></use>
+              </svg>
+            </button>
+          </div>
+        </label>
+
+        <div class="login-options">
+          <label class="custom-checkbox" for="remember-me">
+            <input type="checkbox" name="remember" id="remember-me" autocomplete="on" />
+            <span class="checkbox-text">Remember me</span>
+          </label>
+
+          <a href="#">Forgot Your Password?</a>
+        </div>
+
+        <button type="submit" class="btn btn-md">Log In</button>
+        <p class="form-msg" aria-live="polite"></p>
+      </form>
+    </div>
+  </div>
   <script type="module" src="../js/main.js"></script>
 </body>
 

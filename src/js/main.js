@@ -1,22 +1,11 @@
-// import "./slider.js";
-// import "./products.js";
-// import { updateCartCounter } from "./cart.js";
-// // import "./loadComponents.js"; // якщо потрібно
-
-// // Для конкретних сторінок підключаємо потрібний файл
-// if (window.location.pathname.includes("product-details-template.html")) {
-//   import("./product-details.js");
-// }
-
-// document.addEventListener("DOMContentLoaded", () => {
-//   updateCartCounter();
-// });
+import { updateCartCounter } from "./modules/cart.js";
+import { initCustomSelects } from "./modules/custom-select.js";
+import { initFormValidation, initLoginModal } from "./utils/form-helpers.js";
 
 import "./modules/slider.js";
+import "./modules/header-menu.js";
 import "./pages/products.js";
-import { updateCartCounter } from "./modules/cart.js";
 
-// Для конкретних сторінок підключаємо потрібний файл
 function initPageScripts() {
   const path = window.location.pathname;
 
@@ -25,11 +14,28 @@ function initPageScripts() {
   }
 
   if (path.includes("cart.html")) {
-    import("./pages/cart-page.js");
+    import("./pages/cart-page.js").then(({ initCartPage }) => {
+      initCartPage();
+    });
+  }
+
+  if (path.includes("catalog.html")) {
+    import("./pages/catalog.js").then(() => {
+      initCustomSelects();
+    });
+  }
+
+  if (path.includes("contact.html")) {
+    initFormValidation(".contact-form form");
+  }
+
+  if (path.includes("product-details-template.html")) {
+    initFormValidation("#review-form");
   }
 }
 
 document.addEventListener("DOMContentLoaded", () => {
   updateCartCounter();
   initPageScripts();
+  initLoginModal();
 });

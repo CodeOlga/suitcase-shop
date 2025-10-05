@@ -49,20 +49,24 @@
               <use href="../assets/sprite/sprite.svg#icon-user"></use>
             </svg>
           </button>
-            <a href="../pages/cart.html" class="icon-btn cart-btn" aria-label="Cart">
-              <svg width="34" height="34">
-                <use href="../assets/sprite/sprite.svg#icon-shopping-cart"></use>
-              </svg>
-              <span class="cart-counter">0</span>
-            </a>
+          <a href="./cart.html" class="icon-btn cart-btn" aria-label="Cart">
+            <svg width="34" height="34">
+              <use href="../assets/sprite/sprite.svg#icon-shopping-cart"></use>
+            </svg>
+            <span class="cart-counter" hidden></span>
+          </a>
         </div>
+
+        <button class="burger" aria-label="Open menu">
+          <span></span><span></span><span></span>
+        </button>
       </div>
 
       <div class="nav-bar">
         <nav class="nav">
           <ul class="nav-list">
             <li><a href="../index.html" class="nav-link">Home</a></li>
-            <li><a href="catalog.html" class="nav-link active">Catalog
+            <li><a href="./catalog.html" class="nav-link active">Catalog
                 <span class="arrow-down">
                   <svg width="8" height="12" aria-hidden="true">
                     <use href="../assets/sprite/sprite.svg#icon-arrow-down"></use>
@@ -70,18 +74,196 @@
                 </span>
               </a>
             </li>
-            <li><a href="about.html" class="nav-link">About Us</a>
-            </li>
-            <li><a href="contact.html" class="nav-link">Contact
-                Us</a></li>
+            <li><a href="./about.html" class="nav-link">About Us</a></li>
+            <li><a href="./contact.html" class="nav-link">Contact Us</a></li>
           </ul>
+
+          <div class="mobile-actions">
+            <button class="icon-btn" aria-label="Account">
+              <svg width="30" height="30">
+                <use href="../assets/sprite/sprite.svg#icon-user"></use>
+              </svg>
+            </button>
+            <a href="./cart.html" class="icon-btn cart-btn" aria-label="Cart">
+              <svg width="34" height="34">
+                <use href="../assets/sprite/sprite.svg#icon-shopping-cart"></use>
+              </svg>
+              <span class="cart-counter" hidden></span>
+            </a>
+          </div>
+
+          <div class="mobile-socials">
+            <a href="https://facebook.com" target="_blank" aria-label="Facebook">
+              <svg width="20" height="20">
+                <use href="../assets/sprite/sprite.svg#icon-facebook"></use>
+              </svg>
+            </a>
+            <a href="https://twitter.com" target="_blank" aria-label="Twitter">
+              <svg width="24" height="20">
+                <use href="../assets/sprite/sprite.svg#icon-twitter"></use>
+              </svg>
+            </a>
+            <a href="https://instagram.com" target="_blank" aria-label="Instagram">
+              <svg width="20" height="20">
+                <use href="../assets/sprite/sprite.svg#icon-instagram"></use>
+              </svg>
+            </a>
+          </div>
         </nav>
       </div>
     </div>
+
+    <div class="menu-overlay"></div>
   </header>
 
   <main>
-    <h1>Catalog</h1>
+    <h1 class="visually-hidden">Catalog</h1>
+    <section class="section catalog-section">
+      <div class="container">
+
+        <div class="filters-top">
+          <h2 class="visually-hidden">Filters</h2>
+          <div class="filters-row">
+
+            <div class="filter-group">
+              <span id="label-size">Size</span>
+              <div class="custom-select" data-select>
+                <button type="button" class="custom-trigger" aria-labelledby="label-size" aria-haspopup="listbox"
+                  aria-expanded="false" data-select-trigger>
+                  Choose option
+                </button>
+                <ul class="custom-options" role="listbox" data-select-options>
+                  <li data-value="S">S</li>
+                  <li data-value="M">M</li>
+                  <li data-value="L">L</li>
+                  <li data-value="XL">XL</li>
+                  <li data-value="S-L">S–L</li>
+                  <li data-value="S, M, XL">S, M, XL</li>
+                </ul>
+              </div>
+              <input type="hidden" id="filter-size" name="size" />
+            </div>
+
+            <div class="filter-group">
+              <span id="label-color">Color</span>
+              <div class="custom-select" data-select>
+                <button type="button" class="custom-trigger" aria-labelledby="label-color" aria-haspopup="listbox"
+                  aria-expanded="false" data-select-trigger>
+                  Choose option
+                </button>
+                <ul class="custom-options" role="listbox" data-select-options>
+                  <li data-value="red">Red</li>
+                  <li data-value="blue">Blue</li>
+                  <li data-value="green">Green</li>
+                  <li data-value="black">Black</li>
+                  <li data-value="grey">Grey</li>
+                  <li data-value="yellow">Yellow</li>
+                  <li data-value="pink">Pink</li>
+                </ul>
+              </div>
+              <input type="hidden" id="filter-color" name="color" />
+            </div>
+
+            <div class="filter-group">
+              <span id="label-category">Category</span>
+              <div class="custom-select" data-select>
+                <button type="button" class="custom-trigger" aria-labelledby="label-category" aria-haspopup="listbox"
+                  aria-expanded="false" data-select-trigger>
+                  Choose option
+                </button>
+                <ul class="custom-options" role="listbox" data-select-options>
+                  <li data-value="carry-ons">Carry-ons</li>
+                  <li data-value="suitcases">Suitcases</li>
+                  <li data-value="luggage sets">Luggage Sets</li>
+                  <li data-value="kids' luggage">Kids' Luggage</li>
+                </ul>
+              </div>
+              <input type="hidden" id="filter-category" name="category" />
+            </div>
+
+            <div class="filter-group">
+              <span id="label-sale">Sales</span>
+              <div class="custom-select" data-select>
+                <button type="button" class="custom-trigger" aria-labelledby="label-sale" aria-haspopup="listbox"
+                  aria-expanded="false" data-select-trigger>
+                  Choose option
+                </button>
+                <ul class="custom-options" role="listbox" data-select-options>
+                  <li data-value="true">On Sale</li>
+                  <li data-value="false">Regular</li>
+                </ul>
+              </div>
+              <input type="hidden" id="filter-sale" name="sale" />
+            </div>
+
+          </div>
+
+          <div class="filters-actions">
+            <button id="reset-filters" class="btn btn-sm">Clear Filters</button>
+            <button id="hide-filters" class="btn btn-sm">Hide Filters</button>
+          </div>
+        </div>
+
+        <div class="catalog-toolbar">
+          <h2 class="visually-hidden">Catalog toolbar</h2>
+          <p id="results-count" class="results-count">Showing 0 of 0 results</p>
+
+          <div class="sort-box">
+            <div class="custom-select" data-select>
+              <button type="button" class="custom-trigger" aria-label="Sorting" data-select-trigger>
+                Default Sorting
+              </button>
+              <ul class="custom-options" role="listbox" data-select-options>
+                <li data-value="default">Default Sorting</li>
+                <li data-value="price-asc">Price: Low → High</li>
+                <li data-value="price-desc">Price: High → Low</li>
+                <li data-value="popularity">Popularity</li>
+                <li data-value="rating">Rating</li>
+              </ul>
+            </div>
+            <input type="hidden" id="sort" name="sort" value="default" />
+          </div>
+
+          <div class="search-box">
+            <input type="search" id="search" placeholder="Search Models" />
+          </div>
+        </div>
+
+        <div class="catalog-content">
+          <div class="catalog-grid" id="catalog-grid">
+            <h2 class="visually-hidden">Catalog products</h2>
+          </div>
+
+          <aside class="best-sets">
+            <h2>Top Best Sets</h2>
+            <div id="best-sets-grid" class="best-sets-grid"></div>
+          </aside>
+        </div>
+
+        <div class="pagination">
+          <h2 class="visually-hidden">Pagination</h2>
+          <button id="prev-page" class="btn btn-outline">Prev</button>
+          <span id="page-info" class="page-info">Page 1 of 1</span>
+          <button id="next-page" class="btn btn-outline">Next</button>
+        </div>
+      </div>
+
+      <template id="product-card-tpl">
+        <div class="product-card" data-id="{{id}}">
+          <div class="product-image">
+            {{badge}}
+            <img src="{{img1x}}" srcset="{{img2x}} 2x" alt="{{name}}" loading="lazy" />
+          </div>
+          <div class="product-info">
+            <div class="product-text">
+              <h3 class="product-title">{{name}}</h3>
+              <p class="price">${{price}}</p>
+            </div>
+            <button class="btn btn-md add-to-cart" data-id="{{id}}">Add To Cart</button>
+          </div>
+        </div>
+      </template>
+    </section>
   </main>
 
   <footer class="footer">
@@ -214,6 +396,56 @@
     </div>
   </footer>
 
+  <!-- Popup Not found-->
+  <div id="popup" class="popup" role="dialog" aria-modal="true" aria-hidden="true">
+    <div class="popup-content">
+      <p id="popup-message">Product not found</p>
+      <button id="popup-close" class="btn btn-sm">Close</button>
+    </div>
+  </div>
+
+  <!-- Login Modal -->
+  <div class="modal login-modal" id="login-modal" role="dialog" aria-modal="true" aria-labelledby="login-title" hidden>
+    <div class="modal-overlay"></div>
+    <div class="modal-content">
+      <button class="modal-close" aria-label="Close login form">&times;</button>
+
+      <form id="login-form" class="login-form" novalidate>
+        <h2 id="login-title" class="visually-hidden">Log In</h2>
+
+        <label>
+          <span>Email address <span class="required">*</span></span>
+          <input type="email" name="email" id="login-email" required placeholder="Enter your email"
+            autocomplete="email" />
+        </label>
+
+        <label class="password-field">
+          <span>Password <span class="required">*</span></span>
+          <div class="field-control">
+            <input type="password" name="password" id="login-password" required placeholder="Enter your password"
+              autocomplete="current-password" />
+            <button type="button" class="toggle-password" aria-label="Show password">
+              <svg width="19" height="14">
+                <use href="../assets/sprite/sprite.svg#icon-eye"></use>
+              </svg>
+            </button>
+          </div>
+        </label>
+
+        <div class="login-options">
+          <label class="custom-checkbox" for="remember-me">
+            <input type="checkbox" name="remember" id="remember-me" autocomplete="on" />
+            <span class="checkbox-text">Remember me</span>
+          </label>
+
+          <a href="#">Forgot Your Password?</a>
+        </div>
+
+        <button type="submit" class="btn btn-md">Log In</button>
+        <p class="form-msg" aria-live="polite"></p>
+      </form>
+    </div>
+  </div>
   <script type="module" src="../js/main.js"></script>
 </body>
 

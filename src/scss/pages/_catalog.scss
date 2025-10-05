@@ -1,0 +1,393 @@
+@use "../abstracts/mixins";
+@use "../abstracts/variables";
+
+.catalog-section {
+  .filters-top {
+    background: variables.$bg-white;
+    margin-bottom: 40px;
+
+    h2 {
+      font-size: 18px;
+      font-weight: variables.$font-weight-bold;
+      margin-bottom: 16px;
+    }
+
+    .filters-row {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+      margin-bottom: 40px;
+
+      @media (max-width: variables.$breakpoint-md) {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      @media (max-width: variables.$breakpoint-sm) {
+        grid-template-columns: 1fr;
+      }
+
+      .filter-group {
+        display: flex;
+        flex-direction: column;
+      }
+    }
+
+    .filters-actions {
+      display: flex;
+      gap: 20px;
+
+      button {
+        font-size: 15px;
+        padding: 16px 36px;
+
+        @media (max-width: variables.$breakpoint-sm) {
+          font-size: 14px;
+          padding: 12px 30px;
+        }
+      }
+    }
+  }
+
+  .catalog-toolbar {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: flex-start;
+    margin-bottom: 36px;
+    gap: 48px;
+
+    .results-count {
+      flex: 0 0 auto;
+      font-size: 14px;
+      color: variables.$text-dark-gray;
+      margin-right: auto;
+
+      &.no-results {
+        color: variables.$color-primary-pink;
+        font-weight: variables.$font-weight-bold;
+        text-align: center;
+        width: 100%;
+        padding: 20px 0;
+      }
+    }
+
+    .sort-box {
+      flex: 0 0 auto;
+      max-width: 200px;
+      width: 100%;
+
+      @media (max-width: variables.$breakpoint-sm) {
+        flex: 1 1 100%;
+        max-width: 100%;
+      }
+    }
+
+    .search-box {
+      flex: 1;
+      max-width: 340px;
+      position: relative;
+      width: 100%;
+
+      input[type="search"] {
+        width: 100%;
+        padding: 10px 36px 10px 12px;
+        border: 2px solid variables.$bg-light-gray;
+        background: variables.$bg-white;
+        font-size: 13px;
+        font-family: inherit;
+        color: variables.$text-gray-form;
+
+        &:focus {
+          border-color: variables.$color-primary-pink;
+          outline: none;
+        }
+      }
+
+      &::after {
+        content: "";
+        position: absolute;
+        right: 12px;
+        top: 50%;
+        width: 16px;
+        height: 16px;
+        transform: translateY(-50%);
+        background: url("../../src/assets/icons/search.svg") no-repeat center;
+        background-size: contain;
+        pointer-events: none;
+      }
+
+      @media (max-width: variables.$breakpoint-sm) {
+        flex: 1 1 100%;
+        max-width: 100%;
+      }
+    }
+  }
+
+  .catalog-content {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 336px;
+    gap: 48px;
+    align-items: start;
+    margin-bottom: 24px;
+
+    @media (max-width: variables.$breakpoint-md) {
+      grid-template-columns: 1fr;
+      gap: 24px;
+    }
+  }
+
+  .catalog-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    filter: variables.$filter-shadow;
+
+    @media (max-width: variables.$breakpoint-md) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    @media (max-width: variables.$breakpoint-sm) {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    margin-top: 60px;
+
+    .page-info {
+      font-size: 12px;
+    }
+
+    .btn {
+      padding: 12px 18px;
+    }
+  }
+
+  .best-sets {
+    align-self: start;
+    position: sticky;
+    top: 44px;
+    padding: 0;
+
+    h2 {
+      font-size: clamp(18px, 2.5vw, 25px);
+      font-weight: variables.$font-weight-bold;
+      margin-bottom: 24px;
+    }
+
+    .best-sets-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    .best-set-item {
+      display: flex;
+      gap: 20px;
+      align-items: flex-start;
+      padding: 8px 10px;
+      border: 1px solid transparent;
+      cursor: pointer;
+      overflow: hidden;
+
+      @include mixins.transition(box-shadow);
+
+      img {
+        width: 86px;
+        height: auto;
+        flex-shrink: 0;
+
+        @include mixins.transition(transform);
+      }
+
+      .best-set-info {
+        flex: 1;
+
+        .best-set-name {
+          font-size: 15px;
+          margin: 0 0 4px;
+        }
+
+        .best-set-rating {
+          display: flex;
+          gap: 2px;
+          margin-bottom: 4px;
+
+          .star {
+            width: 12px;
+            height: 12px;
+          }
+        }
+
+        .best-set-price {
+          font-size: 15px;
+          font-weight: variables.$font-weight-bold;
+          color: variables.$text-dark-gray;
+        }
+      }
+    }
+
+    .best-set-item:hover,
+    .best-set-item:focus-within {
+      box-shadow: variables.$box-shadow;
+    }
+
+    .best-set-item:hover img,
+    .best-set-item:focus-within img {
+      transform: scale(1.05);
+    }
+
+    @media (max-width: variables.$breakpoint-md) {
+      position: static;
+      border-top: 1px solid variables.$text-light-gray;
+      padding-top: 16px;
+
+      .best-set-item {
+        img {
+          width: 120px;
+        }
+      }
+    }
+  }
+}
+
+.filters-top.collapsed .filters-row,
+.filters-top.collapsed .filters-actions {
+  display: none;
+}
+
+.filters-top.collapsed {
+  border: none;
+  padding: 0;
+  margin-bottom: 0;
+}
+
+.popup {
+  position: fixed;
+  inset: 0;
+  background: variables.$bg-overlay;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+
+  &.show {
+    display: flex;
+  }
+
+  .popup-content {
+    background-color: variables.$bg-white;
+    padding: 20px 30px;
+    text-align: center;
+    max-width: 300px;
+    width: 100%;
+    box-shadow: variables.$box-shadow;
+
+    @include mixins.transition(box-shadow);
+
+    p {
+      margin-bottom: 15px;
+      font-weight: 600;
+      color: variables.$text-dark-gray;
+    }
+
+    .btn {
+      background-color: variables.$color-primary-pink;
+      color: variables.$bg-white;
+      cursor: pointer;
+
+      @include mixins.transition((background-color, color, border-color));
+
+      &:hover {
+        background-color: variables.$color-dark-pink;
+      }
+    }
+  }
+}
+
+.custom-select {
+  position: relative;
+  display: inline-block;
+
+  .custom-trigger {
+    padding: 8px 12px;
+    border: 1px solid variables.$text-gray-form;
+    background-color: variables.$bg-white;
+    cursor: pointer;
+    min-width: 150px;
+    text-align: left;
+
+    @include mixins.transition((border-color, box-shadow));
+
+    &:hover,
+    &:focus {
+      border-color: variables.$color-primary-pink;
+      outline: none;
+      box-shadow: variables.$box-shadow;
+    }
+  }
+
+  .custom-options {
+    display: block;
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background-color: variables.$bg-white;
+    border: 1px solid variables.$text-gray-form;
+    z-index: 10;
+
+    @include mixins.transition((max-height, opacity));
+
+    li {
+      padding: 8px 12px;
+      cursor: pointer;
+
+      &:hover,
+      &.active,
+      &[aria-selected="true"] {
+        background-color: variables.$bg-light-gray;
+        font-weight: variables.$font-weight-bold;
+      }
+    }
+  }
+
+  &:hover .custom-options,
+  &:focus-within .custom-options {
+    max-height: 300px;
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+}
+
+/* На тач-пристроях відкриваємо по класу .open (клік/тап) */
+@media (hover: none), (pointer: coarse) {
+  .custom-select.open .custom-options {
+    max-height: 300px;
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  /* Щоб “псевдо-hover” мобільних не плутав логіку — вимикаємо hover/focus-open */
+  .custom-select:hover .custom-options,
+  .custom-select:focus-within .custom-options {
+    max-height: 0;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+  }
+}

@@ -8,114 +8,165 @@ import { BASE } from "../utils/utils.js";
 
 const $ = (sel, root = document) => root.querySelector(sel);
 
-// шаблон одного товару
-function getCartItemHTML(item) {
+function showCartAlert(
+  variant,
+  text,
+  { persist = false, assertive = false } = {}
+) {
+  const el = document.querySelector("#cart-alert");
+  if (!el) return;
+
+  el.className = "cart-alert";
+  if (variant) el.classList.add(`alert-${variant}`);
+  el.textContent = text || "";
+  el.hidden = !text;
+
+  el.setAttribute("role", assertive ? "alert" : "status");
+  el.setAttribute("aria-live", assertive ? "assertive" : "polite");
+
+  clearTimeout(el._hideTimer);
+  if (!persist && text)
+    el._hideTimer = setTimeout(() => (el.hidden = true), 4500);
+}
+
+function hideCartAlert() {
+  const el = document.querySelector("#cart-alert");
+  if (!el) return;
+  el.hidden = true;
+  el.textContent = "";
+  el.className = "cart-alert";
+  clearTimeout(el._hideTimer);
+}
+
+function itemHTML(item) {
   return `
-    <div class="cart-item-info">
-      <img src="${BASE}/${item.imageUrl}" alt="${item.name}" />
-      <div>
-        <h3>${item.name}</h3>
-        <p>Size: ${item.size || "-"}</p>
-        <p>Color: ${item.color || "-"}</p>
-        <p class="price">$${item.price}</p>
-      </div>
+    <img src="${BASE}/${item.imageUrl.replace(/^\.\//, "")}" alt="${
+    item.name
+  }" />
+    <div class="item-info">
+      <h3>${item.name}</h3>
+      <p>Size: ${item.size || "-"}</p>
+      <p>Color: ${item.color || "-"}</p>
     </div>
-    <div class="cart-item-actions">
-      <button class="qty-btn decrease">-</button>
-      <input type="number" class="qty-input" value="${item.qty}" min="1" />
-      <button class="qty-btn increase">+</button>
-      <button class="remove-btn">Remove</button>
+    <p class="price">$${item.price}</p>
+    <div class="cart-qty">
+      <button class="qty-btn decrease" aria-label="Decrease quantity">-</button>
+      <input type="number" class="qty-input" value="${
+        item.qty
+      }" min="1" inputmode="numeric" />
+      <button class="qty-btn increase" aria-label="Increase quantity">+</button>
     </div>
+    <p class="item-total">$${(item.price * item.qty).toFixed(2)}</p>
+    <button class="remove-btn" aria-label="Remove item">
+      <svg width="16" height="16">
+        <use href="${BASE}/assets/sprite/sprite.svg#icon-trash"></use>
+      </svg>
+    </button>
   `;
 }
 
-// рендер всіх товарів у корзині
 function renderCart() {
   const cart = getCart();
-  const container = $("#cart-items");
+  const list = $("#cart-items");
+  const subtotalEl = $("#cart-subtotal");
+  const shippingEl = $("#cart-shipping");
   const totalEl = $("#cart-total");
-  const emptyMsg = $("#cart-empty");
 
-  container.innerHTML = "";
+  list.innerHTML = "";
 
   if (cart.length === 0) {
-    emptyMsg.style.display = "block";
+    subtotalEl.textContent = "$0";
+    shippingEl.textContent = "$0";
     totalEl.textContent = "$0";
+    showCartAlert(
+      "info",
+      "Your cart is empty. Use the catalog to add new items.",
+      { persist: true }
+    );
     updateCartCounter();
     return;
   }
 
-  emptyMsg.style.display = "none";
-  let total = 0;
+  hideCartAlert();
+
+  let subtotal = 0;
 
   cart.forEach((item, idx) => {
-    const itemEl = document.createElement("div");
-    itemEl.className = "cart-item";
-    itemEl.innerHTML = getCartItemHTML(item);
+    const row = document.createElement("div");
+    row.className = "cart-item-row";
+    row.innerHTML = itemHTML(item);
 
-    // кнопка -
-    itemEl.querySelector(".decrease").addEventListener("click", () => {
-      if (item.qty > 1) item.qty--;
-      saveCart(cart);
-      renderCart();
+    row.querySelector(".decrease").addEventListener("click", () => {
+      if (item.qty > 1) {
+        item.qty--;
+        saveCart(cart);
+        renderCart();
+      }
     });
 
-    // кнопка +
-    itemEl.querySelector(".increase").addEventListener("click", () => {
+    row.querySelector(".increase").addEventListener("click", () => {
       item.qty++;
       saveCart(cart);
       renderCart();
     });
 
-    // зміна вручну
-    itemEl.querySelector(".qty-input").addEventListener("change", (e) => {
+    row.querySelector(".qty-input").addEventListener("change", (e) => {
       const val = Math.max(1, parseInt(e.target.value, 10) || 1);
       item.qty = val;
       saveCart(cart);
       renderCart();
     });
 
-    // видалення товару
-    itemEl.querySelector(".remove-btn").addEventListener("click", () => {
+    row.querySelector(".remove-btn").addEventListener("click", () => {
       cart.splice(idx, 1);
       saveCart(cart);
       renderCart();
     });
 
-    container.appendChild(itemEl);
-    total += item.price * item.qty;
+    list.appendChild(row);
+    subtotal += item.price * (item.qty || 1);
   });
 
-  // знижка 10% якщо > 3000$
-  if (total > 3000) {
-    total *= 0.9;
-    $("#discount-msg").style.display = "block";
-  } else {
-    $("#discount-msg").style.display = "none";
+  let discountApplied = false;
+  if (subtotal > 3000) {
+    subtotal *= 0.9;
+    discountApplied = true;
   }
 
+  const shipping = cart.length > 0 ? 30 : 0;
+  const total = subtotal + shipping;
+
+  subtotalEl.textContent = `$${subtotal.toFixed(2)}`;
+  shippingEl.textContent = `$${shipping}`;
   totalEl.textContent = `$${total.toFixed(2)}`;
+
+  if (discountApplied) {
+    showCartAlert(
+      "success",
+      "🎉 You received a 10% discount for orders over $3000!"
+    );
+  } else {
+    hideCartAlert();
+  }
+
   updateCartCounter();
 }
 
-// ініціалізація
-function initCartPage() {
+export function initCartPage() {
   renderCart();
 
-  // очистити корзину
   $("#clear-cart").addEventListener("click", () => {
     clearCart();
     renderCart();
   });
 
-  // оформити замовлення
   $("#checkout").addEventListener("click", () => {
     clearCart();
-    $("#cart-items").innerHTML = "";
-    $("#cart-empty").textContent = "Thank you for your purchase.";
-    $("#cart-empty").style.display = "block";
-    updateCartCounter();
+    renderCart();
+    showCartAlert(
+      "primary",
+      "Thank you for your purchase! Your order has been placed successfully. ✨"
+    );
   });
 }
 
-document.addEventListener("DOMContentLoaded", initCartPage);

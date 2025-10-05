@@ -1,19 +1,17 @@
 import { addToCart, updateCartCounter } from "../modules/cart.js";
+import { fillCustomSelect } from "../modules/custom-select.js";
 import { BASE, renderProducts, shuffle } from "../utils/utils.js";
 import {
   getProductId,
   renderStars,
   loadTemplate,
-  fillSelect,
   setThumbs,
   initQuantityControls,
   initTabs,
-  initReviewForm,
 } from "../utils/product-helpers.js";
 
 const $ = (sel, root = document) => root.querySelector(sel);
 
-// ---------- Основний init ----------
 (async function init() {
   updateCartCounter();
 
@@ -28,7 +26,6 @@ const $ = (sel, root = document) => root.querySelector(sel);
     return;
   }
 
-  // --- Info about product ---
   $("#product-image").src = `${BASE}/${product.imageUrl}`;
   $("#product-image").alt = product.name;
   $("#product-title").textContent = product.name;
@@ -42,31 +39,23 @@ const $ = (sel, root = document) => root.querySelector(sel);
   $("#product-desc").textContent = product.description || "";
   renderStars($("#product-rating"), product.rating);
 
-  // --- selects ---
-  fillSelect($("#size-select"), product.sizes || product.size || []);
-  fillSelect($("#color-select"), product.colors || product.color || []);
-  fillSelect(
-    $("#category-select"),
+  fillCustomSelect($("#size-wrapper"), product.sizes || product.size || []);
+  fillCustomSelect($("#color-wrapper"), product.colors || product.color || []);
+  fillCustomSelect(
+    $("#category-wrapper"),
     product.categories || (product.category ? [product.category] : [])
   );
 
-  // --- thumbs ---
   const imgs =
     Array.isArray(product.images) && product.images.length
       ? product.images
       : Array(4).fill(product.imageUrl);
   setThumbs(imgs, $("#product-image"));
 
-  // --- quantity & add to cart ---
   initQuantityControls(product);
 
-  // --- tabs ---
   initTabs();
 
-  // --- review form ---
-  initReviewForm();
-
-  // --- related products ---
   const tpl = await loadTemplate();
   const relatedWrap = $("#related-products");
   const candidates = shuffle(data.data.filter((p) => p.id !== productId)).slice(

@@ -49,20 +49,24 @@
               <use href="../assets/sprite/sprite.svg#icon-user"></use>
             </svg>
           </button>
-          <a href="../pages/cart.html" class="icon-btn cart-btn" aria-label="Cart">
+          <a href="./cart.html" class="icon-btn cart-btn" aria-label="Cart">
             <svg width="34" height="34">
               <use href="../assets/sprite/sprite.svg#icon-shopping-cart"></use>
             </svg>
-            <span class="cart-counter">0</span>
+            <span class="cart-counter" hidden></span>
           </a>
         </div>
+
+        <button class="burger" aria-label="Open menu">
+          <span></span><span></span><span></span>
+        </button>
       </div>
 
       <div class="nav-bar">
         <nav class="nav">
           <ul class="nav-list">
-            <li><a href="../index.html"" class=" nav-link">Home</a></li>
-            <li><a href="catalog.html" class="nav-link">Catalog
+            <li><a href="../index.html" class="nav-link">Home</a></li>
+            <li><a href="./catalog.html" class="nav-link">Catalog
                 <span class="arrow-down">
                   <svg width="8" height="12" aria-hidden="true">
                     <use href="../assets/sprite/sprite.svg#icon-arrow-down"></use>
@@ -70,18 +74,153 @@
                 </span>
               </a>
             </li>
-            <li><a href="about.html" class="nav-link active">About Us</a>
-            </li>
-            <li><a href="contact.html" class="nav-link">Contact
-                Us</a></li>
+            <li><a href="./about.html" class="nav-link active">About Us</a></li>
+            <li><a href="./contact.html" class="nav-link">Contact Us</a></li>
           </ul>
+
+          <div class="mobile-actions">
+            <button class="icon-btn" aria-label="Account">
+              <svg width="30" height="30">
+                <use href="../assets/sprite/sprite.svg#icon-user"></use>
+              </svg>
+            </button>
+            <a href="./cart.html" class="icon-btn cart-btn" aria-label="Cart">
+              <svg width="34" height="34">
+                <use href="../assets/sprite/sprite.svg#icon-shopping-cart"></use>
+              </svg>
+              <span class="cart-counter" hidden></span>
+            </a>
+          </div>
+
+          <div class="mobile-socials">
+            <a href="https://facebook.com" target="_blank" aria-label="Facebook">
+              <svg width="20" height="20">
+                <use href="../assets/sprite/sprite.svg#icon-facebook"></use>
+              </svg>
+            </a>
+            <a href="https://twitter.com" target="_blank" aria-label="Twitter">
+              <svg width="24" height="20">
+                <use href="../assets/sprite/sprite.svg#icon-twitter"></use>
+              </svg>
+            </a>
+            <a href="https://instagram.com" target="_blank" aria-label="Instagram">
+              <svg width="20" height="20">
+                <use href="../assets/sprite/sprite.svg#icon-instagram"></use>
+              </svg>
+            </a>
+          </div>
         </nav>
       </div>
     </div>
+
+    <div class="menu-overlay"></div>
   </header>
 
   <main>
-    <h1>About Us</h1>
+    <!-- Hero Section -->
+    <section class="common-section-hero hero-about">
+      <div class="container">
+        <h1>About Us</h1>
+        <p>
+          Our mission is to combine style, durability, and functionality in every product we offer.
+        </p>
+      </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="section features-contact-section">
+      <div class="container features-contact-grid">
+        <div class="feature-contact-item">
+          <svg class="icon">
+            <use href="../assets/sprite/sprite.svg#icon-accuracy"></use>
+          </svg>
+          <h3>Superior Accuracy</h3>
+          <p>Check product availability and select luggage precisely for your needs.</p>
+        </div>
+        <div class="feature-contact-item">
+          <svg class="icon">
+            <use href="../assets/sprite/sprite.svg#icon-awards"></use>
+          </svg>
+          <h3>Awards</h3>
+          <p>Winner of Best Travel Accessories award in 2025.</p>
+        </div>
+        <div class="feature-contact-item">
+          <svg class="icon">
+            <use href="../assets/sprite/sprite.svg#icon-ecological"></use>
+          </svg>
+          <h3>Ecological</h3>
+          <p>We use recycled materials and sustainable packaging.</p>
+        </div>
+        <div class="feature-contact-item">
+          <svg class="icon">
+            <use href="../assets/sprite/sprite.svg#icon-worldwide"></use>
+          </svg>
+          <h3>Shipping Worldwide</h3>
+          <p>Fast and safe delivery to over 100 countries.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- New Arrivals Section -->
+    <section class="section arrivals-section">
+      <div class="container arrivals-box">
+        <div class="arrivals-content">
+          <h2>New Arrivals Every Week</h2>
+          <p>
+            Our shop constantly updates its collection with the latest suitcases
+            and travel bags. Stylish, durable, and functional options await you,
+            helping every traveler find the perfect companion for their journey.
+          </p>
+          <p>
+            We carefully select brands and models that combine modern design,
+            advanced materials, and practical features. Whether it’s a weekend
+            getaway or a long-distance adventure, you’ll always travel in comfort
+            and with confidence.
+          </p>
+          <a href="./catalog.html" class="btn btn-md">See All Models</a>
+        </div>
+        <div class="arrivals-img">
+          <img src="../assets/img/promo/new-arrivals@1x.webp" srcset="
+          ../assets/img/promo/new-arrivals@1x.webp 1x,
+          ../assets/img/promo/new-arrivals@2x.webp 2x
+        " alt="New Arrivals" loading="lazy" />
+        </div>
+      </div>
+    </section>
+
+    <!-- Team Section -->
+    <section class="section team-section">
+      <div class="container">
+        <h2 class="team-title">Our Incredible Team</h2>
+        <div class="team-grid">
+          <div class="team-card">
+            <img src="../assets/img/people/natalia-team@1x.webp" srcset="
+                ../assets/img/people/natalia-team@1x.webp 1x,
+                ../assets/img/people/natalia-team@2x.webp 2x
+              " alt="Natalia Foster" loading="lazy" />
+            <h3>Natalia Foster</h3>
+            <p>Product Manager</p>
+          </div>
+          <div class="team-card">
+            <img src="../assets/img/people/alexandra-team@1x.webp" srcset="
+                ../assets/img/people/alexandra-team@1x.webp 1x,
+                ../assets/img/people/alexandra-team@2x.webp 2x
+              " alt="Alexandra Thompson" loading="lazy" />
+            <h3>Alexandra Thompson</h3>
+            <p>Creative Designer</p>
+          </div>
+          <div class="team-card">
+            <img src="../assets/img/people/iryna-team@1x.webp" srcset="
+                ../assets/img/people/iryna-team@1x.webp 1x,
+                ../assets/img/people/iryna-team@2x.webp 2x
+              " alt="Iryna Brooks" loading="lazy" />
+            <h3>Iryna Brooks</h3>
+            <p>Marketing Lead</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <!-- Special offer section -->
     <section class="section special-offer">
       <div class="container">
@@ -97,7 +236,7 @@
               Curabitur vulputate luctus odio ac facilisis diam arcu,
               at imperdiet ex malesuada quis.
             </p>
-            <a href="#" class="btn btn-md">Get Offer Today</a>
+            <a href="./catalog.html" class="btn btn-md">Get Offer Today</a>
           </div>
         </div>
       </div>
@@ -233,6 +372,49 @@
       <p>© Copyright 2025</p>
     </div>
   </footer>
+
+  <!-- Login Modal -->
+  <div class="modal login-modal" id="login-modal" role="dialog" aria-modal="true" aria-labelledby="login-title" hidden>
+    <div class="modal-overlay"></div>
+    <div class="modal-content">
+      <button class="modal-close" aria-label="Close login form">&times;</button>
+
+      <form id="login-form" class="login-form" novalidate>
+        <h2 id="login-title" class="visually-hidden">Log In</h2>
+
+        <label>
+          <span>Email address <span class="required">*</span></span>
+          <input type="email" name="email" id="login-email" required placeholder="Enter your email"
+            autocomplete="email" />
+        </label>
+
+        <label class="password-field">
+          <span>Password <span class="required">*</span></span>
+          <div class="field-control">
+            <input type="password" name="password" id="login-password" required placeholder="Enter your password"
+              autocomplete="current-password" />
+            <button type="button" class="toggle-password" aria-label="Show password">
+              <svg width="19" height="14">
+                <use href="../assets/sprite/sprite.svg#icon-eye"></use>
+              </svg>
+            </button>
+          </div>
+        </label>
+
+        <div class="login-options">
+          <label class="custom-checkbox" for="remember-me">
+            <input type="checkbox" name="remember" id="remember-me" autocomplete="on" />
+            <span class="checkbox-text">Remember me</span>
+          </label>
+
+          <a href="#">Forgot Your Password?</a>
+        </div>
+
+        <button type="submit" class="btn btn-md">Log In</button>
+        <p class="form-msg" aria-live="polite"></p>
+      </form>
+    </div>
+  </div>
 
   <script type="module" src="../js/main.js"></script>
 </body>

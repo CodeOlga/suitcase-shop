@@ -4,13 +4,11 @@ import { addToCart } from "../modules/cart.js";
 const $ = (sel, root = document) => root.querySelector(sel);
 const $$ = (sel, root = document) => [...root.querySelectorAll(sel)];
 
-// --------- ID продукту з URL ----------
 export function getProductId() {
   const params = new URLSearchParams(location.search);
   return params.get("id");
 }
 
-// --------- Рендер зірочок рейтингу ----------
 export function renderStars(container, rating = 0) {
   const r = Math.max(0, Math.min(5, Number(rating) || 0));
   const full = Math.round(r);
@@ -32,13 +30,11 @@ export function renderStars(container, rating = 0) {
   }
 }
 
-// --------- Завантаження шаблону картки ----------
 export async function loadTemplate() {
   const res = await fetch(`${BASE}/components/product-card.html`);
   return res.text();
 }
 
-// --------- Заповнення <select> ----------
 export function fillSelect(selectEl, items) {
   if (!selectEl) return;
   if (!items) return;
@@ -56,7 +52,6 @@ export function fillSelect(selectEl, items) {
   selectEl.appendChild(frag);
 }
 
-// --------- Мініатюри (thumbnails) ----------
 export function setThumbs(images, mainImgEl) {
   const box = $("#product-thumbs");
   box.innerHTML = "";
@@ -76,7 +71,6 @@ export function setThumbs(images, mainImgEl) {
   });
 }
 
-// --------- Контролери кількості ----------
 export function initQuantityControls(product) {
   const qtyInput = $("#quantity");
 
@@ -96,7 +90,6 @@ export function initQuantityControls(product) {
   });
 }
 
-// --------- Tabs ----------
 export function initTabs() {
   const tabs = $$(".tabs li");
   const contents = $$(".tab-content");
@@ -109,30 +102,5 @@ export function initTabs() {
       tab.classList.add("active");
       $(`#tab-${tab.dataset.tab}`).classList.add("active");
     });
-  });
-}
-
-// --------- Review form ----------
-export function initReviewForm() {
-  const reviewForm = $("#review-form");
-  const reviewMsg = $("#review-message");
-  if (!reviewForm) return;
-
-  reviewForm.addEventListener("submit", (e) => {
-    e.preventDefault();
-
-    const name = $("#review-name").value.trim();
-    const email = $("#review-email").value.trim();
-    const text = $("#review-text").value.trim();
-    const emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
-
-    if (name && emailOk && text) {
-      reviewMsg.textContent = "Thank you for your review!";
-      reviewMsg.style.color = "green";
-      reviewForm.reset();
-    } else {
-      reviewMsg.textContent = "Please fill out all fields correctly.";
-      reviewMsg.style.color = "red";
-    }
   });
 }

@@ -1,3 +1,4 @@
+@use "../abstracts/mixins";
 @use "../abstracts/variables";
 
 .product-details-section {
@@ -6,11 +7,11 @@
     grid-template-columns: 1fr 1fr;
     gap: 40px;
 
-    @media (max-width: 1024px) {
+    @media (max-width: variables.$breakpoint-md) {
       gap: 24px;
     }
 
-    @media (max-width: 768px) {
+    @media (max-width: variables.$breakpoint-sm) {
       grid-template-columns: 1fr;
     }
   }
@@ -202,7 +203,7 @@
       }
     }
 
-    @media (max-width: 768px) {
+    @media (max-width: variables.$breakpoint-sm) {
       gap: 40px;
     }
   }
@@ -338,7 +339,7 @@
       grid-template-columns: 1fr 1fr;
       gap: 12px;
 
-      @media (max-width: 480px) {
+      @media (max-width: variables.$breakpoint-xs) {
         grid-template-columns: 1fr;
       }
     }
@@ -351,7 +352,8 @@
       padding: 10px 12px;
       background-color: variables.$bg-white;
       min-height: 44px;
-      transition: border-color 0.2s ease;
+
+      @include mixins.transition(border-color);
 
       &:focus {
         border-color: variables.$color-primary-pink;
@@ -364,28 +366,6 @@
       resize: vertical;
     }
 
-    .review-checkbox {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      width: 100%;
-
-      input[type="checkbox"] {
-        width: 16px;
-        height: 16px;
-        margin-top: 2px;
-        flex-shrink: 0;
-        cursor: pointer;
-      }
-
-      .checkbox-text {
-        font-size: 13px;
-        color: variables.$text-gray-form;
-        flex: 1;
-        display: block;
-      }
-    }
-
     .btn {
       text-transform: uppercase;
       padding: 12px 22px;
@@ -393,7 +373,7 @@
     }
 
     .form-msg {
-      font-weight: 600;
+      font-weight: variables.$font-weight-bold;
     }
   }
 
@@ -403,7 +383,7 @@
     gap: 140px;
     align-items: start;
 
-    @media (max-width: 992px) {
+    @media (max-width: variables.$breakpoint-md) {
       grid-template-columns: 1fr;
       gap: 24px;
     }
@@ -435,14 +415,15 @@
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 24px;
+    filter: variables.$filter-shadow;
 
-    @media (max-width: 1024px) {
+    @media (max-width: variables.$breakpoint-md) {
       grid-template-columns: repeat(3, 1fr);
     }
-    @media (max-width: 768px) {
+    @media (max-width: variables.$breakpoint-sm) {
       grid-template-columns: repeat(2, 1fr);
     }
-    @media (max-width: 480px) {
+    @media (max-width: variables.$breakpoint-xs) {
       grid-template-columns: 1fr;
     }
   }

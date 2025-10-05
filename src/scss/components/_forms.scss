@@ -1,0 +1,309 @@
+@use "../abstracts/mixins";
+@use "../abstracts/variables";
+
+.custom-select {
+  position: relative;
+  width: 100%;
+
+  .custom-trigger {
+    width: 100%;
+    padding: 10px 12px;
+    border: 2px solid variables.$bg-light-gray;
+    background: variables.$bg-white;
+    cursor: pointer;
+    text-align: left;
+    font-size: 13px;
+    font-family: inherit;
+    color: variables.$text-gray-form;
+    position: relative;
+
+    @include mixins.transition(border-color);
+
+    &:hover,
+    &:focus {
+      border-color: variables.$color-primary-pink;
+      outline: none;
+    }
+
+    &::after {
+      content: "";
+      position: absolute;
+      right: 12px;
+      top: 50%;
+      width: 12px;
+      height: 12px;
+      background: url("../../src/assets/icons/arrow-down.svg") no-repeat center;
+      background-size: contain;
+      transform: translateY(-50%);
+      pointer-events: none;
+    }
+  }
+
+  .custom-options {
+    position: absolute;
+    top: calc(100% + 4px);
+    left: 0;
+    width: 100%;
+    background-color: variables.$bg-white;
+    border: 1px solid variables.$bg-light-gray;
+    display: none;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    z-index: 20;
+
+    li {
+      padding: 8px 12px;
+      cursor: pointer;
+      font-size: 14px;
+      color: variables.$text-dark-gray;
+
+      @include mixins.transition(background-color);
+
+      &:hover {
+        background-color: variables.$bg-white;
+      }
+    }
+  }
+
+  &.open .custom-options {
+    display: block;
+  }
+}
+
+.sort-box {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  .custom-select {
+    min-width: 180px;
+  }
+}
+
+.filter-group label,
+.filter-group span {
+  display: block;
+  margin-bottom: 14px;
+  font-size: 17px;
+  font-weight: variables.$font-weight-bold;
+  color: variables.$text-dark-gray;
+  font-family: "Montserrat", sans-serif;
+}
+
+.custom-checkbox {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  cursor: pointer;
+
+  input[type="checkbox"] {
+    display: none;
+  }
+
+  .checkbox-text {
+    position: relative;
+    font-size: 13px;
+    color: variables.$text-gray-form;
+    padding-left: 22px;
+    line-height: 1.4;
+    cursor: pointer;
+
+    &::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 2px;
+      width: 14px;
+      height: 14px;
+      border: 2px solid variables.$text-gray-form;
+      background-color: variables.$bg-white;
+
+      @include mixins.transition((background-color, border-color));
+    }
+
+    &::after {
+      content: "";
+      position: absolute;
+      left: 4px;
+      top: 2px;
+      width: 6px;
+      height: 10px;
+      border: solid variables.$color-primary-pink;
+      border-width: 0 2px 2px 0;
+      transform: rotate(45deg);
+      opacity: 0;
+
+      @include mixins.transition(opacity);
+    }
+  }
+
+  input[type="checkbox"]:checked + .checkbox-text::after {
+    opacity: 1;
+  }
+
+  input[type="checkbox"]:checked + .checkbox-text::before {
+    background-color: variables.$bg-white;
+    border-color: variables.$color-primary-pink;
+  }
+}
+
+.modal {
+  position: fixed;
+  inset: 0;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+
+  &.open {
+    display: flex;
+  }
+
+  .modal-overlay {
+    position: absolute;
+    inset: 0;
+    background: variables.$bg-overlay;
+  }
+
+  .modal-content {
+    position: relative;
+    background-color: variables.$bg-white;
+    padding: 40px;
+    width: 480px;
+    max-width: 90%;
+    border-radius: 8px;
+    z-index: 1;
+  }
+
+  .modal-close {
+    position: absolute;
+    right: 16px;
+    top: 16px;
+    background: none;
+    border: none;
+    font-size: 28px;
+    cursor: pointer;
+  }
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+
+  label {
+    display: flex;
+    flex-direction: column;
+    font-size: 14px;
+    color: variables.$text-dark-gray;
+
+    span {
+      margin-bottom: 6px;
+    }
+
+    input {
+      padding: 12px;
+      font-size: 14px;
+      border: 1px solid variables.$bg-light-gray;
+
+      &::placeholder {
+        color: variables.$text-gray-form;
+      }
+
+      &:focus {
+        outline: none;
+        border-color: variables.$color-primary-pink;
+        box-shadow: variables.$box-shadow;
+      }
+    }
+  }
+
+  .password-field {
+    display: block;
+    span {
+      margin-bottom: 6px;
+      display: inline-block;
+    }
+
+    .field-control {
+      position: relative;
+    }
+
+    .field-control input {
+      width: 100%;
+      box-sizing: border-box;
+      padding: 12px 40px 12px 12px;
+      font-size: 14px;
+      border: 1px solid variables.$bg-light-gray;
+
+      &::placeholder {
+        color: variables.$text-gray-form;
+      }
+
+      &:focus {
+        outline: none;
+        border-color: variables.$color-primary-pink;
+        box-shadow: variables.$box-shadow;
+      }
+    }
+
+    .toggle-password {
+      position: absolute;
+      inset: 0 12px 0 auto;
+      width: 24px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+  }
+
+  .login-options {
+    display: flex;
+    justify-content: space-between;
+    font-size: 10px;
+    color: variables.$text-gray-form;
+
+    .custom-checkbox {
+      width: auto;
+
+      .checkbox-text {
+        font-size: 10px;
+      }
+    }
+
+    a {
+      margin-left: auto;
+      color: variables.$color-primary-pink;
+      font-weight: variables.$font-weight-bold;
+      text-decoration: none;
+
+      @include mixins.transition(color);
+
+      &:hover {
+        color: variables.$color-dark-pink;
+      }
+    }
+  }
+
+  .btn {
+    text-transform: uppercase;
+    padding: 14px;
+
+    @include mixins.transition(background-color);
+
+    &:hover {
+      background-color: variables.$color-dark-pink;
+    }
+  }
+
+  .form-msg {
+    font-weight: variables.$font-weight-bold;
+    margin-top: -10px;
+  }
+}

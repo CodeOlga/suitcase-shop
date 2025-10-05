@@ -7,19 +7,26 @@
   color: variables.$bg-white;
   background-color: variables.$color-primary-pink;
   text-align: center;
-  @include mixins.transition(background-color);
+
+  @include mixins.transition((background-color, color, border-color));
 
   &:hover,
   &:focus {
-    background-color: darken(variables.$color-primary-pink, 10%);
+    background-color: variables.$color-dark-pink;
   }
 
   &:active {
-    background-color: darken(variables.$color-primary-pink, 15%);
+    background-color: variables.$color-dark-pink;
+  }
+
+  &:focus-visible {
+    outline: 2px solid variables.$color-primary-pink;
+    outline-offset: 2px;
   }
 
   &:disabled {
     opacity: 0.6;
+    cursor: not-allowed;
     pointer-events: none;
   }
 }
@@ -30,7 +37,7 @@
   font-family: variables.$font-primary;
   text-transform: uppercase;
 
-  @media (max-width: 767px) {
+  @media (max-width: variables.$breakpoint-sm) {
     padding: 5px 8px;
     font-size: 11px;
   }
@@ -41,7 +48,7 @@
   font-size: 17px;
   font-family: variables.$font-secondary;
 
-  @media (max-width: 767px) {
+  @media (max-width: variables.$breakpoint-sm) {
     padding: 8px 16px;
     font-size: 15px;
   }
@@ -52,7 +59,7 @@
   font-size: 18px;
   font-family: variables.$font-primary;
 
-  @media (max-width: 767px) {
+  @media (max-width: variables.$breakpoint-sm) {
     padding: 14px 18px;
     font-size: 16px;
   }
@@ -66,6 +73,8 @@
   text-transform: uppercase;
   border-radius: 4px;
 
+  @include mixins.transition((background-color, color, border-color));
+
   &:hover,
   &:focus {
     background-color: variables.$color-primary-pink;
@@ -73,7 +82,7 @@
   }
 
   &:active {
-    background-color: darken(variables.$color-primary-pink, 10%);
-    border-color: darken(variables.$color-primary-pink, 10%);
+    background-color: variables.$color-dark-pink;
+    border-color: variables.$color-dark-pink;
   }
 }

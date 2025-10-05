@@ -1,19 +1,13 @@
-// вся логіка LocalStorage
+// LocalStorage
 const CART_KEY = "cart";
 
 export function getCart() {
   let cart = JSON.parse(localStorage.getItem(CART_KEY) || "[]");
 
-  // fallback для старих даних (quantity → qty)
-  cart = cart.map((item) => {
-    if (item.quantity && !item.qty) {
-      item.qty = item.quantity;
-      delete item.quantity;
-    }
-    return item;
-  });
-
-  return cart;
+  return cart.map((item) => ({
+    ...item,
+    qty: item.qty || 1,
+  }));
 }
 
 export function saveCart(cart) {
@@ -27,7 +21,6 @@ export function clearCart() {
 export function addToCart(product, qty = 1) {
   const cart = getCart();
 
-  // шукаємо дубль за id + size + color
   const existing = cart.find(
     (item) =>
       item.id === product.id &&
@@ -49,8 +42,13 @@ export function updateCartCounter() {
   const cart = getCart();
   const totalQty = cart.reduce((sum, i) => sum + (i.qty || 0), 0);
 
-  const counterEl = document.querySelector(".cart-counter");
-  if (counterEl) {
-    counterEl.textContent = totalQty > 0 ? totalQty : "";
-  }
+  document.querySelectorAll(".cart-counter").forEach((el) => {
+    if (totalQty > 0) {
+      el.textContent = String(totalQty);
+      el.style.display = "inline-flex";
+    } else {
+      el.textContent = "";
+      el.style.display = "none";
+    }
+  });
 }

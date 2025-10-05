@@ -6,24 +6,15 @@
 
   .container {
     display: flex;
-    flex-direction: column;
     align-items: center;
-    gap: 40px;
-
-    @media (min-width: variables.$breakpoint-sm) {
-      flex-direction: row;
-      justify-content: space-between;
-      gap: 60px;
-    }
+    justify-content: space-between;
+    gap: 60px;
+    flex-direction: row;
   }
 
   .hero-content {
-    text-align: center;
-
-    @media (min-width: variables.$breakpoint-sm) {
-      text-align: left;
-      max-width: 50%;
-    }
+    text-align: left;
+    max-width: 50%;
 
     h1 {
       margin-bottom: 30px;
@@ -42,15 +33,28 @@
   }
 
   .hero-img {
-    max-width: 100%;
+    max-width: 50%;
 
     img {
       width: 100%;
-      // height: auto;
+    }
+  }
+
+  @media (max-width: variables.$breakpoint-sm) {
+    .container {
+      flex-direction: column;
+      align-items: center;
+      justify-content: initial;
+      gap: 40px;
     }
 
-    @media (min-width: variables.$breakpoint-sm) {
-      max-width: 50%;
+    .hero-content {
+      text-align: center;
+      max-width: 100%;
+    }
+
+    .hero-img {
+      max-width: 100%;
     }
   }
 }
@@ -69,7 +73,7 @@
     box-shadow: variables.$box-shadow;
     filter: variables.$filter-shadow;
 
-    @media (max-width: 768px) {
+    @media (max-width: variables.$breakpoint-sm) {
       grid-template-columns: 1fr;
     }
   }
@@ -78,7 +82,7 @@
     padding: 70px;
     background-color: variables.$bg-white;
 
-    @media (max-width: 768px) {
+    @media (max-width: variables.$breakpoint-sm) {
       padding: 30px;
     }
 
@@ -135,7 +139,7 @@
       background-image: url("../../src/assets/img/suitcases/promo-suitcase@2x.webp");
     }
 
-    @media (max-width: 768px) {
+    @media (max-width: variables.$breakpoint-sm) {
       min-height: 300px;
       padding: 20px;
     }
@@ -170,15 +174,15 @@
 
     .slider-wrapper {
       display: flex;
-      transition: transform variables.$transition-duration
-        variables.$timing-function;
       gap: 38px;
 
-      @media (max-width: 1024px) {
+      @include mixins.transition(transform);
+
+      @media (max-width: variables.$breakpoint-md) {
         gap: 24px;
       }
 
-      @media (max-width: 768px) {
+      @media (max-width: variables.$breakpoint-sm) {
         gap: 16px;
       }
     }
@@ -190,8 +194,8 @@
       max-height: 600px;
       overflow: hidden;
       color: variables.$bg-white;
-      transition: box-shadow variables.$transition-duration
-        variables.$timing-function;
+
+      @include mixins.transition(box-shadow);
 
       &:hover {
         box-shadow: variables.$box-shadow;
@@ -200,9 +204,8 @@
       img {
         width: 100%;
         height: 100%;
-        // object-fit: cover;
-        transition: transform variables.$transition-duration
-          variables.$timing-function;
+
+        @include mixins.transition(transform);
       }
 
       &:hover img {
@@ -234,7 +237,7 @@
           max-width: 240px;
         }
 
-        @media (max-width: 1024px) {
+        @media (max-width: variables.$breakpoint-md) {
           bottom: 32px;
           left: 24px;
 
@@ -248,7 +251,7 @@
           }
         }
 
-        @media (max-width: 768px) {
+        @media (max-width: variables.$breakpoint-sm) {
           bottom: 24px;
           left: 20px;
 
@@ -263,15 +266,15 @@
         }
       }
 
-      @media (max-width: 1024px) {
+      @media (max-width: variables.$breakpoint-md) {
         flex: 0 0 calc((100% - 24px) / 3);
       }
 
-      @media (max-width: 768px) {
+      @media (max-width: variables.$breakpoint-sm) {
         flex: 0 0 calc((100% - 24px) / 2);
       }
 
-      @media (max-width: 480px) {
+      @media (max-width: variables.$breakpoint-xs) {
         flex: 0 0 100%;
       }
     }
@@ -281,6 +284,8 @@
       top: 50%;
       transform: translateY(-50%);
       z-index: 10;
+
+      @include mixins.transition(background-color);
 
       .logo-icon {
         color: variables.$bg-white;
@@ -300,7 +305,7 @@
         background: variables.$color-primary-pink;
       }
 
-      @media (max-width: 768px) {
+      @media (max-width: variables.$breakpoint-sm) {
         &.prev {
           left: 5px;
         }
@@ -321,15 +326,15 @@
     gap: 38px;
     filter: variables.$filter-shadow;
 
-    @media (max-width: 1024px) {
+    @media (max-width: variables.$breakpoint-md) {
       grid-template-columns: repeat(3, 1fr);
     }
 
-    @media (max-width: 768px) {
+    @media (max-width: variables.$breakpoint-sm) {
       grid-template-columns: repeat(2, 1fr);
     }
 
-    @media (max-width: 480px) {
+    @media (max-width: variables.$breakpoint-xs) {
       grid-template-columns: 1fr;
     }
   }
@@ -369,14 +374,14 @@
       background-image: url("../../src/assets/img/promo/special-offer@2x.webp");
     }
 
-    @media (max-width: 1024px) {
+    @media (max-width: variables.$breakpoint-md) {
       flex-direction: column;
       justify-content: center;
       text-align: center;
       padding: 60px 40px;
     }
 
-    @media (max-width: 768px) {
+    @media (max-width: variables.$breakpoint-sm) {
       padding: 40px 20px;
       min-height: auto;
     }
@@ -397,11 +402,11 @@
       font-size: 20px;
     }
 
-    @media (max-width: 1024px) {
+    @media (max-width: variables.$breakpoint-md) {
       align-items: center;
     }
 
-    @media (max-width: 768px) {
+    @media (max-width: variables.$breakpoint-sm) {
       .special-subtext {
         font-size: 16px;
       }
@@ -415,11 +420,11 @@
       padding: 20px 26px;
     }
 
-    @media (max-width: 1024px) {
+    @media (max-width: variables.$breakpoint-md) {
       max-width: 100%;
     }
 
-    @media (max-width: 768px) {
+    @media (max-width: variables.$breakpoint-sm) {
       .btn {
         padding: 16px 22px;
         font-size: 14px;
@@ -430,7 +435,7 @@
   .special-title {
     margin-bottom: 30px;
 
-    @media (max-width: 768px) {
+    @media (max-width: variables.$breakpoint-sm) {
       margin-bottom: 20px;
     }
   }
@@ -438,7 +443,7 @@
   .special-text {
     margin-bottom: 30px;
 
-    @media (max-width: 768px) {
+    @media (max-width: variables.$breakpoint-sm) {
       font-size: 14px;
       margin-bottom: 20px;
     }
@@ -454,15 +459,15 @@
     gap: 38px;
     filter: variables.$filter-shadow;
 
-    @media (max-width: 1024px) {
+    @media (max-width: variables.$breakpoint-md) {
       grid-template-columns: repeat(3, 1fr);
     }
 
-    @media (max-width: 768px) {
+    @media (max-width: variables.$breakpoint-sm) {
       grid-template-columns: repeat(2, 1fr);
     }
 
-    @media (max-width: 480px) {
+    @media (max-width: variables.$breakpoint-xs) {
       grid-template-columns: 1fr;
     }
   }
@@ -477,11 +482,11 @@
     gap: 20px;
     filter: variables.$filter-shadow;
 
-    @media (max-width: 1024px) {
+    @media (max-width: variables.$breakpoint-md) {
       grid-template-columns: repeat(2, 1fr);
     }
 
-    @media (max-width: 768px) {
+    @media (max-width: variables.$breakpoint-sm) {
       grid-template-columns: 1fr;
     }
   }

@@ -7,14 +7,14 @@ document.addEventListener("DOMContentLoaded", () => {
   if (!wrapper) return;
 
   let index = 0;
-  const visibleSlides = 4; // скільки видно на десктопі
+  const visibleSlides = 4;
 
   function showSlide(i) {
     const maxIndex = slides.length - visibleSlides;
     if (i < 0) index = maxIndex;
     else if (i > maxIndex) index = 0;
 
-    const slideWidth = slides[0].offsetWidth + 38; // ширина + gap
+    const slideWidth = slides[0].offsetWidth + 38;
     wrapper.style.transform = `translateX(${-index * slideWidth}px)`;
   }
 

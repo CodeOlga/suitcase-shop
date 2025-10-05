@@ -42,7 +42,17 @@ npm install
 npm run sass
 ```
 
-The compiled CSS will be placed in dist/css/main.css and is automatically linked in the HTML files located in src/.
+The compiled CSS will be placed in `dist/css/main.css`.
+
+> **CSS paths (Live Server)**
+> SCSS compiles into `dist/css`. With the current Live Server setup (opening files from `src/`), the paths are already configured — **no changes needed**:
+>
+> - `src/index.html` includes CSS as:
+>   `<link rel="stylesheet" href="../dist/css/main.css">`
+> - pages in `src/pages/*.html` include CSS as:
+>   `<link rel="stylesheet" href="../../dist/css/main.css">`
+>
+> You may switch to a single path `/dist/css/main.css` later if you run Live Server from the project root. This is **optional**.
 
 **Open the project in browser:**
 
@@ -69,18 +79,19 @@ npm run lint:css
 
 ```text
 src/
-├── assets/ # Images, icons, JSON data
-├── js/ # JavaScript files
-├── scss/ # SCSS source files
-├── index.html # Homepage
-├── catalog.html # Product catalog
-├── product.html # Single product details
-├── about.html # About Us page
-├── contact.html # Contact page
-└── cart.html # Shopping cart
+├── assets/
+├── js/
+├── scss/
+├── pages/
+│   ├── about.html
+│   ├── cart.html
+│   ├── catalog.html
+│   ├── contact.html
+│   └── product.html
+└── index.html
 
 dist/
-├── css/         # Compiled CSS files
+├── css/
 ```
 
 ## 📝 Notes

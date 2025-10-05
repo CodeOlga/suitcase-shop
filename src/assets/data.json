@@ -228,10 +228,10 @@
   {
     "id": "SET017",
     "name": "Premium Explorer Luggage Set",
-    "price": 750,
-    "imageUrl": "./assets/img/suitcases/set-red.webp",
+    "price": 2100,
+    "imageUrl": "./assets/img/suitcases/set-pink@1x.webp",
     "category": "luggage sets",
-    "color": "black",
+    "color": "pink",
     "size": "S, M, XL",
     "salesStatus": true,
     "rating": 4.5,
@@ -242,8 +242,8 @@
   {
     "id": "SET018",
     "name": "Deluxe Family Travel Set",
-    "price": 800,
-    "imageUrl": "./assets/img/suitcases/set-red.webp",
+    "price":1200,
+    "imageUrl": "./assets/img/suitcases/set-grey-orange@1x.webp",
     "category": "luggage sets",
     "color": "grey",
     "size": "S, M, XL",
@@ -253,11 +253,53 @@
     "blocks": [],
     "description": "Perfect for short getaways, the Traveller's Comfort Weekender combines compact design with durable materials for stress-free travel."
   },
+    {
+    "id": "SET019",
+    "name": "Premium Explorer Luggage Set",
+    "price": 1000,
+    "imageUrl": "./assets/img/suitcases/set-orange@1x.webp",
+    "category": "luggage sets",
+    "color": "yellow",
+    "size": "S, M, XL",
+    "salesStatus": true,
+    "rating": 4.0,
+    "popularity": 79,
+    "blocks": [],
+    "description": "The Urban Compact Travel Suitcase is designed for modern travelers. With smart compartments and a sleek silhouette, it ensures comfort without compromise."
+  },
   {
-    "id": "CO019",
+    "id": "SET020",
+    "name": "Deluxe Family Travel Set",
+    "price": 1500,
+    "imageUrl": "./assets/img/suitcases/set-white@1x.webp",
+    "category": "luggage sets",
+    "color": "yellow",
+    "size": "S, M, XL",
+    "salesStatus": false,
+    "rating": 5.0,
+    "popularity": 90,
+    "blocks": [],
+    "description": "Perfect for short getaways, the Traveller's Comfort Weekender combines compact design with durable materials for stress-free travel."
+  },
+  {
+    "id": "SET021",
+    "name": "Deluxe Family Travel Set",
+    "price": 1100,
+    "imageUrl": "./assets/img/suitcases/set-green-brown@1x.webp",
+    "category": "luggage sets",
+    "color": "green",
+    "size": "S, M, XL",
+    "salesStatus": false,
+    "rating": 5.0,
+    "popularity": 90,
+    "blocks": [],
+    "description": "Perfect for short getaways, the Traveller's Comfort Weekender combines compact design with durable materials for stress-free travel."
+  },
+  {
+    "id": "CO022",
     "name": "Lightweight Compact Carry-On",
     "price": 230,
-    "imageUrl": "./assets/img/suitcases/set-red.webp",
+    "imageUrl": "./assets/img/suitcases/green@1x.webp",
     "category": "carry-ons",
     "color": "green",
     "size": "S",
@@ -268,10 +310,10 @@
     "description": "Engineered for toughness, the Explorer Pro Durable Suitcase withstands rough handling while keeping your essentials safe."
   },
   {
-    "id": "CO020",
+    "id": "CO023",
     "name": "Explorer Rolling Carry-On Pro",
     "price": 250,
-    "imageUrl": "./assets/img/suitcases/set-red.webp",
+    "imageUrl": "./assets/img/suitcases/blue-M@1x.webp",
     "category": "carry-ons",
     "color": "blue",
     "size": "M",
@@ -282,7 +324,7 @@
     "description": "The new Global Explorer Max Comfort Suitcase Pro is a bold reimagining of travel essentials, designed to withstand every journey. Made with at least 30% recycled materials, it is lightweight yet impact-resistant with combines eco-conscious innovation with rugged durability."
   },
   {
-  "id": "SU021",
+  "id": "SU024",
   "name": "Premium Lightweight Travel Suitcase",
   "price": 330,
   "imageUrl": "./assets/img/suitcases/blue-L@1x.webp",
@@ -296,7 +338,7 @@
   "description": "Luxury Lightweight Travel Suitcase combines premium durability with ultra-light construction, making it perfect for long trips or business travel."
   },
   {
-    "id": "SU022",
+    "id": "SU025",
     "name": "Luxury Lightweight Travel Suitcase",
     "price": 280,
     "imageUrl": "./assets/img/suitcases/blue-L@1x.webp",

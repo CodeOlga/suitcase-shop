@@ -53,7 +53,7 @@
             <svg width="34" height="34">
               <use href="../assets/sprite/sprite.svg#icon-shopping-cart"></use>
             </svg>
-            <span class="cart-counter">0</span>
+            <span class="cart-counter" hidden></span>
           </a>
         </div>
       </div>
@@ -83,6 +83,7 @@
   <main>
     <h1 class="visually-hidden">Product Details</h1>
 
+    <!-- Product details -->
     <section class="section product-details-section">
       <div class="container product-details-grid">
 
@@ -106,27 +107,46 @@
           <p class="desc" id="product-desc"></p>
 
           <div class="product-selects">
-            <label>
-              <span>Size</span>
-              <select id="size-select">
-                <option value="" selected>Choose option</option>
-              </select>
-            </label>
+            <div class="filter-group">
+              <span id="label-size-product">Size</span>
+              <div class="custom-select" data-select id="size-wrapper">
+                <button type="button" class="custom-trigger" aria-labelledby="label-size-product"
+                  aria-haspopup="listbox" aria-expanded="false" data-select-trigger>
+                  Choose option
+                </button>
+                <ul class="custom-options" role="listbox" data-select-options>
+                </ul>
+              </div>
+              <input type="hidden" id="size-select" name="size" />
+            </div>
 
-            <label>
-              <span>Color</span>
-              <select id="color-select">
-                <option value="" selected>Choose option</option>
-              </select>
-            </label>
+            <div class="filter-group">
+              <span id="label-color-product">Color</span>
+              <div class="custom-select" data-select id="color-wrapper">
+                <button type="button" class="custom-trigger" aria-labelledby="label-color-product"
+                  aria-haspopup="listbox" aria-expanded="false" data-select-trigger>
+                  Choose option
+                </button>
+                <ul class="custom-options" role="listbox" data-select-options>
+                </ul>
+              </div>
+              <input type="hidden" id="color-select" name="color" />
+            </div>
 
-            <label>
-              <span>Category</span>
-              <select id="category-select">
-                <option value="" selected>Choose option</option>
-              </select>
-            </label>
+            <div class="filter-group">
+              <span id="label-category-product">Category</span>
+              <div class="custom-select" data-select id="category-wrapper">
+                <button type="button" class="custom-trigger" aria-labelledby="label-category-product"
+                  aria-haspopup="listbox" aria-expanded="false" data-select-trigger>
+                  Choose option
+                </button>
+                <ul class="custom-options" role="listbox" data-select-options>
+                </ul>
+              </div>
+              <input type="hidden" id="category-select" name="category" />
+            </div>
           </div>
+
 
           <div class="quantity-row">
             <div class="quantity">
@@ -162,6 +182,7 @@
       </div>
     </section>
 
+    <!-- Tabs -->
     <section class="section product-tabs">
       <div class="container">
         <ul class="tabs" role="tablist">
@@ -242,8 +263,9 @@
 
           <form id="review-form" class="review-form" novalidate>
             <h3 class="review-title">Add Review</h3>
-            <p class="form-note">Your email address won’t be shared with anybody. Required fields have the symbol *</p>
-
+            <p class="form-note">
+              Your email address won’t be shared with anybody. Required fields have the symbol *
+            </p>
 
             <div class="rate-product">
               <span class="rate-label">Rate Product</span>
@@ -267,26 +289,19 @@
             </div>
 
             <label>
-              <textarea id="review-text" required placeholder="Your Review*"></textarea>
+              <textarea id="review-text" name="review" required placeholder="Your Review *"></textarea>
             </label>
+
             <div class="review-row">
               <label>
-                <input id="review-name" type="text" required placeholder="Your Name*" />
+                <input id="review-name" type="text" name="name" required placeholder="Your Name *" />
               </label>
               <label>
-                <input id="review-email" type="email" required placeholder="Your Email*" />
+                <input id="review-email" type="email" name="email" required placeholder="Your Email *" />
               </label>
             </div>
 
-
-            <!-- Checkbox -->
-            <!-- <label class="review-checkbox">
-              <input type="checkbox" id="review-save-data" />
-              <span>Save my name, email, and website in this browser for when I leave another
-                comment.</span>
-            </label> -->
-
-            <div class="review-checkbox">
+            <div class="custom-checkbox">
               <input type="checkbox" id="save-data" />
               <label for="save-data" class="checkbox-text">
                 Save my name, email, and website in this browser for when I leave another comment.
@@ -294,7 +309,7 @@
             </div>
 
             <button type="submit" class="btn btn-md">Submit</button>
-            <p id="review-message" class="form-msg" aria-live="polite"></p>
+            <p class="form-msg" aria-live="polite"></p>
           </form>
         </div>
 
@@ -316,6 +331,7 @@
       </div>
     </section>
 
+    <!-- Related products -->
     <section class="section related-products">
       <div class="container">
         <h2>You May Also Like</h2>
@@ -455,6 +471,48 @@
     </div>
   </footer>
 
+  <!-- Login Modal -->
+  <div class="modal login-modal" id="login-modal" role="dialog" aria-modal="true" aria-labelledby="login-title" hidden>
+    <div class="modal-overlay"></div>
+    <div class="modal-content">
+      <button class="modal-close" aria-label="Close login form">&times;</button>
+
+      <form id="login-form" class="login-form" novalidate>
+        <h2 id="login-title" class="visually-hidden">Log In</h2>
+
+        <label>
+          <span>Email address <span class="required">*</span></span>
+          <input type="email" name="email" id="login-email" required placeholder="Enter your email"
+            autocomplete="email" />
+        </label>
+
+        <label class="password-field">
+          <span>Password <span class="required">*</span></span>
+          <div class="field-control">
+            <input type="password" name="password" id="login-password" required placeholder="Enter your password"
+              autocomplete="current-password" />
+            <button type="button" class="toggle-password" aria-label="Show password">
+              <svg width="19" height="14">
+                <use href="../assets/sprite/sprite.svg#icon-eye"></use>
+              </svg>
+            </button>
+          </div>
+        </label>
+
+        <div class="login-options">
+          <label class="custom-checkbox" for="remember-me">
+            <input type="checkbox" name="remember" id="remember-me" autocomplete="on" />
+            <span class="checkbox-text">Remember me</span>
+          </label>
+
+          <a href="#">Forgot Your Password?</a>
+        </div>
+
+        <button type="submit" class="btn btn-md">Log In</button>
+        <p class="form-msg" aria-live="polite"></p>
+      </form>
+    </div>
+  </div>
   <script type="module" src="../js/main.js"></script>
 </body>
 

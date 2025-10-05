@@ -49,20 +49,24 @@
               <use href="../assets/sprite/sprite.svg#icon-user"></use>
             </svg>
           </button>
-          <a href="../pages/cart.html" class="icon-btn cart-btn" aria-label="Cart">
+          <a href="./cart.html" class="icon-btn cart-btn" aria-label="Cart">
             <svg width="34" height="34">
               <use href="../assets/sprite/sprite.svg#icon-shopping-cart"></use>
             </svg>
-            <span class="cart-counter">0</span>
+            <span class="cart-counter" hidden></span>
           </a>
         </div>
+
+        <button class="burger" aria-label="Open menu">
+          <span></span><span></span><span></span>
+        </button>
       </div>
 
       <div class="nav-bar">
         <nav class="nav">
           <ul class="nav-list">
             <li><a href="../index.html" class="nav-link">Home</a></li>
-            <li><a href="catalog.html" class="nav-link">Catalog
+            <li><a href="./catalog.html" class="nav-link">Catalog
                 <span class="arrow-down">
                   <svg width="8" height="12" aria-hidden="true">
                     <use href="../assets/sprite/sprite.svg#icon-arrow-down"></use>
@@ -70,20 +74,144 @@
                 </span>
               </a>
             </li>
-            <li><a href="about.html" class="nav-link">About Us</a>
-            </li>
-            <li><a href="contact.html" class="nav-link active">Contact
-                Us</a></li>
+            <li><a href="./about.html" class="nav-link">About Us</a></li>
+            <li><a href="./contact.html" class="nav-link active">Contact Us</a></li>
           </ul>
+
+          <div class="mobile-actions">
+            <button class="icon-btn" aria-label="Account">
+              <svg width="30" height="30">
+                <use href="../assets/sprite/sprite.svg#icon-user"></use>
+              </svg>
+            </button>
+            <a href="./cart.html" class="icon-btn cart-btn" aria-label="Cart">
+              <svg width="34" height="34">
+                <use href="../assets/sprite/sprite.svg#icon-shopping-cart"></use>
+              </svg>
+              <span class="cart-counter" hidden></span>
+            </a>
+          </div>
+
+          <div class="mobile-socials">
+            <a href="https://facebook.com" target="_blank" aria-label="Facebook">
+              <svg width="20" height="20">
+                <use href="../assets/sprite/sprite.svg#icon-facebook"></use>
+              </svg>
+            </a>
+            <a href="https://twitter.com" target="_blank" aria-label="Twitter">
+              <svg width="24" height="20">
+                <use href="../assets/sprite/sprite.svg#icon-twitter"></use>
+              </svg>
+            </a>
+            <a href="https://instagram.com" target="_blank" aria-label="Instagram">
+              <svg width="20" height="20">
+                <use href="../assets/sprite/sprite.svg#icon-instagram"></use>
+              </svg>
+            </a>
+          </div>
         </nav>
       </div>
     </div>
+
+    <div class="menu-overlay"></div>
   </header>
 
   <main>
-    <h1>Contact Us</h1>
-  </main>
+    <!-- Hero Section -->
+    <section class="common-section-hero hero-contact">
+      <div class="container">
+        <h1>Contact Us</h1>
+        <p>We’re always here to help and answer any questions you might have.</p>
+      </div>
+    </section>
 
+    <!-- Contact Info -->
+    <section class="section features-contact-section">
+      <div class="container features-contact-grid">
+        <div class="feature-contact-item">
+          <svg class="icon">
+            <use href="../assets/sprite/sprite.svg#icon-location-big"></use>
+          </svg>
+          <h3>Our Location</h3>
+          <p>1234 Main Street, Los Angeles, CA 90001</p>
+          <p>(626) 985-8523</p>
+        </div>
+        <div class="feature-contact-item">
+          <svg class="icon">
+            <use href="../assets/sprite/sprite.svg#icon-time"></use>
+          </svg>
+          <h3>Operating Time</h3>
+          <p>Monday – Friday: 10:00am – 6:00pm</p>
+          <p>Weekends: 10:00am – 4:00pm</p>
+        </div>
+        <div class="feature-contact-item">
+          <svg class="icon">
+            <use href="../assets/sprite/sprite.svg#icon-email"></use>
+          </svg>
+          <h3>Our Email</h3>
+          <p>bestshop@email.com</p>
+          <p>info@bestshop.com</p>
+        </div>
+        <div class="feature-contact-item">
+          <svg class="icon">
+            <use href="../assets/sprite/sprite.svg#icon-call"></use>
+          </svg>
+          <h3>Call Us</h3>
+          <p>(042) 980-0231</p>
+          <p>(042) 982-2567</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Feedback Form -->
+    <section class="section contact-form">
+      <div class="container contact-box">
+        <div class="contact-img">
+          <img src="../assets/img/promo/contact-form@1x.webp" srcset="
+              ../assets/img/promo/contact-form@1x.webp 1x,
+              ../assets/img/promo/contact-form@2x.webp 2x
+            " alt="Travel essentials" loading="lazy" />
+        </div>
+
+        <form class="form" novalidate>
+          <h2>Your Feedback is Much Appreciated!</h2>
+          <p>We will contact you when you complete the following form!</p>
+
+          <label>
+            <span class="label-text">
+              Your Name <span class="required">*</span>
+            </span>
+            <input type="text" name="name" required />
+          </label>
+          <label>
+
+            <span class="label-text">
+              Your Email Address <span class="required">*</span>
+            </span>
+            <input type="email" name="email" required />
+          </label>
+          <label>
+
+            <span class="label-text">
+              Topic <span class="required">*</span>
+            </span>
+            <input type="text" name="topic" required />
+          </label>
+          <label>
+
+            <span class="label-text">
+              Your Message <span class="required">*</span>
+            </span>
+            <textarea name="message" rows="6" required></textarea>
+          </label>
+
+          <button type="submit" class="btn btn-md">Send</button>
+
+          <p class="form-msg" aria-live="polite"></p>
+        </form>
+      </div>
+    </section>
+  </main>
   <footer class="footer">
     <div class="footer-top">
       <div class=" container">
@@ -214,6 +342,48 @@
     </div>
   </footer>
 
+  <!-- Login Modal -->
+  <div class="modal login-modal" id="login-modal" role="dialog" aria-modal="true" aria-labelledby="login-title" hidden>
+    <div class="modal-overlay"></div>
+    <div class="modal-content">
+      <button class="modal-close" aria-label="Close login form">&times;</button>
+
+      <form id="login-form" class="login-form" novalidate>
+        <h2 id="login-title" class="visually-hidden">Log In</h2>
+
+        <label>
+          <span>Email address <span class="required">*</span></span>
+          <input type="email" name="email" id="login-email" required placeholder="Enter your email"
+            autocomplete="email" />
+        </label>
+
+        <label class="password-field">
+          <span>Password <span class="required">*</span></span>
+          <div class="field-control">
+            <input type="password" name="password" id="login-password" required placeholder="Enter your password"
+              autocomplete="current-password" />
+            <button type="button" class="toggle-password" aria-label="Show password">
+              <svg width="19" height="14">
+                <use href="../assets/sprite/sprite.svg#icon-eye"></use>
+              </svg>
+            </button>
+          </div>
+        </label>
+
+        <div class="login-options">
+          <label class="custom-checkbox" for="remember-me">
+            <input type="checkbox" name="remember" id="remember-me" autocomplete="on" />
+            <span class="checkbox-text">Remember me</span>
+          </label>
+
+          <a href="#">Forgot Your Password?</a>
+        </div>
+
+        <button type="submit" class="btn btn-md">Log In</button>
+        <p class="form-msg" aria-live="polite"></p>
+      </form>
+    </div>
+  </div>
   <script type="module" src="../js/main.js"></script>
 </body>
 
