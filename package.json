@@ -18,7 +18,8 @@
     "lint:css": "stylelint src/**/*.scss",
     "sprite": "svg-sprite --config sprite.config.json src/assets/icons/**/*.svg",
     "build": "npm run sprite && npm run sass:build",  
-    "build:ci": "npm run build && npm run lint"
+    "build:ci": "npm run build && npm run lint",
+    "test": "echo \"No tests\" && exit 0"
   },
   "devDependencies": {
     "@eslint/js": "^9.35.0",
