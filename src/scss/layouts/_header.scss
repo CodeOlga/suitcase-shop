@@ -11,45 +11,45 @@
     justify-content: space-between;
     padding-bottom: 36px;
     border-bottom: 1px solid variables.$bg-light-gray;
-  }
 
-  .socials {
-    display: flex;
-    gap: 24px;
-  }
-
-  .logo {
-    display: inline-flex;
-    align-items: center;
-
-    .logo-icon {
-      width: 228px;
-      height: 38px;
-      fill: currentColor;
+    .socials {
+      display: flex;
+      gap: 24px;
     }
-  }
 
-  .actions {
-    display: flex;
-    gap: 16px;
+    .logo {
+      display: inline-flex;
+      align-items: center;
 
-    .cart-btn {
-      position: relative;
+      .logo-icon {
+        width: 228px;
+        height: 38px;
+        fill: currentColor;
+      }
+    }
 
-      .cart-counter {
-        display: none;
-        position: absolute;
-        top: -6px;
-        right: -6px;
-        background: variables.$color-primary-pink;
-        color: variables.$bg-white;
-        font-size: 12px;
-        font-weight: variables.$font-weight-bold;
-        border-radius: 50%;
-        min-width: 20px;
-        height: 20px;
-        align-items: center;
-        justify-content: center;
+    .actions {
+      display: flex;
+      gap: 16px;
+
+      .cart-btn {
+        position: relative;
+
+        .cart-counter {
+          display: none;
+          position: absolute;
+          top: -6px;
+          right: -6px;
+          background: variables.$color-primary-pink;
+          color: variables.$bg-white;
+          font-size: 12px;
+          font-weight: variables.$font-weight-bold;
+          border-radius: 50%;
+          min-width: 20px;
+          height: 20px;
+          align-items: center;
+          justify-content: center;
+        }
       }
     }
   }
@@ -105,6 +105,7 @@
 
       .socials,
       .actions {
+        display: flex;
         gap: 12px;
       }
 
@@ -125,11 +126,6 @@
         }
       }
 
-      .socials,
-      .actions {
-        display: flex;
-      }
-
       .socials + .actions {
         margin-left: 24px;
       }
@@ -139,10 +135,6 @@
         display: block;
         width: 100%;
       }
-
-      display: flex;
-      flex-direction: column;
-      align-items: center;
     }
 
     .nav-bar {
@@ -163,7 +155,6 @@
   }
 }
 
-// Mobile menu
 .burger {
   display: none;
   flex-direction: column;
@@ -200,16 +191,16 @@
     outline-offset: 2px;
   }
 
-  &.active span:nth-child(1) {
-    transform: rotate(45deg) translate(5px, 5px);
-  }
-
-  &.active span:nth-child(2) {
-    opacity: 0;
-  }
-
-  &.active span:nth-child(3) {
-    transform: rotate(-45deg) translate(5px, -5px);
+  &.active {
+    span:nth-child(1) {
+      transform: rotate(45deg) translate(5px, 5px);
+    }
+    span:nth-child(2) {
+      opacity: 0;
+    }
+    span:nth-child(3) {
+      transform: rotate(-45deg) translate(5px, -5px);
+    }
   }
 }
 
@@ -223,14 +214,15 @@
   transition: opacity variables.$transition-duration variables.$timing-function,
     visibility 0s linear variables.$transition-duration;
   z-index: 1000;
-}
 
-.menu-overlay.active {
-  opacity: 1;
-  visibility: visible;
-  pointer-events: auto;
-  transition: opacity variables.$transition-duration variables.$timing-function,
-    visibility 0s;
+  &.active {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transition: opacity variables.$transition-duration
+        variables.$timing-function,
+      visibility 0s;
+  }
 }
 
 @media (max-width: variables.$breakpoint-sm) {
@@ -283,19 +275,19 @@
       background-color: variables.$bg-white;
       box-shadow: variables.$box-shadow;
       transform: translateX(100%);
-      transition: none;
       z-index: 1050;
       padding-top: 100px;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-    }
 
-    .nav-bar.active {
-      transform: translateX(0);
-    }
-    .nav-bar.nav-animate {
-      @include mixins.transition(transform);
+      &.active {
+        transform: translateX(0);
+      }
+
+      &.nav-animate {
+        @include mixins.transition(transform);
+      }
     }
 
     .nav {
@@ -326,23 +318,24 @@
         .cart-btn {
           position: relative;
         }
+
+        .cart-btn .cart-counter {
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          min-width: 18px;
+          height: 18px;
+          font-size: 11px;
+          font-weight: variables.$font-weight-bold;
+          color: variables.$bg-white;
+          background: variables.$color-primary-pink;
+          border-radius: 50%;
+          position: absolute;
+          top: -6px;
+          right: -6px;
+        }
       }
 
-      .mobile-actions .cart-btn .cart-counter {
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        min-width: 18px;
-        height: 18px;
-        font-size: 11px;
-        font-weight: variables.$font-weight-bold;
-        color: variables.$bg-white;
-        background: variables.$color-primary-pink;
-        border-radius: 50%;
-        position: absolute;
-        top: -6px;
-        right: -6px;
-      }
       .mobile-socials {
         display: flex;
         justify-content: center;
@@ -353,7 +346,6 @@
         a svg {
           width: 22px;
           height: 22px;
-
           @include mixins.transition(fill);
         }
 

@@ -45,7 +45,6 @@ export function initLoginModal() {
   const triggers = document.querySelectorAll(
     '.icon-btn[aria-label="Account"], [data-login-trigger]'
   );
-  const overlay = modal.querySelector(".modal-overlay");
   const closeBtn = modal.querySelector(".modal-close");
   const form = modal.querySelector("#login-form");
   const emailInput = modal.querySelector('input[name="email"]');
@@ -55,35 +54,14 @@ export function initLoginModal() {
 
   let lastFocused = null;
 
-  const pageSiblings = Array.from(document.body.children).filter(
-    (el) => el !== modal
-  );
-
-  const setInert = (on) => {
-    pageSiblings.forEach((el) => {
-      if (on) {
-        el.setAttribute("inert", "");
-        el.setAttribute("aria-hidden", "true");
-      } else {
-        el.removeAttribute("inert");
-        el.removeAttribute("aria-hidden");
-      }
-    });
-    document.body.classList.toggle("modal-open", on);
-  };
-
   const openModal = () => {
     lastFocused = document.activeElement;
-    modal.hidden = false;
-    modal.classList.add("open");
-    setInert(true);
+    modal.showModal();
     (emailInput || closeBtn || modal).focus();
   };
 
   const closeModal = () => {
-    setInert(false);
-    modal.classList.remove("open");
-    modal.hidden = true;
+    modal.close();
     if (lastFocused && document.contains(lastFocused)) lastFocused.focus();
   };
 
@@ -108,50 +86,30 @@ export function initLoginModal() {
   );
 
   closeBtn?.addEventListener("click", closeModal);
-  overlay?.addEventListener("click", closeModal);
 
-  document.addEventListener("keydown", (e) => {
-    if (modal.hidden) return;
-
-    if (e.key === "Escape") {
-      closeModal();
-      return;
-    }
-
-    if (e.key === "Tab") {
-      const focusables = modal.querySelectorAll(
-        "a[href], area[href], button:not([disabled]), input:not([disabled]), " +
-          "select:not([disabled]), textarea:not([disabled]), " +
-          '[tabindex]:not([tabindex="-1"])'
-      );
-      const list = Array.from(focusables).filter(
-        (el) => el.offsetParent !== null
-      );
-      if (!list.length) return;
-
-      const first = list[0];
-      const last = list[list.length - 1];
-
-      if (!e.shiftKey && document.activeElement === last) {
-        e.preventDefault();
-        first.focus();
-      } else if (e.shiftKey && document.activeElement === first) {
-        e.preventDefault();
-        last.focus();
-      }
-    }
+  modal.addEventListener("click", (e) => {
+    const content = modal.querySelector(".modal-content");
+    if (!content) return;
+    const rect = content.getBoundingClientRect();
+    const inContent =
+      e.clientX >= rect.left &&
+      e.clientX <= rect.right &&
+      e.clientY >= rect.top &&
+      e.clientY <= rect.bottom;
+    if (!inContent) closeModal();
   });
 
-  modal.hidden = true;
-  modal.classList.remove("open");
+  modal.addEventListener("cancel", (e) => {
+    e.preventDefault();
+    closeModal();
+  });
 
   if (togglePassword && passwordInput) {
     togglePassword.addEventListener("click", () => {
       const useEl = togglePassword.querySelector("use");
       if (!useEl) return;
 
-      const curr =
-        useEl.getAttribute("href") || useEl.getAttribute("xlink:href") || "";
+      const curr = useEl.getAttribute("href") ?? "";
       const toOff = curr.replace(/(eye)(?!-off)/, "eye-off");
       const toEye = curr.replace(/eye-off/, "eye");
 
@@ -160,7 +118,7 @@ export function initLoginModal() {
 
       const nextHref = isHidden ? toOff : toEye;
       useEl.setAttribute("href", nextHref);
-      useEl.setAttribute("xlink:href", nextHref);
+      useEl.removeAttribute("xlink:href");
       togglePassword.setAttribute(
         "aria-label",
         isHidden ? "Hide password" : "Show password"

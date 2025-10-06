@@ -7,38 +7,44 @@ let currentPage = 1;
 const perPage = 12;
 let cardTpl = "";
 
+const $ = (sel, root = document) => root.querySelector(sel);
+const $$ = (sel, root = document) => Array.from(root.querySelectorAll(sel));
+
+function getValue(sel, fallback = "") {
+  const el = $(sel);
+  if (!el) return fallback;
+  return el.value ?? fallback;
+}
+
 function applyFilters() {
-  const category = document.querySelector("#filter-category").value;
-  const color = document.querySelector("#filter-color").value;
-  const size = document.querySelector("#filter-size").value;
-  const sale = document.querySelector("#filter-sale").value;
+  const category = getValue("#filter-category");
+  const color = getValue("#filter-color");
+  const size = getValue("#filter-size");
+  const sale = getValue("#filter-sale");
 
   filtered = allProducts.filter((p) => {
-    let ok = true;
-
-    if (category && p.category !== category) ok = false;
+    if (category && p.category !== category) return false;
 
     const colors = Array.isArray(p.colors)
       ? p.colors
       : [p.color].filter(Boolean);
     const sizes = Array.isArray(p.sizes) ? p.sizes : [p.size].filter(Boolean);
 
-    if (color && !colors.includes(color)) ok = false;
-    if (size && !sizes.includes(size)) ok = false;
+    if (color && !colors.includes(color)) return false;
+    if (size && !sizes.includes(size)) return false;
 
     if (sale) {
-      if (sale === "true" && !p.salesStatus) ok = false;
-      if (sale === "false" && p.salesStatus) ok = false;
+      if (sale === "true" && !p.salesStatus) return false;
+      if (sale === "false" && p.salesStatus) return false;
     }
-
-    return ok;
+    return true;
   });
 
   applySort();
 }
 
 function applySort() {
-  const sort = document.querySelector("#sort").value;
+  const sort = getValue("#sort", "default");
 
   const by = {
     "price-asc": (a, b) => (a.price ?? 0) - (b.price ?? 0),
@@ -47,15 +53,17 @@ function applySort() {
     rating: (a, b) => (b.rating ?? 0) - (a.rating ?? 0),
   };
 
-  if (by[sort]) filtered.sort(by[sort]);
-
+  if (by[sort]) {
+    filtered = [...filtered].sort(by[sort]);
+  }
   renderPage(1);
 }
 
 function renderPage(page) {
   currentPage = page;
 
-  const grid = document.querySelector("#catalog-grid");
+  const grid = $("#catalog-grid");
+  if (!grid) return;
   grid.innerHTML = "";
 
   const start = (page - 1) * perPage;
@@ -68,31 +76,32 @@ function renderPage(page) {
 }
 
 function updateResultsCount() {
-  const info = document.querySelector("#results-count");
+  const info = $("#results-count");
+  if (!info) return;
+
   const total = filtered.length;
   const start = total ? (currentPage - 1) * perPage + 1 : 0;
   const end = Math.min(currentPage * perPage, total);
 
-  if (total) {
-    info.textContent = `Showing ${start}–${end} of ${total} results`;
-    info.classList.remove("no-results");
-  } else {
-    info.textContent = "No results found";
-    info.classList.add("no-results");
-  }
+  info.textContent = total
+    ? `Showing ${start}–${end} of ${total} results`
+    : "No results found";
+  info.classList.toggle("no-results", !total);
 }
 
 function updatePagination() {
   const totalPages = Math.max(1, Math.ceil(filtered.length / perPage));
-  document.querySelector(
-    "#page-info"
-  ).textContent = `Page ${currentPage} of ${totalPages}`;
-  document.querySelector("#prev-page").disabled = currentPage === 1;
-  document.querySelector("#next-page").disabled = currentPage === totalPages;
+  const pageInfo = $("#page-info");
+  if (pageInfo) pageInfo.textContent = `Page ${currentPage} of ${totalPages}`;
+
+  const prev = $("#prev-page");
+  const next = $("#next-page");
+  if (prev) prev.disabled = currentPage === 1;
+  if (next) next.disabled = currentPage === totalPages;
 }
 
 function initSearch() {
-  const input = document.querySelector("#search");
+  const input = $("#search");
   if (!input) return;
 
   const openProduct = (q) => {
@@ -101,7 +110,7 @@ function initSearch() {
       .toLowerCase();
     if (!query) return;
 
-    let found =
+    const found =
       allProducts.find((p) => (p.name || "").toLowerCase() === query) ||
       allProducts.find((p) => (p.name || "").toLowerCase().includes(query));
 
@@ -118,126 +127,155 @@ function initSearch() {
 }
 
 function renderBestSets() {
-  const box = document.querySelector("#best-sets-grid");
+  const box = $("#best-sets-grid");
   if (!box) return;
 
   const sets = allProducts.filter((p) => p.category === "luggage sets");
-  if (sets.length === 0) return;
+  if (!sets.length) return;
 
   const pick = [...sets].sort(() => Math.random() - 0.5);
-
   box.innerHTML = pick
     .map(
       (p) => `
-      <div class="best-set-item">
-        <a href="${BASE}/pages/product-details-template.html?id=${encodeURIComponent(
+    <div class="best-set-item">
+      <a href="${BASE}/pages/product-details-template.html?id=${encodeURIComponent(
         p.id
       )}" class="best-set-link">
-          <img src="${BASE}/${p.imageUrl}" alt="${p.name}" loading="lazy">
-        </a>
-        <div class="best-set-info">
-          <a href="${BASE}/pages/product-details-template.html?id=${encodeURIComponent(
+        <img src="${BASE}/${p.imageUrl}" alt="${p.name}" loading="lazy">
+      </a>
+      <div class="best-set-info">
+        <a href="${BASE}/pages/product-details-template.html?id=${encodeURIComponent(
         p.id
       )}" class="best-set-name">
-            ${p.name}
-          </a>
-          <div class="best-set-rating">
-            ${Array.from({ length: 5 })
-              .map((_, i) =>
-                i < (p.rating || 0)
-                  ? `<svg class="star star-yellow"><use href="${BASE}/assets/sprite/sprite.svg#icon-star-yellow"></use></svg>`
-                  : `<svg class="star star-grey"><use href="${BASE}/assets/sprite/sprite.svg#icon-star-grey"></use></svg>`
-              )
-              .join("")}
-          </div>
-          <p class="best-set-price">$${p.price}</p>
+          ${p.name}
+        </a>
+        <div class="best-set-rating">
+          ${Array.from({ length: 5 })
+            .map((_, i) =>
+              i < (p.rating || 0)
+                ? `<svg class="star star-yellow"><use href="${BASE}/assets/sprite/sprite.svg#icon-star-yellow"></use></svg>`
+                : `<svg class="star star-grey"><use href="${BASE}/assets/sprite/sprite.svg#icon-star-grey"></use></svg>`
+            )
+            .join("")}
         </div>
+        <p class="best-set-price">$${p.price}</p>
       </div>
-    `
+    </div>
+  `
     )
     .join("");
+}
 
-  box.querySelectorAll(".best-set-item").forEach((el) => {
-    el.addEventListener("click", () => {
-      const id = el.getAttribute("data-id");
-      window.location.href = `${BASE}/pages/product-details-template.html?id=${id}`;
-    });
+function resetFiltersUI() {
+  const DEFAULT_TEXT = "Choose option";
+
+  ["#filter-size", "#filter-color", "#filter-category", "#filter-sale"].forEach(
+    (sel) => {
+      const el = $(sel);
+      if (!el) return;
+      el.value = "";
+      el.dispatchEvent(new Event("change", { bubbles: true }));
+    }
+  );
+
+  const sortEl = $("#sort");
+  if (sortEl) {
+    sortEl.value = "default";
+    sortEl.dispatchEvent(new Event("change", { bubbles: true }));
+  }
+
+  $$(
+    ".filters-top .custom-select[data-select], .sort-box .custom-select[data-select]"
+  ).forEach((wrap) => {
+    const trigger = wrap.querySelector("[data-select-trigger]");
+    const list = wrap.querySelector("[data-select-options]");
+    const isSort = wrap.closest(".sort-box") != null;
+
+    if (trigger) {
+      trigger.textContent = isSort ? "Default Sorting" : DEFAULT_TEXT;
+      trigger.setAttribute("aria-expanded", "false");
+    }
+    if (list) {
+      list.querySelectorAll("li").forEach((li) => {
+        const shouldBeActive = isSort ? li.dataset.value === "default" : false;
+        li.classList.toggle("active", shouldBeActive);
+        if (shouldBeActive) li.setAttribute("aria-selected", "true");
+        else li.removeAttribute("aria-selected");
+      });
+    }
+    wrap.classList.remove("open");
   });
 }
 
-(async function initCatalog() {
+(function initCatalog() {
   updateCartCounter();
 
-  const data = await fetch(`${BASE}/assets/data.json`).then((r) => r.json());
+  fetch(`${BASE}/assets/data.json`)
+    .then((r) => r.json())
+    .then((data) => {
+      allProducts = Array.isArray(data) ? data : data.data;
 
-  allProducts = Array.isArray(data) ? data : data.data;
+      const tplEl = document.querySelector("#product-card-tpl");
+      cardTpl = tplEl ? tplEl.innerHTML : "";
 
-  const tplEl = document.querySelector("#product-card-tpl");
-  cardTpl = tplEl ? tplEl.innerHTML : "";
+      filtered = allProducts;
+      applySort();
 
-  filtered = allProducts;
-  applySort();
-
-  document
-    .querySelectorAll(
-      "#filter-size, #filter-color, #filter-category, #filter-sale"
-    )
-    .forEach((input) => {
-      input.addEventListener("change", applyFilters);
-    });
-
-  document.querySelector("#reset-filters").addEventListener("click", () => {
-    document
-      .querySelectorAll(".filters-top input[type=hidden]")
-      .forEach((inp) => {
-        inp.value = "";
+      [
+        "#filter-size",
+        "#filter-color",
+        "#filter-category",
+        "#filter-sale",
+      ].forEach((sel) => {
+        const el = $(sel);
+        if (el) el.addEventListener("change", applyFilters);
       });
 
-    document
-      .querySelectorAll(".filters-top [data-select-trigger]")
-      .forEach((btn) => {
-        btn.textContent = "Choose option";
-      });
+      const sortEl = $("#sort");
+      if (sortEl) sortEl.addEventListener("change", applySort);
 
-    filtered = allProducts;
-    applySort();
-  });
+      const prev = $("#prev-page");
+      const next = $("#next-page");
+      if (prev)
+        prev.addEventListener(
+          "click",
+          () => currentPage > 1 && renderPage(currentPage - 1)
+        );
+      if (next)
+        next.addEventListener("click", () => {
+          const totalPages = Math.ceil(filtered.length / perPage) || 1;
+          if (currentPage < totalPages) renderPage(currentPage + 1);
+        });
 
-  document.querySelector("#sort").addEventListener("change", applySort);
+      const resetBtn = $("#reset-filters");
+      if (resetBtn)
+        resetBtn.addEventListener("click", () => {
+          resetFiltersUI();
+          filtered = allProducts;
+          applySort();
+        });
 
-  document.querySelector("#prev-page").addEventListener("click", () => {
-    if (currentPage > 1) renderPage(currentPage - 1);
-  });
+      initSearch();
+      renderBestSets();
 
-  document.querySelector("#next-page").addEventListener("click", () => {
-    const totalPages = Math.ceil(filtered.length / perPage);
-    if (currentPage < totalPages) renderPage(currentPage + 1);
-  });
-
-  initSearch();
-
-  renderBestSets();
-
-  const hideBtn = document.getElementById("hide-filters");
-  const filtersTop = document.querySelector(".filters-top");
-
-  if (hideBtn && filtersTop) {
-    hideBtn.addEventListener("click", () => {
-      filtersTop.classList.toggle("collapsed");
-
-      if (filtersTop.classList.contains("collapsed")) {
-        hideBtn.textContent = "Show Filters";
-      } else {
-        hideBtn.textContent = "Hide Filters";
+      const hideBtn = $("#hide-filters");
+      const filtersTop = document.querySelector(".filters-top");
+      if (hideBtn && filtersTop) {
+        hideBtn.addEventListener("click", () => {
+          filtersTop.classList.toggle("collapsed");
+          hideBtn.textContent = filtersTop.classList.contains("collapsed")
+            ? "Show Filters"
+            : "Hide Filters";
+        });
       }
     });
-  }
 })();
 
 function showPopup(message) {
   const popup = document.getElementById("popup");
   const msg = document.getElementById("popup-message");
   const closeBtn = document.getElementById("popup-close");
+  if (!popup || !msg || !closeBtn) return;
 
   msg.textContent = message;
   popup.classList.add("show");

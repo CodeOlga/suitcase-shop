@@ -18,15 +18,16 @@ function showCartAlert(
 
   el.className = "cart-alert";
   if (variant) el.classList.add(`alert-${variant}`);
-  el.textContent = text || "";
   el.hidden = !text;
 
-  el.setAttribute("role", assertive ? "alert" : "status");
+  el.textContent = text || "";
+
   el.setAttribute("aria-live", assertive ? "assertive" : "polite");
 
   clearTimeout(el._hideTimer);
-  if (!persist && text)
+  if (!persist && text) {
     el._hideTimer = setTimeout(() => (el.hidden = true), 4500);
+  }
 }
 
 function hideCartAlert() {
@@ -40,11 +41,19 @@ function hideCartAlert() {
 
 function itemHTML(item) {
   return `
-    <img src="${BASE}/${item.imageUrl.replace(/^\.\//, "")}" alt="${
+    <a href="./product-details-template.html?id=${
+      item.id
+    }" class="cart-item-link">
+      <img src="${BASE}/${item.imageUrl.replace(/^\.\//, "")}" alt="${
     item.name
   }" />
+    </a>
     <div class="item-info">
-      <h3>${item.name}</h3>
+      <h3>
+        <a href="./product.html?id=${item.id}" class="product-link">${
+    item.name
+  }</a>
+      </h3>
       <p>Size: ${item.size || "-"}</p>
       <p>Color: ${item.color || "-"}</p>
     </div>
@@ -169,4 +178,3 @@ export function initCartPage() {
     );
   });
 }
-

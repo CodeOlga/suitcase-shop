@@ -128,11 +128,11 @@
             <div class="filter-group">
               <span id="label-size">Size</span>
               <div class="custom-select" data-select>
-                <button type="button" class="custom-trigger" aria-labelledby="label-size" aria-haspopup="listbox"
-                  aria-expanded="false" data-select-trigger>
+                <button type="button" class="custom-trigger" aria-labelledby="label-size" aria-expanded="false"
+                  data-select-trigger>
                   Choose option
                 </button>
-                <ul class="custom-options" role="listbox" data-select-options>
+                <ul class="custom-options" data-select-options>
                   <li data-value="S">S</li>
                   <li data-value="M">M</li>
                   <li data-value="L">L</li>
@@ -147,11 +147,11 @@
             <div class="filter-group">
               <span id="label-color">Color</span>
               <div class="custom-select" data-select>
-                <button type="button" class="custom-trigger" aria-labelledby="label-color" aria-haspopup="listbox"
-                  aria-expanded="false" data-select-trigger>
+                <button type="button" class="custom-trigger" aria-labelledby="label-color" aria-expanded="false"
+                  data-select-trigger>
                   Choose option
                 </button>
-                <ul class="custom-options" role="listbox" data-select-options>
+                <ul class="custom-options" data-select-options>
                   <li data-value="red">Red</li>
                   <li data-value="blue">Blue</li>
                   <li data-value="green">Green</li>
@@ -167,11 +167,11 @@
             <div class="filter-group">
               <span id="label-category">Category</span>
               <div class="custom-select" data-select>
-                <button type="button" class="custom-trigger" aria-labelledby="label-category" aria-haspopup="listbox"
-                  aria-expanded="false" data-select-trigger>
+                <button type="button" class="custom-trigger" aria-labelledby="label-category" aria-expanded="false"
+                  data-select-trigger>
                   Choose option
                 </button>
-                <ul class="custom-options" role="listbox" data-select-options>
+                <ul class="custom-options" data-select-options>
                   <li data-value="carry-ons">Carry-ons</li>
                   <li data-value="suitcases">Suitcases</li>
                   <li data-value="luggage sets">Luggage Sets</li>
@@ -184,11 +184,11 @@
             <div class="filter-group">
               <span id="label-sale">Sales</span>
               <div class="custom-select" data-select>
-                <button type="button" class="custom-trigger" aria-labelledby="label-sale" aria-haspopup="listbox"
-                  aria-expanded="false" data-select-trigger>
+                <button type="button" class="custom-trigger" aria-labelledby="label-sale" aria-expanded="false"
+                  data-select-trigger>
                   Choose option
                 </button>
-                <ul class="custom-options" role="listbox" data-select-options>
+                <ul class="custom-options" data-select-options>
                   <li data-value="true">On Sale</li>
                   <li data-value="false">Regular</li>
                 </ul>
@@ -210,10 +210,11 @@
 
           <div class="sort-box">
             <div class="custom-select" data-select>
-              <button type="button" class="custom-trigger" aria-label="Sorting" data-select-trigger>
+              <button type="button" class="custom-trigger" aria-label="Sorting" aria-expanded="false"
+                data-select-trigger>
                 Default Sorting
               </button>
-              <ul class="custom-options" role="listbox" data-select-options>
+              <ul class="custom-options" data-select-options>
                 <li data-value="default">Default Sorting</li>
                 <li data-value="price-asc">Price: Low → High</li>
                 <li data-value="price-desc">Price: High → Low</li>
@@ -397,18 +398,17 @@
   </footer>
 
   <!-- Popup Not found-->
-  <div id="popup" class="popup" role="dialog" aria-modal="true" aria-hidden="true">
+  <dialog id="popup" class="popup" aria-labelledby="popup-message">
     <div class="popup-content">
       <p id="popup-message">Product not found</p>
       <button id="popup-close" class="btn btn-sm">Close</button>
     </div>
-  </div>
+  </dialog>
 
   <!-- Login Modal -->
-  <div class="modal login-modal" id="login-modal" role="dialog" aria-modal="true" aria-labelledby="login-title" hidden>
-    <div class="modal-overlay"></div>
+  <dialog class="modal login-modal" id="login-modal" aria-labelledby="login-title">
     <div class="modal-content">
-      <button class="modal-close" aria-label="Close login form">&times;</button>
+      <button class="modal-close" aria-label="Close login form" type="button">&times;</button>
 
       <form id="login-form" class="login-form" novalidate>
         <h2 id="login-title" class="visually-hidden">Log In</h2>
@@ -445,7 +445,8 @@
         <p class="form-msg" aria-live="polite"></p>
       </form>
     </div>
-  </div>
+  </dialog>
+
   <script type="module" src="../js/main.js"></script>
 </body>
 

@@ -9,8 +9,17 @@ import "./pages/products.js";
 function initPageScripts() {
   const path = window.location.pathname;
 
+  if (path.includes("catalog.html")) {
+    import("./pages/catalog.js").then(() => {
+      initCustomSelects();
+    });
+  }
+
   if (path.includes("product-details-template.html")) {
-    import("./pages/product-details.js");
+    import("./pages/product-details.js").then(() => {
+      initCustomSelects();
+    });
+    initFormValidation("#review-form");
   }
 
   if (path.includes("cart.html")) {
@@ -19,18 +28,8 @@ function initPageScripts() {
     });
   }
 
-  if (path.includes("catalog.html")) {
-    import("./pages/catalog.js").then(() => {
-      initCustomSelects();
-    });
-  }
-
   if (path.includes("contact.html")) {
     initFormValidation(".contact-form form");
-  }
-
-  if (path.includes("product-details-template.html")) {
-    initFormValidation("#review-form");
   }
 }
 

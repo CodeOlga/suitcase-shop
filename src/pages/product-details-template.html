@@ -81,78 +81,81 @@
   </header>
 
   <main>
-    <h1 class="visually-hidden">Product Details</h1>
+    <h1 class="visually-hidden">Product Details Page</h1>
 
     <!-- Product details -->
     <section class="section product-details-section">
       <div class="container product-details-grid">
 
         <div class="product-gallery">
-          <img id="product-image" src="" alt="" />
+          <img id="product-image" src="" alt="Product image" />
           <div class="thumbs" id="product-thumbs"></div>
         </div>
 
         <div class="product-info">
-          <h2 id="product-title" class="product-title"></h2>
+          <h2 id="product-title" class="product-title" aria-live="polite">
+            Loading product...
+          </h2>
 
           <div class="rating-and-price">
             <div class="rating-row">
-              <div id="product-rating" class="rating" aria-label="Rating"></div>
+              <div id="product-rating" class="rating" aria-label="Product rating"></div>
               <span id="product-reviews" class="reviews-count">(1 Client Review)</span>
             </div>
             <p class="price" id="product-price"></p>
           </div>
 
-
           <p class="desc" id="product-desc"></p>
 
           <div class="product-selects">
             <div class="filter-group">
-              <span id="label-size-product">Size</span>
+              <label for="size-trigger" id="label-size-product">Size</label>
               <div class="custom-select" data-select id="size-wrapper">
-                <button type="button" class="custom-trigger" aria-labelledby="label-size-product"
-                  aria-haspopup="listbox" aria-expanded="false" data-select-trigger>
+                <button id="size-trigger" type="button" class="custom-trigger" aria-haspopup="listbox"
+                  aria-expanded="false" aria-controls="size-options" data-select-trigger>
                   Choose option
                 </button>
-                <ul class="custom-options" role="listbox" data-select-options>
+                <ul id="size-options" class="custom-options" data-select-options>
+                  <li role="option" tabindex="-1" hidden>placeholder</li>
                 </ul>
               </div>
               <input type="hidden" id="size-select" name="size" />
             </div>
 
             <div class="filter-group">
-              <span id="label-color-product">Color</span>
+              <label for="color-trigger" id="label-color-product">Color</label>
               <div class="custom-select" data-select id="color-wrapper">
-                <button type="button" class="custom-trigger" aria-labelledby="label-color-product"
-                  aria-haspopup="listbox" aria-expanded="false" data-select-trigger>
+                <button id="color-trigger" type="button" class="custom-trigger" aria-haspopup="listbox"
+                  aria-expanded="false" aria-controls="color-options" data-select-trigger>
                   Choose option
                 </button>
-                <ul class="custom-options" role="listbox" data-select-options>
+                <ul id="color-options" class="custom-options" data-select-options>
+                  <li role="option" tabindex="-1" hidden>placeholder</li>
                 </ul>
               </div>
               <input type="hidden" id="color-select" name="color" />
             </div>
 
             <div class="filter-group">
-              <span id="label-category-product">Category</span>
+              <label for="category-trigger" id="label-category-product">Category</label>
               <div class="custom-select" data-select id="category-wrapper">
-                <button type="button" class="custom-trigger" aria-labelledby="label-category-product"
-                  aria-haspopup="listbox" aria-expanded="false" data-select-trigger>
+                <button id="category-trigger" type="button" class="custom-trigger" aria-haspopup="listbox"
+                  aria-expanded="false" aria-controls="category-options" data-select-trigger>
                   Choose option
                 </button>
-                <ul class="custom-options" role="listbox" data-select-options>
+                <ul id="category-options" class="custom-options" data-select-options>
+                  <li role="option" tabindex="-1" hidden>placeholder</li>
                 </ul>
               </div>
               <input type="hidden" id="category-select" name="category" />
             </div>
           </div>
 
-
           <div class="quantity-row">
             <div class="quantity">
-              <button class="qty-btn" id="decrease" type="button">−</button>
-              <input type="number" id="quantity" value="1" min="1" />
-              <button class="qty-btn" id="increase" type="button">+</button>
+              <button class="qty-btn" id="decrease" type="button" aria-label="Decrease quantity">−</button>
+              <input type="number" id="quantity" value="1" min="1" aria-label="Product quantity" />
+              <button class="qty-btn" id="increase" type="button" aria-label="Increase quantity">+</button>
             </div>
 
             <button class="btn btn-md add-to-cart" id="add-to-cart" type="button">Add To Cart</button>
@@ -166,17 +169,23 @@
               </svg>
             </span>
 
-            <span class="pay-item"><svg width="60" height="20" aria-hidden="true">
+            <span class="pay-item">
+              <svg width="60" height="20" aria-hidden="true">
                 <use href="../assets/sprite/sprite.svg#icon-american-express-logo"></use>
-              </svg></span>
+              </svg>
+            </span>
 
-            <span class="pay-item"><svg width="33" height="27" aria-hidden="true">
+            <span class="pay-item">
+              <svg width="33" height="27" aria-hidden="true">
                 <use href="../assets/sprite/sprite.svg#icon-master-card-logo"></use>
-              </svg></span>
+              </svg>
+            </span>
 
-            <span class="pay-item"><svg width="59" height="17" aria-hidden="true">
+            <span class="pay-item">
+              <svg width="59" height="17" aria-hidden="true">
                 <use href="../assets/sprite/sprite.svg#icon-paypal-logo"></use>
-              </svg></span>
+              </svg>
+            </span>
           </div>
         </div>
       </div>
@@ -186,47 +195,41 @@
     <section class="section product-tabs">
       <div class="container">
         <ul class="tabs" role="tablist">
-          <li class="active" data-tab="details" role="tab" aria-selected="true">Details</li>
-          <li data-tab="reviews" role="tab" aria-selected="false">Reviews</li>
-          <li data-tab="shipping" role="tab" aria-selected="false">Shipping Policy</li>
+          <li class="active" data-tab="details" role="tab" tabindex="0" aria-selected="true">Details</li>
+          <li data-tab="reviews" role="tab" tabindex="0" aria-selected="false">Reviews</li>
+          <li data-tab="shipping" role="tab" tabindex="0" aria-selected="false">Shipping Policy</li>
         </ul>
 
-        <div id="tab-details" class="tab-content active">
+        <div id="tab-details" class="tab-content active" role="tabpanel" aria-labelledby="details-tab">
           <p>
-            Vestibulum commodo sapien non elit porttitor, vitae volutpat nibh mollis. Nulla porta risus id neque
-            tempor, in efficitur justo imperdiet. Etiam a ex atante tincidunt imperdiet. Nunc congue ex vel nisl
-            viverra, sit
+            Vestibulum commodo sapien non elit porttitor, vitae volutpat nibh mollis. Nulla porta risus id neque tempor,
+            in efficitur justo imperdiet. Etiam a ex at ante tincidunt imperdiet. Nunc congue ex vel nisl viverra, sit
             amet aliquet lectus ullamcorper. Praesent luctus lacus non lorem elementum, eu tristique sapien suscipit.
-            Sed bibendum, ipsum nec viverra malesuada, erat nisi
-            sodales purus, eget hendrerit dui ligula eu enim. Ut non est nisi. Pellentesque tristique pretium dolor eu
-            commodo. Proin iaculis nibh vitae lectus mollis
-            bibendum. Quisque varius eget urna sit amet luctus. Suspendisse potenti. Curabitur ac placerat est, sit
-            amet sodales risus. Pellentesque viverra dui
-            auctor, ullamcorper turpis pharetra, facilisis quam.
+            Sed bibendum, ipsum nec viverra malesuada, erat nisi sodales purus, eget hendrerit dui ligula eu enim. Ut
+            non
+            est nisi. Pellentesque tristique pretium dolor eu commodo. Proin iaculis nibh vitae lectus mollis bibendum.
+            Quisque varius eget urna sit amet luctus. Suspendisse potenti. Curabitur ac placerat est, sit amet sodales
+            risus. Pellentesque viverра dui auctor, ullamcorper turpis pharetra, facilisis quam.
           </p>
           <p>
             Proin iaculis nibh vitae lectus mollis bibendum. Quisque varius eget urna sit amet luctus. Suspendisse
-            potenti.
-            Curabitur ac placerat est, sit amet sodales risus. Pellentesque viverra dui auctor, ullamcorper turpis
-            pharetra, facilisis quam. Proin iaculis nibh vitae lectus
-            mollis bibendum.
+            potenti. Curabitur ac placerat est, sit amet sodales risus. Pellentesque viverра dui auctor, ullamcorper
+            turpis pharetra, facilisis quam. Proin iaculis nibh vitae lectus mollis bibendum.
           </p>
           <p>
             Quisque varius eget urna sit amet luctus. Suspendisse potenti. Curabitur ac placerat est, sit amet sodales
-            risus.
-            Pellentesque viverra dui auctor, ullamcorper turpis pharetra, facilisis quam.
+            risus. Pellentesque viverра dui auctor, ullamcorper turpis pharetra, facilisis quam.
           </p>
         </div>
 
-        <div id="tab-reviews" class="tab-content tab-reviews-content">
-
+        <div id="tab-reviews" class="tab-content tab-reviews-content" role="tabpanel" aria-labelledby="reviews-tab">
           <div class="review-list">
             <h3 class="review-title">
               1 review for Global Explorer Max Comfort Suitcase Pro
             </h3>
 
             <article class="review-item">
-              <img class="avatar" src="../assets/img/people/ella@1x.webp" alt="Photo of Ella Harper" />
+              <img class="avatar" src="../assets/img/people/ella@1x.webp" alt="Reviewer Ella Harper" />
 
               <div class="review-body">
                 <div class="review-header">
@@ -234,7 +237,7 @@
                     <span class="author">Ella Harper</span>
                     <span class="date">/ June 11, 2025</span>
                   </div>
-                  <div class="stars" aria-label="4 stars">
+                  <div class="stars" aria-label="4 out of 5 stars">
                     <svg class="star star-yellow">
                       <use href="../assets/sprite/sprite.svg#icon-star-yellow"></use>
                     </svg>
@@ -269,7 +272,7 @@
 
             <div class="rate-product">
               <span class="rate-label">Rate Product</span>
-              <div class="stars">
+              <div class="stars" role="radiogroup" aria-label="Rate product">
                 <svg class="star star-outlined">
                   <use href="../assets/sprite/sprite.svg#icon-star-outlined"></use>
                 </svg>
@@ -288,17 +291,15 @@
               </div>
             </div>
 
-            <label>
-              <textarea id="review-text" name="review" required placeholder="Your Review *"></textarea>
-            </label>
+            <label for="review-text" class="visually-hidden">Your Review *</label>
+            <textarea id="review-text" name="review" required placeholder="Your Review *"></textarea>
 
             <div class="review-row">
-              <label>
-                <input id="review-name" type="text" name="name" required placeholder="Your Name *" />
-              </label>
-              <label>
-                <input id="review-email" type="email" name="email" required placeholder="Your Email *" />
-              </label>
+              <label for="review-name" class="visually-hidden">Your Name *</label>
+              <input id="review-name" type="text" name="name" required placeholder="Your Name *" />
+
+              <label for="review-email" class="visually-hidden">Your Email *</label>
+              <input id="review-email" type="email" name="email" required placeholder="Your Email *" />
             </div>
 
             <div class="custom-checkbox">
@@ -311,21 +312,19 @@
             <button type="submit" class="btn btn-md">Submit</button>
             <p class="form-msg" aria-live="polite"></p>
           </form>
+
         </div>
 
-        <div id="tab-shipping" class="tab-content">
+        <div id="tab-shipping" class="tab-content" role="tabpanel" aria-labelledby="shipping-tab">
           <p>
             Proin iaculis nibh vitae lectus mollis bibendum. Quisque varius eget urna sit amet luctus. Suspendisse
-            potenti.
-            Curabitur ac placerat est, sit amet sodales risus. Pellentesque viverra dui auctor, ullamcorper turpis
-            pharetra, facilisis quam. Proin iaculis nibh vitae lectus
-            mollis bibendum.
+            potenti. Curabitur ac placerat est, sit amet sodales risus. Pellentesque viverра dui auctor, ullamcorper
+            turpis pharetra, facilisis quam. Proin iaculis nibh vitae lectus mollis bibendum.
           </p>
           <p>
             Lorem ipsum dolor sit amet, consectetur adipisicing elit. Proin iaculis nibh vitae lectus mollis bibendum.
-            Quisque varius eget urna sit amet luctus. Suspendisse potenti.
-            Curabitur ac placerat est, sit amet sodales. Expedita, sunt. Shipping within 2–5 business days.
-            Free returns within 30 days.
+            Quisque varius eget urna sit amet luctus. Suspendisse potenti. Curabitur ac placerat est, sit amet sodales.
+            Expedita, sunt. Shipping within 2–5 business days. Free returns within 30 days.
           </p>
         </div>
       </div>
@@ -335,8 +334,7 @@
     <section class="section related-products">
       <div class="container">
         <h2>You May Also Like</h2>
-        <div class="related-grid" id="related-products">
-        </div>
+        <div class="related-grid" id="related-products"></div>
       </div>
     </section>
   </main>
@@ -472,10 +470,9 @@
   </footer>
 
   <!-- Login Modal -->
-  <div class="modal login-modal" id="login-modal" role="dialog" aria-modal="true" aria-labelledby="login-title" hidden>
-    <div class="modal-overlay"></div>
+  <dialog class="modal login-modal" id="login-modal" aria-labelledby="login-title">
     <div class="modal-content">
-      <button class="modal-close" aria-label="Close login form">&times;</button>
+      <button class="modal-close" aria-label="Close login form" type="button">&times;</button>
 
       <form id="login-form" class="login-form" novalidate>
         <h2 id="login-title" class="visually-hidden">Log In</h2>
@@ -512,7 +509,8 @@
         <p class="form-msg" aria-live="polite"></p>
       </form>
     </div>
-  </div>
+  </dialog>
+
   <script type="module" src="../js/main.js"></script>
 </body>
 

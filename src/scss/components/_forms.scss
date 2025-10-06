@@ -1,73 +1,133 @@
 @use "../abstracts/mixins";
 @use "../abstracts/variables";
 
+// Catalog ang Product-details-template pages
 .custom-select {
-  position: relative;
   width: 100%;
+  position: relative;
+  display: inline-block;
+  min-width: 150px;
+  overflow: visible;
+  font-size: 13px;
 
   .custom-trigger {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+
     width: 100%;
     padding: 10px 12px;
     border: 2px solid variables.$bg-light-gray;
-    background: variables.$bg-white;
+    background-color: variables.$bg-white;
     cursor: pointer;
-    text-align: left;
     font-size: 13px;
     font-family: inherit;
     color: variables.$text-gray-form;
-    position: relative;
 
-    @include mixins.transition(border-color);
-
-    &:hover,
-    &:focus {
-      border-color: variables.$color-primary-pink;
-      outline: none;
-    }
+    @include mixins.transition((border-color, box-shadow));
 
     &::after {
       content: "";
-      position: absolute;
-      right: 12px;
-      top: 50%;
-      width: 12px;
-      height: 12px;
-      background: url("../../src/assets/icons/arrow-down.svg") no-repeat center;
-      background-size: contain;
-      transform: translateY(-50%);
-      pointer-events: none;
+      width: 0;
+      height: 0;
+      margin-left: 8px;
+      border-left: 5px solid transparent;
+      border-right: 5px solid transparent;
+      border-top: 6px solid variables.$text-gray-form;
+
+      @include mixins.transition(transform);
+    }
+
+    &:hover,
+    &:focus-visible {
+      border-color: variables.$color-primary-pink;
+      outline: none;
     }
   }
 
   .custom-options {
     position: absolute;
-    top: calc(100% + 4px);
+    top: 100%;
     left: 0;
     width: 100%;
+    z-index: 999;
+
     background-color: variables.$bg-white;
-    border: 1px solid variables.$bg-light-gray;
-    display: none;
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    z-index: 20;
+    border: 2px solid variables.$bg-light-gray;
+
+    padding-top: 6px;
+
+    max-height: 0;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    overflow: hidden;
+    transform: translateY(-2px);
+    will-change: max-height, opacity, transform;
+    @include mixins.transition((max-height, opacity, transform, visibility));
 
     li {
       padding: 8px 12px;
       cursor: pointer;
       font-size: 14px;
       color: variables.$text-dark-gray;
-
       @include mixins.transition(background-color);
 
       &:hover {
-        background-color: variables.$bg-white;
+        background-color: variables.$bg-light-gray;
+      }
+
+      &.active {
+        background-color: variables.$bg-light-gray;
+        font-weight: variables.$font-weight-bold;
       }
     }
   }
 
-  &.open .custom-options {
-    display: block;
+  &:hover .custom-options,
+  &:focus-within .custom-options {
+    max-height: 260px;
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    overflow-y: auto;
+    transform: translateY(0);
+    -webkit-overflow-scrolling: touch;
+  }
+  &:hover .custom-trigger::after,
+  &:focus-within .custom-trigger::after {
+    transform: rotate(180deg);
+  }
+
+  @media (hover: none), (pointer: coarse) {
+    &.open .custom-options {
+      max-height: 260px;
+      opacity: 1;
+      visibility: visible;
+      pointer-events: auto;
+      overflow-y: auto;
+      transform: translateY(0);
+      -webkit-overflow-scrolling: touch;
+    }
+    &.open .custom-trigger::after {
+      transform: rotate(180deg);
+    }
+
+    &:hover .custom-options,
+    &:focus-within .custom-options {
+      max-height: 0;
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+      transform: translateY(-2px);
+    }
+  }
+
+  &.is-disabled,
+  .custom-trigger:disabled {
+    pointer-events: none;
+    opacity: 0.6;
   }
 }
 
@@ -150,37 +210,33 @@
 }
 
 .modal {
+  width: min(480px, 90vw);
+  border: 0;
+  padding: 0;
+  background: transparent;
+
   position: fixed;
   inset: 0;
-  display: none;
-  align-items: center;
-  justify-content: center;
-  z-index: 1000;
+  margin: auto;
 
-  &.open {
-    display: flex;
-  }
-
-  .modal-overlay {
-    position: absolute;
-    inset: 0;
+  &::backdrop {
     background: variables.$bg-overlay;
   }
 
   .modal-content {
     position: relative;
     background-color: variables.$bg-white;
-    padding: 40px;
-    width: 480px;
-    max-width: 90%;
+    padding: clamp(24px, 3vw, 40px);
     border-radius: 8px;
-    z-index: 1;
+    box-shadow: variables.$box-shadow;
+
+    max-height: 85vh;
+    overflow: auto;
   }
 
   .modal-close {
     position: absolute;
-    right: 16px;
-    top: 16px;
+    inset: 16px 16px auto auto;
     background: none;
     border: none;
     font-size: 28px;

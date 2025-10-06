@@ -4,22 +4,31 @@ export function initCustomSelects() {
 
   const isTouch = window.matchMedia("(hover: none), (pointer: coarse)").matches;
 
-  const closeAll = () => {
+  const open = (wrap) => {
+    wrap.classList.add("open");
+    const t = wrap.querySelector("[data-select-trigger]");
+    if (t) t.setAttribute("aria-expanded", "true");
+  };
+
+  const close = (wrap) => {
+    wrap.classList.remove("open");
+    const t = wrap.querySelector("[data-select-trigger]");
+    if (t) t.setAttribute("aria-expanded", "false");
+  };
+
+  const closeAll = (except = null) => {
     wraps.forEach((w) => {
-      w.classList.remove("open");
-      const t = w.querySelector("[data-select-trigger]");
-      if (t) t.setAttribute("aria-expanded", "false");
+      if (w !== except) close(w);
     });
   };
 
-  if (isTouch) {
-    document.addEventListener("click", (e) => {
-      if (!e.target.closest(".custom-select[data-select]")) closeAll();
-    });
-    document.addEventListener("keydown", (e) => {
-      if (e.key === "Escape") closeAll();
-    });
-  }
+  document.addEventListener("click", (e) => {
+    const host = e.target.closest(".custom-select[data-select]");
+    if (!host) closeAll();
+  });
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") closeAll();
+  });
 
   wraps.forEach((wrap) => {
     const trigger = wrap.querySelector("[data-select-trigger]");
@@ -27,49 +36,58 @@ export function initCustomSelects() {
     const hidden = wrap.nextElementSibling;
     if (!trigger || !list || !hidden) return;
 
-    list.setAttribute("role", "listbox");
-    trigger.setAttribute("aria-haspopup", "listbox");
-    trigger.setAttribute("aria-expanded", "false");
+    if (!trigger.hasAttribute("aria-expanded")) {
+      trigger.setAttribute("aria-expanded", "false");
+    }
 
-    if (isTouch) {
-      trigger.addEventListener("click", (e) => {
-        e.stopPropagation();
-        const willOpen = !wrap.classList.contains("open");
-        closeAll();
-        wrap.classList.toggle("open", willOpen);
-        trigger.setAttribute("aria-expanded", willOpen ? "true" : "false");
+    if (!isTouch) {
+      wrap.addEventListener("mouseenter", () => open(wrap));
+      wrap.addEventListener("mouseleave", () => close(wrap));
+      trigger.addEventListener("focus", () => open(wrap));
+      wrap.addEventListener("focusout", (e) => {
+        if (!wrap.contains(e.relatedTarget)) close(wrap);
       });
     }
 
-    list.addEventListener("click", (e) => {
-      const li = e.target.closest("li[data-value]");
-      if (!li) return;
+    trigger.addEventListener("click", (e) => {
+      if (!isTouch) return;
+      e.preventDefault();
+      e.stopPropagation();
+      const willOpen = !wrap.classList.contains("open");
+      closeAll();
+      willOpen ? open(wrap) : close(wrap);
+    });
 
+    const selectLi = (li) => {
       list.querySelectorAll("li").forEach((n) => {
-        const active = n === li;
-        n.classList.toggle("active", active);
-        n.setAttribute("aria-selected", active ? "true" : "false");
+        n.classList.toggle("active", n === li);
       });
 
       trigger.textContent = li.textContent.trim();
       hidden.value = li.dataset.value ?? "";
       hidden.dispatchEvent(new Event("change", { bubbles: true }));
 
-      if (isTouch) {
-        wrap.classList.remove("open");
-        trigger.setAttribute("aria-expanded", "false");
-      } else {
-        trigger.blur();
-      }
+      if (isTouch) close(wrap);
+    };
+
+    list.addEventListener("click", (e) => {
+      const li = e.target.closest("li[data-value]");
+      if (li) selectLi(li);
     });
 
-    list.querySelectorAll("li").forEach((li) => {
-      li.setAttribute("role", "option");
+    const items = Array.from(list.querySelectorAll("li"));
+    items.forEach((li, i) => {
       li.tabIndex = 0;
       li.addEventListener("keydown", (e) => {
         if (e.key === "Enter" || e.key === " ") {
           e.preventDefault();
-          li.click();
+          selectLi(li);
+        } else if (e.key === "ArrowDown") {
+          e.preventDefault();
+          (items[i + 1] || items[0]).focus();
+        } else if (e.key === "ArrowUp") {
+          e.preventDefault();
+          (items[i - 1] || items[items.length - 1]).focus();
         }
       });
     });
@@ -84,25 +102,23 @@ export function fillCustomSelect(wrapper, options) {
   const hiddenInput = wrapper.nextElementSibling;
   if (!trigger || !optionsList || !hiddenInput) return;
 
-  const values = Array.isArray(options) ? options : options ? [options] : [];
+  let values = [];
+  if (Array.isArray(options)) values = options;
+  else if (options != null) values = [options];
+
   optionsList.innerHTML = "";
 
   values.forEach((opt) => {
     const li = document.createElement("li");
     li.textContent = opt;
     li.dataset.value = opt;
-    li.setAttribute("role", "option");
     li.tabIndex = 0;
     optionsList.appendChild(li);
   });
 
-  optionsList.setAttribute("role", "listbox");
-
   const selectLi = (li) => {
     optionsList.querySelectorAll("li").forEach((n) => {
-      const active = n === li;
-      n.classList.toggle("active", active);
-      n.setAttribute("aria-selected", active ? "true" : "false");
+      n.classList.toggle("active", n === li);
     });
     trigger.textContent = li.textContent.trim();
     hiddenInput.value = li.dataset.value ?? "";
@@ -123,4 +139,8 @@ export function fillCustomSelect(wrapper, options) {
       }
     });
   });
+
+  if (!trigger.hasAttribute("aria-expanded")) {
+    trigger.setAttribute("aria-expanded", "false");
+  }
 }
