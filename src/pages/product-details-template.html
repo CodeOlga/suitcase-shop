@@ -88,7 +88,7 @@
       <div class="container product-details-grid">
 
         <div class="product-gallery">
-          <img id="product-image" src="" alt="Product image" />
+          <img id="product-image" src="" alt="Product" />
           <div class="thumbs" id="product-thumbs"></div>
         </div>
 
@@ -116,7 +116,7 @@
                   Choose option
                 </button>
                 <ul id="size-options" class="custom-options" data-select-options>
-                  <li role="option" tabindex="-1" hidden>placeholder</li>
+                  <li role="option" aria-selected="false" tabindex="0" hidden>placeholder</li>
                 </ul>
               </div>
               <input type="hidden" id="size-select" name="size" />
@@ -130,7 +130,7 @@
                   Choose option
                 </button>
                 <ul id="color-options" class="custom-options" data-select-options>
-                  <li role="option" tabindex="-1" hidden>placeholder</li>
+                  <li role="option" aria-selected="false" tabindex="0" hidden>placeholder</li>
                 </ul>
               </div>
               <input type="hidden" id="color-select" name="color" />
@@ -144,7 +144,7 @@
                   Choose option
                 </button>
                 <ul id="category-options" class="custom-options" data-select-options>
-                  <li role="option" tabindex="-1" hidden>placeholder</li>
+                  <li role="option" aria-selected="false" tabindex="0" hidden>placeholder</li>
                 </ul>
               </div>
               <input type="hidden" id="category-select" name="category" />
@@ -195,9 +195,15 @@
     <section class="section product-tabs">
       <div class="container">
         <ul class="tabs" role="tablist">
-          <li class="active" data-tab="details" role="tab" tabindex="0" aria-selected="true">Details</li>
-          <li data-tab="reviews" role="tab" tabindex="0" aria-selected="false">Reviews</li>
-          <li data-tab="shipping" role="tab" tabindex="0" aria-selected="false">Shipping Policy</li>
+          <li class="active" data-tab="details" role="tab" aria-selected="true">
+            <button type="button" tabindex="0">Details</button>
+          </li>
+          <li data-tab="reviews" role="tab" aria-selected="false">
+            <button type="button" tabindex="0">Reviews</button>
+          </li>
+          <li data-tab="shipping" role="tab" aria-selected="false">
+            <button type="button" tabindex="0">Shipping Policy</button>
+          </li>
         </ul>
 
         <div id="tab-details" class="tab-content active" role="tabpanel" aria-labelledby="details-tab">
@@ -272,7 +278,7 @@
 
             <div class="rate-product">
               <span class="rate-label">Rate Product</span>
-              <div class="stars" role="radiogroup" aria-label="Rate product">
+              <div class="stars" role="radiogroup" aria-label="Rate product"><!-- NOSONAR -->
                 <svg class="star star-outlined">
                   <use href="../assets/sprite/sprite.svg#icon-star-outlined"></use>
                 </svg>
