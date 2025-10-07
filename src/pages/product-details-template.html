@@ -107,7 +107,7 @@
 
           <p class="desc" id="product-desc"></p>
 
-          <div class="product-selects">
+          <!-- <div class="product-selects">
             <div class="filter-group">
               <label for="size-trigger" id="label-size-product">Size</label>
               <div class="custom-select" data-select id="size-wrapper">
@@ -149,8 +149,48 @@
               </div>
               <input type="hidden" id="category-select" name="category" />
             </div>
-          </div>
+          </div> -->
 
+          <div class="product-selects">
+            <div class="filter-group">
+              <span id="label-size-product">Size</span>
+              <div class="custom-select" data-select aria-labelledby="label-size-product" id="size-wrapper">
+                <button type="button" class="custom-trigger" aria-expanded="false" data-select-trigger>
+                  Choose option
+                </button>
+                <ul class="custom-options" data-select-options role="listbox" aria-label="Select size">
+                  <li hidden>placeholder</li>
+                </ul>
+              </div>
+              <input type="hidden" id="size-select" name="size" />
+            </div>
+
+            <div class="filter-group">
+              <span id="label-color-product">Color</span>
+              <div class="custom-select" data-select aria-labelledby="label-color-product" id="color-wrapper">
+                <button type="button" class="custom-trigger" aria-expanded="false" data-select-trigger>
+                  Choose option
+                </button>
+                <ul class="custom-options" data-select-options role="listbox" aria-label="Select color">
+                  <li hidden>placeholder</li>
+                </ul>
+              </div>
+              <input type="hidden" id="color-select" name="color" />
+            </div>
+
+            <div class="filter-group">
+              <span id="label-category-product">Category</span>
+              <div class="custom-select" data-select aria-labelledby="label-category-product" id="category-wrapper">
+                <button type="button" class="custom-trigger" aria-expanded="false" data-select-trigger>
+                  Choose option
+                </button>
+                <ul class="custom-options" data-select-options role="listbox" aria-label="Select category">
+                  <li hidden>placeholder</li>
+                </ul>
+              </div>
+              <input type="hidden" id="category-select" name="category" />
+            </div>
+          </div>
           <div class="quantity-row">
             <div class="quantity">
               <button class="qty-btn" id="decrease" type="button" aria-label="Decrease quantity">−</button>
