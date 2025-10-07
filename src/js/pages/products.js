@@ -2,9 +2,7 @@ import { addToCart, updateCartCounter } from "../modules/cart.js";
 import { BASE, renderProducts } from "../utils/utils.js";
 
 Promise.all([
-  // fetch(`${BASE}/assets/data.json`).then((r) => r.json()),
-  // fetch(`${BASE}/components/product-card.html`).then((r) => r.text()),
-  fetch("/assets/data.json", { cache: "no-store" }).then((r) => r.json()),
+  fetch(`${BASE}/assets/data.json`).then((r) => r.json()),
   fetch(`${BASE}/components/product-card.html`).then((r) => r.text()),
 ])
   .then(([data, cardTpl]) => {
