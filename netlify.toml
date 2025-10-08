@@ -1,9 +1,10 @@
 [build]
-  publish = "src"
-  command = ""
+publish = "src"
+command = ""
 
 [[redirects]]
-  from = "/*"
-  to = "/index.html"
-  status = 200
+from = "/*"
+to = "/index.html"
+status = 200
+
 

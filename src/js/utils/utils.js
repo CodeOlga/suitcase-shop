@@ -1,10 +1,4 @@
-// export const BASE = window.location.pathname.includes("/pages/") ? ".." : ".";
-
-export const BASE = window.location.hostname.includes("netlify.app")
-  ? "" // на Netlify всі шляхи від кореня src
-  : window.location.pathname.includes("/pages/")
-  ? ".."
-  : ".";
+export const BASE = window.location.pathname.includes("/pages/") ? ".." : ".";
 
 export function fillTemplate(tpl, map) {
   let out = tpl;
