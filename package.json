@@ -10,17 +10,18 @@
   "author": "",
   "type": "module",
   "main": "index.js",
-  "scripts": {
-    "sass:build": "sass src/scss:dist/css",
-    "sass": "sass --watch src/scss:dist/css",
-    "lint": "npm run lint:js && npm run lint:css",
-    "lint:js": "eslint src/**/*.js",
-    "lint:css": "stylelint src/**/*.scss",
-    "sprite": "svg-sprite --config sprite.config.json src/assets/icons/**/*.svg",
-    "build": "npm run sprite && npm run sass:build",  
-    "build:ci": "npm run build && npm run lint",
-    "test": "echo \"No tests\" && exit 0"
-  },
+"scripts": {
+  "sass:build": "sass src/scss:src/css",
+  "sass": "sass --watch src/scss:src/css",
+  "lint": "npm run lint:js && npm run lint:css",
+  "lint:js": "eslint src/**/*.js",
+  "lint:css": "stylelint src/**/*.scss",
+  "sprite": "svg-sprite --config sprite.config.json src/assets/icons/**/*.svg",
+  "build": "npm run sprite && npm run sass:build",
+  "build:ci": "npm run build && npm run lint",
+  "netlify": "npm run build && node fix-paths.js",
+  "test": "echo \"No tests\" && exit 0"
+},
   "devDependencies": {
     "@eslint/js": "^9.35.0",
     "eslint": "^9.35.0",
