@@ -9,26 +9,26 @@ import "./pages/products.js";
 function initPageScripts() {
   const path = window.location.pathname;
 
-  if (path.includes("catalog.html")) {
+  if (path.includes("catalog")) {
     import("./pages/catalog.js").then(() => {
       initCustomSelects();
     });
   }
 
-  if (path.includes("product-details-template.html")) {
+  if (path.includes("product-details-template")) {
     import("./pages/product-details.js").then(() => {
       initCustomSelects();
     });
     initFormValidation("#review-form");
   }
 
-  if (path.includes("cart.html")) {
+  if (path.includes("cart")) {
     import("./pages/cart-page.js").then(({ initCartPage }) => {
       initCartPage();
     });
   }
 
-  if (path.includes("contact.html")) {
+  if (path.includes("contact")) {
     initFormValidation(".contact-form form");
   }
 }
