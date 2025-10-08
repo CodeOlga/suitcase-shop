@@ -1222,7 +1222,7 @@ address {
   min-height: 566px;
   padding: 40px;
   flex-shrink: 0;
-  background: url("../../src/assets/img/suitcases/promo-suitcase@1x.webp") center/cover no-repeat;
+  background: url("../assets/img/suitcases/promo-suitcase@1x.webp") center/cover no-repeat;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1609,7 +1609,7 @@ address {
 
 .common-section-hero {
   position: relative;
-  background: url("../../src/assets/img/hero/hero-about@1x.webp") center/cover no-repeat;
+  background: url("../assets/img/hero/hero-about@1x.webp") center/cover no-repeat;
   min-height: 554px;
   padding-top: 210px;
   text-align: center;
@@ -1897,7 +1897,7 @@ address {
 
 .hero-cart {
   position: relative;
-  background: url("../../src/assets/img/hero/hero-cart@1x.webp") center/cover no-repeat;
+  background: url("../assets/img/hero/hero-cart@1x.webp") center/cover no-repeat;
   min-height: 230px;
   padding-top: 82px;
   text-align: center;
@@ -2246,7 +2246,7 @@ address {
   width: 16px;
   height: 16px;
   transform: translateY(-50%);
-  background: url("../../src/assets/icons/search.svg") no-repeat center;
+  background: url("../assets/icons/search.svg") no-repeat center;
   background-size: contain;
   pointer-events: none;
 }
