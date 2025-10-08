@@ -136,7 +136,7 @@
     }
 
     @media (min-resolution: 192dpi), (min-resolution: 2dppx) {
-      background-image: url("../../src/assets/img/suitcases/promo-suitcase@2x.webp");
+      background-image: url("../assets/img/suitcases/promo-suitcase@2x.webp");
     }
 
     @media (max-width: variables.$breakpoint-sm) {
@@ -347,8 +347,8 @@
   .special-box {
     position: relative;
     overflow: hidden;
-    background: url("../../src/assets/img/promo/special-offer@1x.webp")
-      center/cover no-repeat;
+    background: url("../assets/img/promo/special-offer@1x.webp") center/cover
+      no-repeat;
     min-height: 407px;
     padding: 100px;
     display: flex;
@@ -371,7 +371,7 @@
     }
 
     @media (min-resolution: 192dpi), (min-resolution: 2dppx) {
-      background-image: url("../../src/assets/img/promo/special-offer@2x.webp");
+      background-image: url("../assets/img/promo/special-offer@2x.webp");
     }
 
     @media (max-width: variables.$breakpoint-md) {

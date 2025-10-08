@@ -1,26 +1,22 @@
 {
-  "name": "project-template",
+  "name": "suitcase-shop",
   "version": "1.0.0",
-  "description": "Capstone Project Template ",
-  "repository": {
-    "type": "git",
-    "url": "https://autocode.git.epam.com/campus_javascript/capstone-project/project-template.git"
-  },
-  "license": "ISC",
-  "author": "",
+  "description": "Multi-page responsive e-commerce website for travel suitcases",
+  "license": "MIT",
+  "author": "Olga K.",
   "type": "module",
   "main": "index.js",
-"scripts": {
-  "sass": "sass --watch src/scss:src/css",
-  "sass:build": "sass src/scss:src/css",
-  "lint": "npm run lint:js && npm run lint:css",
-  "lint:js": "eslint src/**/*.js",
-  "lint:css": "stylelint src/**/*.scss",
-  "sprite": "svg-sprite --config sprite.config.json src/assets/icons/**/*.svg",
-  "build": "npm run sprite && npm run sass:build",
-  "build:ci": "npm run build && npm run lint",
-  "test": "echo \"No tests\" && exit 0"
-},
+  "scripts": {
+    "sass": "sass --watch src/scss:src/css",
+    "sass:build": "sass src/scss:src/css",
+    "sprite": "svg-sprite --config sprite.config.json src/assets/icons/**/*.svg",
+    "build": "npm run sprite && npm run sass:build",
+    "lint": "npm run lint:js && npm run lint:css",
+    "lint:js": "eslint src/**/*.js",
+    "lint:css": "stylelint src/**/*.scss",
+    "build:ci": "npm run build && npm run lint",
+    "test": "echo \"No tests yet\" && exit 0"
+  },
   "devDependencies": {
     "@eslint/js": "^9.35.0",
     "eslint": "^9.35.0",
