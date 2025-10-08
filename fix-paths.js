@@ -3,7 +3,7 @@ import fs from "fs";
 const cssPath = "./src/css/main.css";
 let css = fs.readFileSync(cssPath, "utf8");
 
-// замінює всі "../../src/assets" на "/assets" для Netlify
+// замінюємо тільки для деплою
 css = css.replaceAll("../../src/assets", "/assets");
 
 fs.writeFileSync(cssPath, css, "utf8");

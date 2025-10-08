@@ -211,11 +211,6 @@ function resetFiltersUI() {
   updateCartCounter();
 
   fetch(`${BASE}/assets/data.json`)
-    // const dataUrl = window.location.hostname.includes("netlify.app")
-    //   ? "/src/assets/data.json"
-    //   : `${BASE}/assets/data.json`;
-
-    // fetch(dataUrl)
     .then((r) => r.json())
     .then((data) => {
       allProducts = Array.isArray(data) ? data : data.data;
