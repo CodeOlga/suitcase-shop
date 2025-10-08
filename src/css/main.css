@@ -623,7 +623,7 @@ address {
   content: "";
   position: absolute;
   inset: 0;
-  background-image: url("/assets/icons/wave-32.svg");
+  background-image: url("../../src/assets/icons/wave-32.svg");
   background-repeat: repeat-y;
   background-size: 100% 32px;
   opacity: 0.2;
@@ -1222,7 +1222,7 @@ address {
   min-height: 566px;
   padding: 40px;
   flex-shrink: 0;
-  background: url("/assets/img/suitcases/promo-suitcase@1x.webp") center/cover no-repeat;
+  background: url("../../src/assets/img/suitcases/promo-suitcase@1x.webp") center/cover no-repeat;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1237,7 +1237,7 @@ address {
 }
 @media (min-resolution: 192dpi), (min-resolution: 2dppx) {
   .promo-section .promo-right {
-    background-image: url("/assets/img/suitcases/promo-suitcase@2x.webp");
+    background-image: url("../../src/assets/img/suitcases/promo-suitcase@2x.webp");
   }
 }
 @media (max-width: 768px) {
@@ -1443,7 +1443,7 @@ address {
 .special-offer .special-box {
   position: relative;
   overflow: hidden;
-  background: url("/assets/img/promo/special-offer@1x.webp") center/cover no-repeat;
+  background: url("../../src/assets/img/promo/special-offer@1x.webp") center/cover no-repeat;
   min-height: 407px;
   padding: 100px;
   display: flex;
@@ -1465,7 +1465,7 @@ address {
 }
 @media (min-resolution: 192dpi), (min-resolution: 2dppx) {
   .special-offer .special-box {
-    background-image: url("/assets/img/promo/special-offer@2x.webp");
+    background-image: url("../../src/assets/img/promo/special-offer@2x.webp");
   }
 }
 @media (max-width: 1024px) {
@@ -1609,7 +1609,7 @@ address {
 
 .common-section-hero {
   position: relative;
-  background: url("/assets/img/hero/hero-about@1x.webp") center/cover no-repeat;
+  background: url("../../src/assets/img/hero/hero-about@1x.webp") center/cover no-repeat;
   min-height: 554px;
   padding-top: 210px;
   text-align: center;
@@ -1639,11 +1639,11 @@ address {
 }
 
 .hero-about {
-  background: url("/assets/img/hero/hero-about@1x.webp") center/cover no-repeat;
+  background: url("../../src/assets/img/hero/hero-about@1x.webp") center/cover no-repeat;
 }
 @media (min-resolution: 192dpi), (min-resolution: 2dppx) {
   .hero-about {
-    background-image: url("/assets/img/hero/hero-about@2x.webp");
+    background-image: url("../../src/assets/img/hero/hero-about@2x.webp");
   }
 }
 
@@ -1728,7 +1728,7 @@ address {
 .special-offer .special-box {
   position: relative;
   overflow: hidden;
-  background: url("/assets/img/promo/special-offer@1x.webp") center/cover no-repeat;
+  background: url("../../src/assets/img/promo/special-offer@1x.webp") center/cover no-repeat;
   min-height: 407px;
   padding: 100px;
   display: flex;
@@ -1750,7 +1750,7 @@ address {
 }
 @media (min-resolution: 192dpi), (min-resolution: 2dppx) {
   .special-offer .special-box {
-    background-image: url("/assets/img/promo/special-offer@2x.webp");
+    background-image: url("../../src/assets/img/promo/special-offer@2x.webp");
   }
 }
 @media (max-width: 1024px) {
@@ -1826,11 +1826,11 @@ address {
 }
 
 .hero-contact {
-  background: url("/assets/img/hero/hero-contact@1x.webp") center/cover no-repeat;
+  background: url("../../src/assets/img/hero/hero-contact@1x.webp") center/cover no-repeat;
 }
 @media (min-resolution: 192dpi), (min-resolution: 2dppx) {
   .hero-contact {
-    background-image: url("/assets/img/hero/hero-contact@2x.webp");
+    background-image: url("../../src/assets/img/hero/hero-contact@2x.webp");
   }
 }
 
@@ -1897,7 +1897,7 @@ address {
 
 .hero-cart {
   position: relative;
-  background: url("/assets/img/hero/hero-cart@1x.webp") center/cover no-repeat;
+  background: url("../../src/assets/img/hero/hero-cart@1x.webp") center/cover no-repeat;
   min-height: 230px;
   padding-top: 82px;
   text-align: center;
@@ -2246,7 +2246,7 @@ address {
   width: 16px;
   height: 16px;
   transform: translateY(-50%);
-  background: url("/assets/icons/search.svg") no-repeat center;
+  background: url("../../src/assets/icons/search.svg") no-repeat center;
   background-size: contain;
   pointer-events: none;
 }

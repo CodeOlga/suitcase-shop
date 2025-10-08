@@ -210,7 +210,8 @@ function resetFiltersUI() {
 (function initCatalog() {
   updateCartCounter();
 
-  fetch(`${BASE}/assets/data.json`)
+  // fetch(`${BASE}/assets/data.json`)
+  fetch("/src/assets/data.json")
     // fetch("/assets/data.json")
     .then((r) => r.json())
     .then((data) => {
