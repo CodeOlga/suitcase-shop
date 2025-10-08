@@ -211,6 +211,7 @@ function resetFiltersUI() {
   updateCartCounter();
 
   fetch(`${BASE}/assets/data.json`)
+    // fetch("/assets/data.json")
     .then((r) => r.json())
     .then((data) => {
       allProducts = Array.isArray(data) ? data : data.data;
