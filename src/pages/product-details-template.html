@@ -49,20 +49,24 @@
               <use href="../assets/sprite/sprite.svg#icon-user"></use>
             </svg>
           </button>
-          <a href="../pages/cart.html" class="icon-btn cart-btn" aria-label="Cart">
+          <a href="./cart.html" class="icon-btn cart-btn" aria-label="Cart">
             <svg width="34" height="34">
               <use href="../assets/sprite/sprite.svg#icon-shopping-cart"></use>
             </svg>
             <span class="cart-counter" hidden></span>
           </a>
         </div>
+
+        <button class="burger" aria-label="Open menu">
+          <span></span><span></span><span></span>
+        </button>
       </div>
 
       <div class="nav-bar">
         <nav class="nav">
           <ul class="nav-list">
             <li><a href="../index.html" class="nav-link">Home</a></li>
-            <li><a href="catalog.html" class="nav-link">Catalog
+            <li><a href="./catalog.html" class="nav-link">Catalog
                 <span class="arrow-down">
                   <svg width="8" height="12" aria-hidden="true">
                     <use href="../assets/sprite/sprite.svg#icon-arrow-down"></use>
@@ -70,16 +74,48 @@
                 </span>
               </a>
             </li>
-            <li><a href="about.html" class="nav-link">About Us</a>
-            </li>
-            <li><a href="contact.html" class="nav-link">Contact
-                Us</a></li>
+            <li><a href="./about.html" class="nav-link">About Us</a></li>
+            <li><a href="./contact.html" class="nav-link active">Contact Us</a></li>
           </ul>
+
+          <div class="mobile-actions">
+            <button class="icon-btn" aria-label="Account">
+              <svg width="30" height="30">
+                <use href="../assets/sprite/sprite.svg#icon-user"></use>
+              </svg>
+            </button>
+            <a href="./cart.html" class="icon-btn cart-btn" aria-label="Cart">
+              <svg width="34" height="34">
+                <use href="../assets/sprite/sprite.svg#icon-shopping-cart"></use>
+              </svg>
+              <span class="cart-counter" hidden></span>
+            </a>
+          </div>
+
+          <div class="mobile-socials">
+            <a href="https://facebook.com" target="_blank" aria-label="Facebook">
+              <svg width="20" height="20">
+                <use href="../assets/sprite/sprite.svg#icon-facebook"></use>
+              </svg>
+            </a>
+            <a href="https://twitter.com" target="_blank" aria-label="Twitter">
+              <svg width="24" height="20">
+                <use href="../assets/sprite/sprite.svg#icon-twitter"></use>
+              </svg>
+            </a>
+            <a href="https://instagram.com" target="_blank" aria-label="Instagram">
+              <svg width="20" height="20">
+                <use href="../assets/sprite/sprite.svg#icon-instagram"></use>
+              </svg>
+            </a>
+          </div>
         </nav>
       </div>
     </div>
-  </header>
 
+    <div class="menu-overlay"></div>
+  </header>
+  <div class="menu-overlay"></div>
   <main>
     <h1 class="visually-hidden">Product Details Page</h1>
 

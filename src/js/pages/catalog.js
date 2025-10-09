@@ -210,8 +210,6 @@ function resetFiltersUI() {
 (function initCatalog() {
   updateCartCounter();
 
-  // fetch(`${BASE}/assets/data.json`)
-  // 🧭 універсальний шлях для data.json
   const isNetlify = window.location.hostname.includes("netlify.app");
   const dataUrl = isNetlify ? "/assets/data.json" : `${BASE}/assets/data.json`;
   fetch(dataUrl)

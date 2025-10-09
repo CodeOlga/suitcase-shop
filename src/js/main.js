@@ -37,4 +37,10 @@ document.addEventListener("DOMContentLoaded", () => {
   updateCartCounter();
   initPageScripts();
   initLoginModal();
+
+  // Fix for Safari icons
+  document.querySelectorAll("use[href]").forEach((el) => {
+    const val = el.getAttribute("href");
+    el.setAttribute("xlink:href", val);
+  });
 });
