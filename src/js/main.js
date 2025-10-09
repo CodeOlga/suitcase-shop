@@ -38,9 +38,13 @@ document.addEventListener("DOMContentLoaded", () => {
   initPageScripts();
   initLoginModal();
 
-  // Fix for Safari icons
-  document.querySelectorAll("use[href]").forEach((el) => {
-    const val = el.getAttribute("href");
-    el.setAttribute("xlink:href", val);
-  });
+  // Fix for Safari (inline sprite)
+  fetch("/assets/sprite/sprite.svg")
+    .then((r) => r.text())
+    .then((svg) => {
+      const div = document.createElement("div");
+      div.style.display = "none";
+      div.innerHTML = svg;
+      document.body.insertBefore(div, document.body.firstChild);
+    });
 });
