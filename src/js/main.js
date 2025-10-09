@@ -37,9 +37,20 @@ document.addEventListener("DOMContentLoaded", () => {
   updateCartCounter();
   initPageScripts();
   initLoginModal();
+});
 
-  document.querySelectorAll("use[href]").forEach((use) => {
-    const val = use.getAttribute("href");
-    use.setAttribute("xlink:href", val);
+// 🩵 Safari SVG fix (absolute path + xlink support)
+document.addEventListener("DOMContentLoaded", () => {
+  document.querySelectorAll("use[href]").forEach((el) => {
+    const href = el.getAttribute("href");
+    if (!href) return;
+
+    // робимо абсолютний шлях
+    const absHref = href.startsWith("http")
+      ? href
+      : window.location.origin + href.replace(/^(\.)?/, "");
+
+    // додаємо xlink:href для Safari
+    el.setAttribute("xlink:href", absHref);
   });
 });
