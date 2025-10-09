@@ -39,18 +39,13 @@ document.addEventListener("DOMContentLoaded", () => {
   initLoginModal();
 });
 
-// 🩵 Safari SVG fix (absolute path + xlink support)
+// Safari SVG fix: тільки додати xlink:href, НЕ змінюючи шлях
 document.addEventListener("DOMContentLoaded", () => {
-  document.querySelectorAll("use[href]").forEach((el) => {
-    const href = el.getAttribute("href");
-    if (!href) return;
-
-    // робимо абсолютний шлях
-    const absHref = href.startsWith("http")
-      ? href
-      : window.location.origin + href.replace(/^(\.)?/, "");
-
-    // додаємо xlink:href для Safari
-    el.setAttribute("xlink:href", absHref);
+  document.querySelectorAll("use").forEach((use) => {
+    const val =
+      use.getAttribute("href") ||
+      use.getAttributeNS("http://www.w3.org/1999/xlink", "href");
+    if (!val) return;
+    use.setAttributeNS("http://www.w3.org/1999/xlink", "href", val);
   });
 });
