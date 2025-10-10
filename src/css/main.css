@@ -776,9 +776,9 @@ address {
     align-items: center;
     text-align: center;
   }
-  .footer .footer-top .benefit-item svg {
-    width: 40px;
-    height: 40px;
+  .footer .footer-top .benefit-item img {
+    width: 48px;
+    height: 48px;
   }
   .footer .footer-bottom .container {
     flex-direction: column;
