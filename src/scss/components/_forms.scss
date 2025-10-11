@@ -364,44 +364,70 @@
   }
 }
 
-.native-select {
-  width: 100%;
-  padding: 10px 12px;
-  border: 1px solid variables.$bg-light-gray;
-  border-radius: 8px;
-  font: inherit;
-  background-color: variables.$bg-white;
-  color: variables.$text-gray-form;
+/* 🔹 нативний селект — базовий вигляд */
+// .native-select {
+//   width: 100%;
+//   padding: 10px 12px;
+//   border: 1px solid variables.$bg-light-gray;
+//   border-radius: 8px;
+//   font: inherit;
+//   background-color: variables.$bg-white;
+//   color: variables.$text-gray-form;
 
-  appearance: none;
-  background-image: url("../assets/icons/arrow-down.svg");
-  background-repeat: no-repeat;
-  background-position: right 12px center;
-  background-size: 10px 6px;
+//   appearance: none;
+//   background-image: url("../assets/icons/arrow-down.svg");
+//   background-repeat: no-repeat;
+//   background-position: right 12px center;
+//   background-size: 10px 6px;
 
-  /* плавна поява при заміні */
-  opacity: 0;
-  animation: fadeInSelect 0.2s ease-in forwards;
+//   &:focus {
+//     outline: none;
+//     border-color: variables.$color-primary-pink;
+//     box-shadow: variables.$box-shadow;
+//   }
+// }
 
-  &:focus {
-    outline: none;
-    border-color: variables.$color-primary-pink;
-    box-shadow: variables.$box-shadow;
-  }
-}
+// /* 🔹 приховуємо кастомні селекти лише ДО ініціалізації */
+// body:not(.selects-ready) [data-select] {
+//   visibility: hidden;
+// }
 
-@keyframes fadeInSelect {
-  to {
+// /* 🔹 після ініціалізації — показуємо кастомні */
+// body.selects-ready [data-select] {
+//   visibility: visible;
+// }
+
+// /* 🔹 плавна поява саме для нативних (як fallback) */
+// body:not(.selects-ready) .native-select {
+//   opacity: 0;
+//   animation: fadeInSelect 0.2s ease-in forwards;
+// }
+
+// @keyframes fadeInSelect {
+//   to {
+//     opacity: 1;
+//   }
+// }
+
+@media (hover: none), (pointer: coarse) {
+  .custom-select.open .custom-options {
+    max-height: 260px;
     opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    overflow-y: auto;
+    transform: translateY(0);
   }
-}
 
-/* приховуємо кастомні селекти, поки не готово */
-[data-select] {
-  visibility: hidden;
-}
+  .custom-select.open .custom-trigger::after {
+    transform: rotate(180deg);
+  }
 
-/* коли все ініціалізовано — показуємо */
-body.selects-ready [data-select] {
-  visibility: visible;
+  .custom-select:hover .custom-options,
+  .custom-select:focus-within .custom-options {
+    max-height: 0;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+  }
 }

@@ -1,164 +1,195 @@
+// export function initCustomSelects() {
+//   const wraps = document.querySelectorAll(".custom-select[data-select]");
+//   if (!wraps.length) return;
+
+//   const isTouch = window.matchMedia("(hover: none), (pointer: coarse)").matches;
+
+//   const open = (wrap) => {
+//     wrap.classList.add("open");
+//     const t = wrap.querySelector("[data-select-trigger]");
+//     if (t) t.setAttribute("aria-expanded", "true");
+//   };
+
+//   const close = (wrap) => {
+//     wrap.classList.remove("open");
+//     const t = wrap.querySelector("[data-select-trigger]");
+//     if (t) t.setAttribute("aria-expanded", "false");
+//   };
+
+//   const closeAll = (except = null) => {
+//     wraps.forEach((w) => {
+//       if (w !== except) close(w);
+//     });
+//   };
+
+//   // document.addEventListener("click", (e) => {
+//   //   const host = e.target.closest(".custom-select[data-select]");
+//   //   if (!host) closeAll();
+//   // });
+//   document.addEventListener("click", (e) => {
+//     const host = e.target.closest(".custom-select[data-select]");
+//     if (!host) {
+//       closeAll();
+//     } else {
+//       // 💡 не закривай одразу після торкання, дай шанс опціям вибратись
+//       if (isTouch) e.stopPropagation();
+//     }
+//   });
+
+//   document.addEventListener("keydown", (e) => {
+//     if (e.key === "Escape") closeAll();
+//   });
+
+//   wraps.forEach((wrap) => {
+//     const trigger = wrap.querySelector("[data-select-trigger]");
+//     const list = wrap.querySelector("[data-select-options]");
+//     const hidden = wrap.nextElementSibling;
+//     if (!trigger || !list || !hidden) return;
+
+//     if (!trigger.hasAttribute("aria-expanded")) {
+//       trigger.setAttribute("aria-expanded", "false");
+//     }
+
+//     if (!isTouch) {
+//       wrap.addEventListener("mouseenter", () => open(wrap));
+//       wrap.addEventListener("mouseleave", () => close(wrap));
+//       trigger.addEventListener("focus", () => open(wrap));
+//       wrap.addEventListener("focusout", (e) => {
+//         if (!wrap.contains(e.relatedTarget)) close(wrap);
+//       });
+//     }
+
+//     // trigger.addEventListener("click", (e) => {
+//     //   if (!isTouch) return;
+//     //   e.preventDefault();
+//     //   e.stopPropagation();
+//     //   const willOpen = !wrap.classList.contains("open");
+//     //   closeAll();
+//     //   willOpen ? open(wrap) : close(wrap);
+//     // });
+
+//     trigger.addEventListener("click", (e) => {
+//       e.preventDefault();
+//       e.stopPropagation();
+
+//       const willOpen = !wrap.classList.contains("open");
+//       closeAll();
+
+//       if (willOpen) {
+//         open(wrap); // ✅ відкриває список
+//       } else {
+//         close(wrap); // ✅ закриває при повторному тапі
+//       }
+//     });
+
+//     const selectLi = (li) => {
+//       list.querySelectorAll("li").forEach((n) => {
+//         n.classList.toggle("active", n === li);
+//       });
+
+//       trigger.textContent = li.textContent.trim();
+//       hidden.value = li.dataset.value ?? "";
+//       hidden.dispatchEvent(new Event("change", { bubbles: true }));
+
+//       if (isTouch) close(wrap);
+//     };
+
+//     list.addEventListener("click", (e) => {
+//       const li = e.target.closest("li[data-value]");
+//       if (li) selectLi(li);
+//     });
+
+//     const items = Array.from(list.querySelectorAll("li"));
+//     items.forEach((li, i) => {
+//       li.tabIndex = 0;
+//       li.addEventListener("keydown", (e) => {
+//         if (e.key === "Enter" || e.key === " ") {
+//           e.preventDefault();
+//           selectLi(li);
+//         } else if (e.key === "ArrowDown") {
+//           e.preventDefault();
+//           (items[i + 1] || items[0]).focus();
+//         } else if (e.key === "ArrowUp") {
+//           e.preventDefault();
+//           (items[i - 1] || items[items.length - 1]).focus();
+//         }
+//       });
+//     });
+//   });
+// }
+
 export function initCustomSelects() {
-  const wraps = document.querySelectorAll(".custom-select[data-select]");
-  if (!wraps.length) return;
+  const selects = document.querySelectorAll(".custom-select[data-select]");
+  if (!selects.length) return;
 
-  const isTouch = window.matchMedia("(hover: none), (pointer: coarse)").matches;
+  const isTouch = "ontouchstart" in window || navigator.maxTouchPoints > 0;
 
-  // ✅ 1) Проста надійна заміна на мобільних/тач
-  if (isTouch) {
-    wraps.forEach((wrap) => {
-      const trigger = wrap.querySelector("[data-select-trigger]");
-      const list = wrap.querySelector("[data-select-options]");
-      const hidden = wrap.nextElementSibling; // ваш <input type="hidden" ...>
-      if (!list || !hidden) return;
-
-      // створюємо нативний select
-      const select = document.createElement("select");
-      select.className = "native-select";
-      const labelId = trigger?.getAttribute("aria-labelledby") || "";
-      if (labelId) select.setAttribute("aria-labelledby", labelId);
-
-      // перша "порожня" опція (як "Choose option")
-      const firstOpt = document.createElement("option");
-      firstOpt.value = "";
-      firstOpt.textContent = "Choose option";
-      select.appendChild(firstOpt);
-
-      // переносимо <li data-value="..."> в <option>
-      [...list.querySelectorAll("li[data-value]")].forEach((li) => {
-        const opt = document.createElement("option");
-        opt.value = li.dataset.value ?? "";
-        opt.textContent = li.textContent.trim();
-        select.appendChild(opt);
-      });
-
-      // підміняємо .custom-select нативним <select>
-      wrap.replaceWith(select);
-
-      // синхронізуємо hidden input (щоб ваші фільтри НЕ міняти взагалі)
-      select.addEventListener("change", () => {
-        hidden.value = select.value;
-        hidden.dispatchEvent(new Event("change", { bubbles: true }));
-      });
-    });
-
-    // ✅ показуємо селекти тільки після заміни
-    document.body.classList.add("selects-ready");
-    // важливо: на touch-девісах далі нічого не ініціалізуємо
-    return;
-  }
-
-  const open = (wrap) => {
-    wrap.classList.add("open");
-    const t = wrap.querySelector("[data-select-trigger]");
-    if (t) t.setAttribute("aria-expanded", "true");
-  };
-
-  const close = (wrap) => {
-    wrap.classList.remove("open");
-    const t = wrap.querySelector("[data-select-trigger]");
-    if (t) t.setAttribute("aria-expanded", "false");
-  };
-
-  const closeAll = (except = null) => {
-    wraps.forEach((w) => {
-      if (w !== except) close(w);
-    });
-  };
-
-  // document.addEventListener("click", (e) => {
-  //   const host = e.target.closest(".custom-select[data-select]");
-  //   if (!host) closeAll();
-  // });
-  document.addEventListener("click", (e) => {
-    const host = e.target.closest(".custom-select[data-select]");
-    if (!host) {
-      closeAll();
-    } else {
-      // 💡 не закривай одразу після торкання, дай шанс опціям вибратись
-      if (isTouch) e.stopPropagation();
-    }
-  });
-
-  document.addEventListener("keydown", (e) => {
-    if (e.key === "Escape") closeAll();
-  });
-
-  wraps.forEach((wrap) => {
-    const trigger = wrap.querySelector("[data-select-trigger]");
-    const list = wrap.querySelector("[data-select-options]");
-    const hidden = wrap.nextElementSibling;
+  selects.forEach((select) => {
+    const trigger = select.querySelector("[data-select-trigger]");
+    const list = select.querySelector("[data-select-options]");
+    const hidden = select.nextElementSibling;
     if (!trigger || !list || !hidden) return;
 
-    if (!trigger.hasAttribute("aria-expanded")) {
-      trigger.setAttribute("aria-expanded", "false");
-    }
-
-    if (!isTouch) {
-      wrap.addEventListener("mouseenter", () => open(wrap));
-      wrap.addEventListener("mouseleave", () => close(wrap));
-      trigger.addEventListener("focus", () => open(wrap));
-      wrap.addEventListener("focusout", (e) => {
-        if (!wrap.contains(e.relatedTarget)) close(wrap);
+    // Закрити інші відкриті селекти
+    const closeAll = (except = null) => {
+      selects.forEach((s) => {
+        if (s !== except) s.classList.remove("open");
+        const t = s.querySelector("[data-select-trigger]");
+        if (t) t.setAttribute("aria-expanded", "false");
       });
-    }
+    };
 
-    // trigger.addEventListener("click", (e) => {
-    //   if (!isTouch) return;
-    //   e.preventDefault();
-    //   e.stopPropagation();
-    //   const willOpen = !wrap.classList.contains("open");
-    //   closeAll();
-    //   willOpen ? open(wrap) : close(wrap);
-    // });
+    // Клік поза селектом закриває список
+    document.addEventListener("click", (e) => {
+      if (!e.target.closest(".custom-select[data-select]")) closeAll();
+    });
 
+    // Відкриття / закриття при кліку
     trigger.addEventListener("click", (e) => {
       e.preventDefault();
       e.stopPropagation();
 
-      const willOpen = !wrap.classList.contains("open");
+      const isOpen = select.classList.contains("open");
       closeAll();
 
-      if (willOpen) {
-        open(wrap); // ✅ відкриває список
+      if (!isOpen) {
+        select.classList.add("open");
+        trigger.setAttribute("aria-expanded", "true");
       } else {
-        close(wrap); // ✅ закриває при повторному тапі
+        trigger.setAttribute("aria-expanded", "false");
       }
     });
 
-    const selectLi = (li) => {
-      list.querySelectorAll("li").forEach((n) => {
-        n.classList.toggle("active", n === li);
-      });
+    // Вибір пункту
+    list.addEventListener("click", (e) => {
+      const li = e.target.closest("li[data-value]");
+      if (!li) return;
+
+      list.querySelectorAll("li").forEach((n) => n.classList.remove("active"));
+      li.classList.add("active");
 
       trigger.textContent = li.textContent.trim();
       hidden.value = li.dataset.value ?? "";
       hidden.dispatchEvent(new Event("change", { bubbles: true }));
 
-      if (isTouch) close(wrap);
-    };
-
-    list.addEventListener("click", (e) => {
-      const li = e.target.closest("li[data-value]");
-      if (li) selectLi(li);
+      select.classList.remove("open");
+      trigger.setAttribute("aria-expanded", "false");
     });
 
-    const items = Array.from(list.querySelectorAll("li"));
-    items.forEach((li, i) => {
-      li.tabIndex = 0;
-      li.addEventListener("keydown", (e) => {
-        if (e.key === "Enter" || e.key === " ") {
-          e.preventDefault();
-          selectLi(li);
-        } else if (e.key === "ArrowDown") {
-          e.preventDefault();
-          (items[i + 1] || items[0]).focus();
-        } else if (e.key === "ArrowUp") {
-          e.preventDefault();
-          (items[i - 1] || items[items.length - 1]).focus();
-        }
+    // Додатково: клавіша Escape
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") closeAll();
+    });
+
+    // На десктопі можна залишити hover-ефект (нічого не ламає)
+    if (!isTouch) {
+      select.addEventListener("mouseenter", () => {
+        trigger.setAttribute("aria-expanded", "true");
       });
-    });
+      select.addEventListener("mouseleave", () => {
+        trigger.setAttribute("aria-expanded", "false");
+      });
+    }
   });
 }
 

@@ -539,44 +539,27 @@ address {
   margin-top: -10px;
 }
 
-.native-select {
-  width: 100%;
-  padding: 10px 12px;
-  border: 1px solid #e9e9ed;
-  border-radius: 8px;
-  font: inherit;
-  background-color: #ffffff;
-  color: #727174;
-  appearance: none;
-  background-image: url("../assets/icons/arrow-down.svg");
-  background-repeat: no-repeat;
-  background-position: right 12px center;
-  background-size: 10px 6px;
-  /* плавна поява при заміні */
-  opacity: 0;
-  animation: fadeInSelect 0.2s ease-in forwards;
-}
-.native-select:focus {
-  outline: none;
-  border-color: #b92770;
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-}
-
-@keyframes fadeInSelect {
-  to {
+/* 🔹 нативний селект — базовий вигляд */
+@media (hover: none), (pointer: coarse) {
+  .custom-select.open .custom-options {
+    max-height: 260px;
     opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    overflow-y: auto;
+    transform: translateY(0);
+  }
+  .custom-select.open .custom-trigger::after {
+    transform: rotate(180deg);
+  }
+  .custom-select:hover .custom-options,
+  .custom-select:focus-within .custom-options {
+    max-height: 0;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
   }
 }
-/* приховуємо кастомні селекти, поки не готово */
-[data-select] {
-  visibility: hidden;
-}
-
-/* коли все ініціалізовано — показуємо */
-body.selects-ready [data-select] {
-  visibility: visible;
-}
-
 .product-card {
   display: flex;
   flex-direction: column;
