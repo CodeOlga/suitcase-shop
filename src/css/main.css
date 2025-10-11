@@ -538,6 +538,15 @@ address {
   margin-top: -10px;
 }
 
+.native-select {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid #e9e9ed;
+  border-radius: 8px;
+  font: inherit;
+  background: #ffffff;
+}
+
 .product-card {
   display: flex;
   flex-direction: column;

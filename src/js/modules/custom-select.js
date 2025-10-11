@@ -4,6 +4,48 @@ export function initCustomSelects() {
 
   const isTouch = window.matchMedia("(hover: none), (pointer: coarse)").matches;
 
+  // ✅ 1) Проста надійна заміна на мобільних/тач
+  if (isTouch) {
+    wraps.forEach((wrap) => {
+      const trigger = wrap.querySelector("[data-select-trigger]");
+      const list = wrap.querySelector("[data-select-options]");
+      const hidden = wrap.nextElementSibling; // ваш <input type="hidden" ...>
+      if (!list || !hidden) return;
+
+      // створюємо нативний select
+      const select = document.createElement("select");
+      select.className = "native-select";
+      const labelId = trigger?.getAttribute("aria-labelledby") || "";
+      if (labelId) select.setAttribute("aria-labelledby", labelId);
+
+      // перша "порожня" опція (як "Choose option")
+      const firstOpt = document.createElement("option");
+      firstOpt.value = "";
+      firstOpt.textContent = "Choose option";
+      select.appendChild(firstOpt);
+
+      // переносимо <li data-value="..."> в <option>
+      [...list.querySelectorAll("li[data-value]")].forEach((li) => {
+        const opt = document.createElement("option");
+        opt.value = li.dataset.value ?? "";
+        opt.textContent = li.textContent.trim();
+        select.appendChild(opt);
+      });
+
+      // підміняємо .custom-select нативним <select>
+      wrap.replaceWith(select);
+
+      // синхронізуємо hidden input (щоб ваші фільтри НЕ міняти взагалі)
+      select.addEventListener("change", () => {
+        hidden.value = select.value;
+        hidden.dispatchEvent(new Event("change", { bubbles: true }));
+      });
+    });
+
+    // важливо: на touch-девісах далі нічого не ініціалізуємо
+    return;
+  }
+
   const open = (wrap) => {
     wrap.classList.add("open");
     const t = wrap.querySelector("[data-select-trigger]");
