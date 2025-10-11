@@ -812,7 +812,7 @@ address {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 48px 0 24px;
+  padding: 48px 0 48px;
   border-bottom: 1px solid #e9e9ed;
 }
 .header .top-bar .socials {
@@ -915,8 +915,8 @@ address {
     border-radius: 6px;
   }
   .header .top-bar .logo .logo-icon {
-    width: 16px;
-    height: 16px;
+    width: 24px;
+    height: 24px;
   }
   .header .top-bar .logo .logo-text {
     font-size: 22px;
@@ -962,10 +962,9 @@ address {
   .header .nav .nav-list {
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
+    align-items: center;
     gap: 20px;
-    padding-left: 24px;
-    padding-bottom: 24px;
+    padding-bottom: 20px;
   }
   .header .nav .nav-link {
     font-size: 18px;
@@ -975,7 +974,7 @@ address {
     display: flex;
     justify-content: center;
     gap: 16px;
-    padding: 16px 0;
+    padding: 20px 0;
     border-top: 1px solid #e9e9ed;
   }
   .header .nav .mobile-actions .icon-btn,
@@ -1001,7 +1000,7 @@ address {
     display: flex;
     justify-content: center;
     gap: 20px;
-    padding: 24px 0;
+    padding-top: 20px;
     border-top: 1px solid #e9e9ed;
   }
   .header .nav .mobile-socials a svg {

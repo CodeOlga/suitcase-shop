@@ -22,10 +22,20 @@ export function initCustomSelects() {
     });
   };
 
+  // document.addEventListener("click", (e) => {
+  //   const host = e.target.closest(".custom-select[data-select]");
+  //   if (!host) closeAll();
+  // });
   document.addEventListener("click", (e) => {
     const host = e.target.closest(".custom-select[data-select]");
-    if (!host) closeAll();
+    if (!host) {
+      closeAll();
+    } else {
+      // 💡 не закривай одразу після торкання, дай шанс опціям вибратись
+      if (isTouch) e.stopPropagation();
+    }
   });
+
   document.addEventListener("keydown", (e) => {
     if (e.key === "Escape") closeAll();
   });

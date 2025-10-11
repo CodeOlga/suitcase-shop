@@ -38,19 +38,3 @@ document.addEventListener("DOMContentLoaded", () => {
   initPageScripts();
   initLoginModal();
 });
-
-// 🩵 Safari SVG sprite fix (adds xlink:href + absolute path)
-document.addEventListener("DOMContentLoaded", () => {
-  document.querySelectorAll("use[href]").forEach((use) => {
-    const href = use.getAttribute("href");
-    if (!href) return;
-
-    // перетворюємо відносний шлях у абсолютний
-    const absolute = href.startsWith("http")
-      ? href
-      : `${window.location.origin}${href.replace(/^\./, "")}`;
-
-    // додаємо xlink:href — саме його Safari вимагає
-    use.setAttribute("xlink:href", absolute);
-  });
-});
