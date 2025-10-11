@@ -59,13 +59,27 @@ export function initCustomSelects() {
       });
     }
 
+    // trigger.addEventListener("click", (e) => {
+    //   if (!isTouch) return;
+    //   e.preventDefault();
+    //   e.stopPropagation();
+    //   const willOpen = !wrap.classList.contains("open");
+    //   closeAll();
+    //   willOpen ? open(wrap) : close(wrap);
+    // });
+
     trigger.addEventListener("click", (e) => {
-      if (!isTouch) return;
       e.preventDefault();
       e.stopPropagation();
+
       const willOpen = !wrap.classList.contains("open");
       closeAll();
-      willOpen ? open(wrap) : close(wrap);
+
+      if (willOpen) {
+        open(wrap); // ✅ відкриває список
+      } else {
+        close(wrap); // ✅ закриває при повторному тапі
+      }
     });
 
     const selectLi = (li) => {
