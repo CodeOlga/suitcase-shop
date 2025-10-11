@@ -370,5 +370,38 @@
   border: 1px solid variables.$bg-light-gray;
   border-radius: 8px;
   font: inherit;
-  background: variables.$bg-white;
+  background-color: variables.$bg-white;
+  color: variables.$text-gray-form;
+
+  appearance: none;
+  background-image: url("../assets/icons/arrow-down.svg");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  background-size: 10px 6px;
+
+  /* плавна поява при заміні */
+  opacity: 0;
+  animation: fadeInSelect 0.2s ease-in forwards;
+
+  &:focus {
+    outline: none;
+    border-color: variables.$color-primary-pink;
+    box-shadow: variables.$box-shadow;
+  }
+}
+
+@keyframes fadeInSelect {
+  to {
+    opacity: 1;
+  }
+}
+
+/* приховуємо кастомні селекти, поки не готово */
+[data-select] {
+  visibility: hidden;
+}
+
+/* коли все ініціалізовано — показуємо */
+body.selects-ready [data-select] {
+  visibility: visible;
 }

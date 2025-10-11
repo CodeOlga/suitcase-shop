@@ -42,6 +42,8 @@ export function initCustomSelects() {
       });
     });
 
+    // ✅ показуємо селекти тільки після заміни
+    document.body.classList.add("selects-ready");
     // важливо: на touch-девісах далі нічого не ініціалізуємо
     return;
   }
